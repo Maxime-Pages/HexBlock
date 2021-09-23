@@ -1,0 +1,7 @@
+namespace HexBlock
+{
+    class Grid
+    {
+        
+    }
+}
