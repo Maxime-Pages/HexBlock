@@ -1,0 +1,4 @@
+MEMO:
+Joueur 1 = Rouge = True
+Joueur 2 = Bleu = False
+Grille = 11x11 de base

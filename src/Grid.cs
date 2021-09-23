@@ -39,5 +39,43 @@ namespace HexBlock
             return;
         }
 
+        public Grid(int size)
+        {
+            this.size = size;
+            this.grid = Spot[size+2][size+2];
+            this.cturn = true;
+            this.win = false;
+            for(int i = 0;i<= size+2;i++)
+            {
+                for(int j = 0;j<=size+2;j++)
+                {
+                    grid[i][j] = new Spot();
+                    if (j==0 || j == size+2)
+                    {
+                        grid[i][j].Color(true);
+                    }
+                }
+                grid[i][0].Color(false);
+                grid[i][size+2].Color(false);
+            }
+
+            // switch (a,b)
+            // {
+            //     case (0,1):
+            //     case (0,-1):
+            //     case (1,0):
+            //     case (-1,0):
+            //     case (-1,1):
+            //     case (1,-1):
+            //         adj = true;
+            //     default:
+            //         adj = false;
+            // }
+            
+
+            
+
+        }
+
     }
 }

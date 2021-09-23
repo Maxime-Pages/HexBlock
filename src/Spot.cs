@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace HexBlock
 {
     class Spot
@@ -14,20 +12,11 @@ namespace HexBlock
             return this.red;
         }
 
-        public void setRed(bool red)
-        {
-            this.red = red;
-        }
-
         public bool isBlue()
         {
             return this.blue;
         }
 
-        public void setBlue(bool blue)
-        {
-            this.blue = blue;
-        }
 
         public bool isEmpty()
         {
@@ -40,9 +29,19 @@ namespace HexBlock
             return this.coo;
         }
 
+        public void Color(bool player)
+        {
+            if (player)
+            {
+
+            }
+        }
+
         public Spot()
         {
-            
+            this.empty = true;
+            this.red = false;
+            this.blue = false;
         }
 
     }
