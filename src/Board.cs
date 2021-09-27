@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 namespace HexBlock
 {
-    class Board
+    partial class Board
     {
         private int size;
         private Spot[,] grid;
@@ -10,6 +10,7 @@ namespace HexBlock
         private bool cturn;
 
         private bool win;
+        private int turn;
 
         public bool Game(int size, bool solo)
         {
@@ -121,6 +122,7 @@ namespace HexBlock
             this.size = size;
             this.grid = new Spot[size+2,size+2];
             this.cturn = true;
+            this.turn = 1;
             this.win = false;
             for(int i = 0;i<=size+1;i++)
             {
