@@ -33,7 +33,7 @@ namespace HexBlock
                     {
                         return cturn;
                     }
-                    this.DisplayTemp();
+                    this.drawBoard();
                     legalspot = false;
                     cturn = !cturn;
                     turn += cturn ? 0 : 1;
@@ -127,13 +127,13 @@ namespace HexBlock
             this.grid = new Spot[size,size];
             this.cturn = true;
             this.turn = 1;
-            for(int i = 0;i<=size+1;i++)
+            for(int i = 0;i<size;i++)
             {
                 for(int j = 0;j<size;j++)
                 {
                     grid[i,j] = new Spot(i,j);                    
                 }
-
+            }
         }
-
+    }
 }
