@@ -1,12 +1,16 @@
 using System;
+using System.Drawing;
 namespace HexBlock
 {
-    class Board
+    partial class Board
     {
         private int size;
         private Spot[,] grid;
 
         private bool cturn;
+
+        private int turn;
+
         public bool Game(int size, bool solo)
         {
             if (solo)
@@ -99,13 +103,14 @@ namespace HexBlock
             }
 
         }
+        
         private void Display()
         {
             Console.Clear();
             foreach(Spot s in this.grid)
             {
-                 Console.WriteLine("les coordonnées du spot sont",s.getCoo());
-                 Console.WriteLine("le spot est bleu",s.isBlue());
+                 Console.WriteLine(s.getCoo());
+                 Console.WriteLine(s.isBlue());
                 if (s.getCoo().Item2 == 0)
                 {
                     Console.Write("\n");
@@ -120,30 +125,15 @@ namespace HexBlock
             this.size = size;
             this.grid = new Spot[size,size];
             this.cturn = true;
-            for(int i = 0;i<size;i++)
+            this.turn = 1;
+            this.win = false;
+            for(int i = 0;i<=size+1;i++)
             {
                 for(int j = 0;j<size;j++)
                 {
                     grid[i,j] = new Spot(i,j);                    
                 }
-            }
-            // switch (a,b)
-            // {
-            //     case (0,1):
-            //     case (0,-1):
-            //     case (1,0):
-            //     case (-1,0):
-            //     case (-1,1):
-            //     case (1,-1):
-            //         adj = true;
-            //     default:
-            //         adj = false;
-            // }
-            
-
-            
 
         }
 
-    }
 }
