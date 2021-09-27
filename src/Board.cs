@@ -7,9 +7,6 @@ namespace HexBlock
         private Spot[,] grid;
 
         private bool cturn;
-
-        private bool win;
-
         public bool Game(int size, bool solo)
         {
             if (solo)
@@ -27,25 +24,14 @@ namespace HexBlock
                         chosen = ChooseSpot();
                         legalspot = legal(chosen);
                     }
-                    this.grid[chosen.Item1,chosen.Item2].Color(true);
-                    if(Haswon(true))
+                    this.grid[chosen.Item1,chosen.Item2].Color(cturn);
+                    if(Haswon(cturn))
                     {
-                        return true;
+                        return cturn;
                     }
                     this.DisplayTemp();
                     legalspot = false;
-                    while (!legalspot)
-                    {
-                        chosen = ChooseSpot();
-                        legalspot = legal(chosen);
-                    }
-                    this.grid[chosen.Item1,chosen.Item2].Color(false);
-                    if(Haswon(false))
-                    {
-                        return false;
-                    }
-                    this.DisplayTemp();
-                    Console.ReadKey();
+                    cturn = !cturn;
                 }
             }
         }
@@ -82,7 +68,7 @@ namespace HexBlock
             return true;
         }
 
-        private void DisplayTemp()
+        public void DisplayTemp()
         {
             Console.Clear();
             foreach(Spot s in this.grid)
@@ -119,7 +105,6 @@ namespace HexBlock
             this.size = size;
             this.grid = new Spot[size,size];
             this.cturn = true;
-            this.win = false;
             for(int i = 0;i<size;i++)
             {
                 for(int j = 0;j<size;j++)
