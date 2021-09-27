@@ -1,12 +1,15 @@
 ﻿using System;
 
-namespace HexBloc
+namespace HexBlock
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Bienvenue sur le jeu HEX");
+            Console.ReadKey();
+           Board game = new Board(3);
+        game.Game(3,false);
         }
     }
 }
