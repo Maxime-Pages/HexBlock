@@ -9,8 +9,8 @@ namespace HexBlock
 
             Console.WriteLine("Bienvenue sur le jeu HEX");
             Console.ReadKey();
-           Board game = new Board(3);
-        game.Game(3,false);
+            Board game = new Board(11);
+            game.Game(11,false);
         }
     }
 }

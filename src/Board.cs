@@ -32,6 +32,7 @@ namespace HexBlock
                     {
                         return true;
                     }
+                    this.DisplayTemp();
                     legalspot = false;
                     while (!legalspot)
                     {
@@ -116,24 +117,16 @@ namespace HexBlock
         public Board(int size)
         {
             this.size = size;
-            this.grid = new Spot[size+2,size+2];
+            this.grid = new Spot[size,size];
             this.cturn = true;
             this.win = false;
-            for(int i = 0;i<=size+1;i++)
+            for(int i = 0;i<size;i++)
             {
-                for(int j = 0;j<=size+1;j++)
+                for(int j = 0;j<size;j++)
                 {
-                    grid[i,j] = new Spot(i,j);
-                    if (j==0 || j == size+1)
-                    {
-                        grid[i,j].Color(true);
-                    }
-                    
+                    grid[i,j] = new Spot(i,j);                    
                 }
-                grid[i,0].Color(false);
-                grid[i,size+1].Color(false);
             }
-
             // switch (a,b)
             // {
             //     case (0,1):
