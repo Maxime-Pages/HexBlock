@@ -12,11 +12,9 @@ namespace HexBlock
             game.Game(3,false);
             */
             Console.WriteLine("Who do you want to play against ?");
-            Console.ReadKey();
             String choice = System.Console.ReadLine();
-        // board
-        // demande joueur 
-
+            // Console.ReadKey();
+    
         }
     }
 }
