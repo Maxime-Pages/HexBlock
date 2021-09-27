@@ -1,12 +1,13 @@
 ﻿using System;
 
-namespace HexBloc
+namespace HexBlock
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+           Board game = new Board(3);
+        game.Game(3,false);
         }
     }
 }
