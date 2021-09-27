@@ -88,13 +88,29 @@ namespace HexBlock
             {
                 // Console.WriteLine(s.getCoo());
                 // Console.WriteLine(s.isBlue());
+
                 if (s.getCoo().Item2 == 0)
                 {
                     Console.Write("\n");
                 }
                 Console.Write(s.isEmpty() ? "_" : s.isRed() ? "R" : "B");
             }
-            // Console.Write(d);
+
+        }
+        private void Display()
+        {
+            Console.Clear();
+            foreach(Spot s in this.grid)
+            {
+                 Console.WriteLine("les coordonnées du spot sont",s.getCoo());
+                 Console.WriteLine("le spot est bleu",s.isBlue());
+                if (s.getCoo().Item2 == 0)
+                {
+                    Console.Write("\n");
+                }
+                Console.Write(s.isEmpty() ? "_" : s.isRed() ? "R" : "B");
+            }
+
         }
 
         public Board(int size)

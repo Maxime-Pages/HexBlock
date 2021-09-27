@@ -6,9 +6,11 @@ namespace HexBlock
     {
         static void Main(string[] args)
         {
-            Board game = new Board(3);
-            game.Game(3,false);
 
+            Console.WriteLine("Bienvenue sur le jeu HEX");
+            Console.ReadKey();
+           Board game = new Board(3);
+        game.Game(3,false);
         }
     }
 }
