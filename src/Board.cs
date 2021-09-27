@@ -7,9 +7,6 @@ namespace HexBlock
         private Spot[,] grid;
 
         private bool cturn;
-
-        private bool win;
-
         public bool Game(int size, bool solo)
         {
             if (solo)
@@ -27,24 +24,14 @@ namespace HexBlock
                         chosen = ChooseSpot();
                         legalspot = legal(chosen);
                     }
-                    this.grid[chosen.Item1,chosen.Item2].Color(true);
-                    if(Haswon(true))
+                    this.grid[chosen.Item1,chosen.Item2].Color(cturn);
+                    if(Haswon(cturn))
                     {
-                        return true;
-                    }
-                    legalspot = false;
-                    while (!legalspot)
-                    {
-                        chosen = ChooseSpot();
-                        legalspot = legal(chosen);
-                    }
-                    this.grid[chosen.Item1,chosen.Item2].Color(false);
-                    if(Haswon(false))
-                    {
-                        return false;
+                        return cturn;
                     }
                     this.DisplayTemp();
-                    Console.ReadKey();
+                    legalspot = false;
+                    cturn = !cturn;
                 }
             }
         }
@@ -81,44 +68,50 @@ namespace HexBlock
             return true;
         }
 
-        private void DisplayTemp()
+        public void DisplayTemp()
         {
             Console.Clear();
-            string d = "";
             foreach(Spot s in this.grid)
             {
                 // Console.WriteLine(s.getCoo());
                 // Console.WriteLine(s.isBlue());
+
                 if (s.getCoo().Item2 == 0)
                 {
                     Console.Write("\n");
                 }
                 Console.Write(s.isEmpty() ? "_" : s.isRed() ? "R" : "B");
             }
-            // Console.Write(d);
+
+        }
+        private void Display()
+        {
+            Console.Clear();
+            foreach(Spot s in this.grid)
+            {
+                 Console.WriteLine("les coordonnées du spot sont",s.getCoo());
+                 Console.WriteLine("le spot est bleu",s.isBlue());
+                if (s.getCoo().Item2 == 0)
+                {
+                    Console.Write("\n");
+                }
+                Console.Write(s.isEmpty() ? "_" : s.isRed() ? "R" : "B");
+            }
+
         }
 
         public Board(int size)
         {
             this.size = size;
-            this.grid = new Spot[size+2,size+2];
+            this.grid = new Spot[size,size];
             this.cturn = true;
-            this.win = false;
-            for(int i = 0;i<=size+1;i++)
+            for(int i = 0;i<size;i++)
             {
-                for(int j = 0;j<=size+1;j++)
+                for(int j = 0;j<size;j++)
                 {
-                    grid[i,j] = new Spot(i,j);
-                    if (j==0 || j == size+1)
-                    {
-                        grid[i,j].Color(true);
-                    }
-                    
+                    grid[i,j] = new Spot(i,j);                    
                 }
-                grid[i,0].Color(false);
-                grid[i,size+1].Color(false);
             }
-
             // switch (a,b)
             // {
             //     case (0,1):
