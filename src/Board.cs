@@ -1,12 +1,16 @@
 using System;
+using System.Drawing;
 namespace HexBlock
 {
-    class Board
+    partial class Board
     {
         private int size;
         private Spot[,] grid;
 
         private bool cturn;
+
+        private int turn;
+
         public bool Game(int size, bool solo)
         {
             if (solo)
@@ -29,18 +33,34 @@ namespace HexBlock
                     {
                         return cturn;
                     }
-                    this.DisplayTemp();
+                    this.drawBoard();
                     legalspot = false;
                     cturn = !cturn;
+                    turn += cturn ? 0 : 1;
+                    Console.ReadKey();
                 }
             }
         }
         static public (int,int) ChooseSpot()
         {
-            System.Console.WriteLine("Enter x Coordinates:");
-            int x = int.Parse(System.Console.ReadLine());
-            System.Console.WriteLine("Enter y Coordinates:");
-            int y = int.Parse(System.Console.ReadLine());
+            bool success = false;
+            int x = 0;
+            int y = 0;
+            while(!success)
+            {
+                Console.Clear();
+                System.Console.WriteLine("Enter x Coordinates:");
+                string s = Console.ReadLine();
+                success = Int32.TryParse(s, out x);
+            }
+            success = false;
+            while(!success)
+            {
+                Console.Clear();
+                System.Console.WriteLine("Enter y Coordinates:");
+                string s = Console.ReadLine();
+                success = Int32.TryParse(s, out y);
+            }
             return (x,y);
         }
         
@@ -84,13 +104,14 @@ namespace HexBlock
             }
 
         }
+        
         private void Display()
         {
             Console.Clear();
             foreach(Spot s in this.grid)
             {
-                 Console.WriteLine("les coordonnées du spot sont",s.getCoo());
-                 Console.WriteLine("le spot est bleu",s.isBlue());
+                 Console.WriteLine(s.getCoo());
+                 Console.WriteLine(s.isBlue());
                 if (s.getCoo().Item2 == 0)
                 {
                     Console.Write("\n");
@@ -105,6 +126,7 @@ namespace HexBlock
             this.size = size;
             this.grid = new Spot[size,size];
             this.cturn = true;
+            this.turn = 1;
             for(int i = 0;i<size;i++)
             {
                 for(int j = 0;j<size;j++)
@@ -112,23 +134,6 @@ namespace HexBlock
                     grid[i,j] = new Spot(i,j);                    
                 }
             }
-            // switch (a,b)
-            // {
-            //     case (0,1):
-            //     case (0,-1):
-            //     case (1,0):
-            //     case (-1,0):
-            //     case (-1,1):
-            //     case (1,-1):
-            //         adj = true;
-            //     default:
-            //         adj = false;
-            // }
-            
-
-            
-
         }
-
     }
 }
