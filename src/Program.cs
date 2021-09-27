@@ -10,11 +10,11 @@ namespace HexBlock
         {
             System.Console.WriteLine("Welcome to the HexGame");
             Thread.Sleep(1000); // do a pause between text
-            bool errorOpp = true;
-            while(errorOpp == true)
+            bool errorOpp = true; // I fixed the boolean on true to be able to enter on the loop
+            while(errorOpp == true) // verify if the opponent entered is valid
             {
                 System.Console.WriteLine("Who do you want to play against ? (AI or Player)");
-                String choiceOpponent = Console.ReadLine();
+                String choiceOpponent = Console.ReadLine(); 
                 switch (choiceOpponent.ToLower())
                     {
                         case "a" :  
@@ -36,7 +36,7 @@ namespace HexBlock
                         {
                             errorOpp = true;
                             Console.Clear();
-                            System.Console.WriteLine("You didn't choose an opponent, please try again");
+                            System.Console.WriteLine("You didn't choose an (valid) opponent, please try again");
                             break;
                         }
                     }
