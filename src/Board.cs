@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 namespace HexBlock
 {
     class Board
@@ -98,13 +99,14 @@ namespace HexBlock
             }
 
         }
+        
         private void Display()
         {
             Console.Clear();
             foreach(Spot s in this.grid)
             {
-                 Console.WriteLine("les coordonnées du spot sont",s.getCoo());
-                 Console.WriteLine("le spot est bleu",s.isBlue());
+                 Console.WriteLine(s.getCoo());
+                 Console.WriteLine(s.isBlue());
                 if (s.getCoo().Item2 == 0)
                 {
                     Console.Write("\n");
@@ -135,23 +137,42 @@ namespace HexBlock
                 grid[i,size+1].Color(false);
             }
 
-            // switch (a,b)
-            // {
-            //     case (0,1):
-            //     case (0,-1):
-            //     case (1,0):
-            //     case (-1,0):
-            //     case (-1,1):
-            //     case (1,-1):
-            //         adj = true;
-            //     default:
-            //         adj = false;
-            // }
+           
             
 
             
 
         }
+    private PointF[] HexToPoints(float height, float row, float col)
+{
+    // Start with the leftmost corner of the upper left hexagon.
+    float width = HexWidth(height);
+    float y = height / 2;
+    float x = 0;
 
+    // Move down the required number of rows.
+    y += row * height;
+
+    // If the column is odd, move down half a hex more.
+    if (col % 2 == 1) y += height / 2;
+
+    // Move over for the column number.
+    x += col * (width * 0.75f);
+
+    // Generate the points.
+    return new PointF[]
+        {
+            new PointF(x, y),
+            new PointF(x + width * 0.25f, y - height / 2),
+            new PointF(x + width * 0.75f, y - height / 2),
+            new PointF(x + width, y),
+            new PointF(x + width * 0.75f, y + height / 2),
+            new PointF(x + width * 0.25f, y + height / 2),
+        };
+}
+private float HexWidth(float height)
+{
+    return (float)(4 * (height / 2 / Math.Sqrt(3)));
+}
     }
 }
