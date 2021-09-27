@@ -32,15 +32,30 @@ namespace HexBlock
                     this.DisplayTemp();
                     legalspot = false;
                     cturn = !cturn;
+                    Console.ReadKey();
                 }
             }
         }
         static public (int,int) ChooseSpot()
         {
-            System.Console.WriteLine("Enter x Coordinates:");
-            int x = int.Parse(System.Console.ReadLine());
-            System.Console.WriteLine("Enter y Coordinates:");
-            int y = int.Parse(System.Console.ReadLine());
+            bool success = false;
+            int x = 0;
+            int y = 0;
+            while(!success)
+            {
+                Console.Clear();
+                System.Console.WriteLine("Enter x Coordinates:");
+                string s = Console.ReadLine();
+                success = Int32.TryParse(s, out x);
+            }
+            success = false;
+            while(!success)
+            {
+                Console.Clear();
+                System.Console.WriteLine("Enter y Coordinates:");
+                string s = Console.ReadLine();
+                success = Int32.TryParse(s, out y);
+            }
             return (x,y);
         }
         
