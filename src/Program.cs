@@ -60,8 +60,8 @@ namespace HexBlock
                     {
                         errorSize = false;
                         System.Console.WriteLine("You choose a grid of 11x11");
-                        Board game = new Board(size);
-                        game.Game(size,false);
+                        Board game = new Board(11);
+                        game.Game(11,false);
                         break;
                     }
                     case 13 :
@@ -74,6 +74,7 @@ namespace HexBlock
                     }
                     case 19 :
                     {
+                        Console.ForegroundColor = ConsoleColor.DarkCyan;
                         errorSize = false;
                         System.Console.WriteLine("You choose a grid of 19x19");
                         Board game = new Board(size);
