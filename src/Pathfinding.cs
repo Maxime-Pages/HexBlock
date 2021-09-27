@@ -23,7 +23,7 @@ namespace HexBlock
                 Connected.RemoveAt(0);
                 int x = current.getCoo().Item1;
                 int y = current.getCoo().Item2;
-                if (y < l & !Known.Contains(grid[x,y+1]) &&(  player ? grid[x,y+1].isBlue() : grid[x,y+1].isRed() ))
+                if (y < l-1 & !Known.Contains(grid[x,y+1]) &&(  player ? grid[x,y+1].isBlue() : grid[x,y+1].isRed() ))
                 {
                     Connected.Add(grid[x,y+1]);
                     Known.Add(grid[x,y+1]);
@@ -35,7 +35,7 @@ namespace HexBlock
                     Known.Add(grid[x,y-1]);
                 }
                 // (0,-1):
-                if (x < l && !Known.Contains(grid[x+1,y]) &&(player ? grid[x+1,y].isBlue() : grid[x+1,y].isRed()))
+                if (x < l-1 && !Known.Contains(grid[x+1,y]) &&(player ? grid[x+1,y].isBlue() : grid[x+1,y].isRed()))
                 {
                     Connected.Add(grid[x+1,y]);
                     Known.Add(grid[x+1,y]);
@@ -47,13 +47,13 @@ namespace HexBlock
                     Known.Add(grid[x-1,y]);
                 }
                 // (-1,0):
-                if (x > 0 && y < l && !Known.Contains(grid[x-1,y+1]) &&(player ? grid[x-1,y+1].isBlue() : grid[x-1,y+1].isRed()))
+                if (x > 0 && y < l-1 && !Known.Contains(grid[x-1,y+1]) &&(player ? grid[x-1,y+1].isBlue() : grid[x-1,y+1].isRed()))
                 {
                     Connected.Add(grid[x-1,y+1]);
                     Known.Add(grid[x-1,y+1]);
                 }
                 // (-1,1):
-                if (x < l && y > 0 && !Known.Contains(grid[x+1,y-1]) &&(player ? grid[x+1,y-1].isBlue() : grid[x+1,y-1].isRed()))
+                if (x < l-1 && y > 0 && !Known.Contains(grid[x+1,y-1]) &&(player ? grid[x+1,y-1].isBlue() : grid[x+1,y-1].isRed()))
                 {
                     Connected.Add(grid[x+1,y-1]);
                     Known.Add(grid[x+1,y-1]);

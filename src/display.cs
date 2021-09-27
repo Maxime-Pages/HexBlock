@@ -153,12 +153,12 @@
                     System.Console.Write( j%10 + " ");
                 }
             }
-            System.Console.WriteLine('\n' + '\n');
+            System.Console.WriteLine();
         
             for (int i = 0; i < bannersize; i++) 
                 System.Console.Write (hz);
 
-            System.Console.Write('\n' + '\n');
+            // System.Console.Write('\n' + '\n');
         }
         
         
