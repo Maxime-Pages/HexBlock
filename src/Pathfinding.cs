@@ -21,6 +21,10 @@ namespace HexBlock
                 Connected.RemoveAt(0);
                 int x = current.getCoo().Item1;
                 int y = current.getCoo().Item2;
+                if(x == grid.GetLength(0))
+                {
+                    
+                }
                 if (!Known.Contains(grid[x,y+1]) && player ? grid[x,y+1].isBlue() : grid[x,y+1].isRed() )
                 {
                     Connected.Add(grid[x,y+1]);

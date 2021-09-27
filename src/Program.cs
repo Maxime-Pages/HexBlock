@@ -6,8 +6,9 @@ namespace HexBlock
     {
         static void Main(string[] args)
         {
-           Board game = new Board(3);
-        game.Game(3,false);
+            Board game = new Board(3);
+            game.Game(3,false);
+
         }
     }
 }

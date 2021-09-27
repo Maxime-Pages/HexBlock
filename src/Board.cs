@@ -84,7 +84,6 @@ namespace HexBlock
         private void DisplayTemp()
         {
             Console.Clear();
-            string d = "";
             foreach(Spot s in this.grid)
             {
                 // Console.WriteLine(s.getCoo());
