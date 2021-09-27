@@ -34,8 +34,7 @@ namespace HexBlock
             this.empty = false;
             this.blue = player;
             this.red = !player;
-        }
-
+        }        
         public Spot(int x, int y)
         {
             this.empty = true;
