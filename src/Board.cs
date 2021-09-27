@@ -9,7 +9,6 @@ namespace HexBlock
 
         private bool cturn;
 
-        private bool win;
         private int turn;
 
         public bool Game(int size, bool solo)
@@ -29,33 +28,38 @@ namespace HexBlock
                         chosen = ChooseSpot();
                         legalspot = legal(chosen);
                     }
-                    this.grid[chosen.Item1,chosen.Item2].Color(true);
-                    if(Haswon(true))
+                    this.grid[chosen.Item1,chosen.Item2].Color(cturn);
+                    if(Haswon(cturn))
                     {
-                        return true;
-                    }
-                    legalspot = false;
-                    while (!legalspot)
-                    {
-                        chosen = ChooseSpot();
-                        legalspot = legal(chosen);
-                    }
-                    this.grid[chosen.Item1,chosen.Item2].Color(false);
-                    if(Haswon(false))
-                    {
-                        return false;
+                        return cturn;
                     }
                     this.DisplayTemp();
+                    legalspot = false;
+                    cturn = !cturn;
                     Console.ReadKey();
                 }
             }
         }
         static public (int,int) ChooseSpot()
         {
-            System.Console.WriteLine("Enter x Coordinates:");
-            int x = int.Parse(System.Console.ReadLine());
-            System.Console.WriteLine("Enter y Coordinates:");
-            int y = int.Parse(System.Console.ReadLine());
+            bool success = false;
+            int x = 0;
+            int y = 0;
+            while(!success)
+            {
+                Console.Clear();
+                System.Console.WriteLine("Enter x Coordinates:");
+                string s = Console.ReadLine();
+                success = Int32.TryParse(s, out x);
+            }
+            success = false;
+            while(!success)
+            {
+                Console.Clear();
+                System.Console.WriteLine("Enter y Coordinates:");
+                string s = Console.ReadLine();
+                success = Int32.TryParse(s, out y);
+            }
             return (x,y);
         }
         
@@ -83,10 +87,9 @@ namespace HexBlock
             return true;
         }
 
-        private void DisplayTemp()
+        public void DisplayTemp()
         {
             Console.Clear();
-            string d = "";
             foreach(Spot s in this.grid)
             {
                 // Console.WriteLine(s.getCoo());
@@ -120,61 +123,17 @@ namespace HexBlock
         public Board(int size)
         {
             this.size = size;
-            this.grid = new Spot[size+2,size+2];
+            this.grid = new Spot[size,size];
             this.cturn = true;
             this.turn = 1;
             this.win = false;
             for(int i = 0;i<=size+1;i++)
             {
-                for(int j = 0;j<=size+1;j++)
+                for(int j = 0;j<size;j++)
                 {
-                    grid[i,j] = new Spot(i,j);
-                    if (j==0 || j == size+1)
-                    {
-                        grid[i,j].Color(true);
-                    }
-                    
+                    grid[i,j] = new Spot(i,j);                    
                 }
-                grid[i,0].Color(false);
-                grid[i,size+1].Color(false);
-            }
-
-           
-            
-
-            
 
         }
-    private PointF[] HexToPoints(float height, float row, float col)
-{
-    // Start with the leftmost corner of the upper left hexagon.
-    float width = HexWidth(height);
-    float y = height / 2;
-    float x = 0;
 
-    // Move down the required number of rows.
-    y += row * height;
-
-    // If the column is odd, move down half a hex more.
-    if (col % 2 == 1) y += height / 2;
-
-    // Move over for the column number.
-    x += col * (width * 0.75f);
-
-    // Generate the points.
-    return new PointF[]
-        {
-            new PointF(x, y),
-            new PointF(x + width * 0.25f, y - height / 2),
-            new PointF(x + width * 0.75f, y - height / 2),
-            new PointF(x + width, y),
-            new PointF(x + width * 0.75f, y + height / 2),
-            new PointF(x + width * 0.25f, y + height / 2),
-        };
-}
-private float HexWidth(float height)
-{
-    return (float)(4 * (height / 2 / Math.Sqrt(3)));
-}
-    }
 }
