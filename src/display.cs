@@ -4,143 +4,163 @@
         partial class Board
         {
             public void drawBoard() 
-        {
-
-            // The drawing routine turned into spaghetti.
-            // I promise the rest of the program is a lot more readable.
-
-            // First print out a nice turn banner
-        
-            string hz = "-";
-    
-            int boardHeight = this.size;
-            int boardWidth = this.size;
-        
-            int indent = 3;
-            int bannersize = (int)((2 * indent) + 5 + boardWidth * 3 + Math.Log10(boardWidth));
-        
-            string vt = "";
-            for (int i = 0; i < indent - 1; i++)
             {
-                vt = vt + " ";
-            }  // This is really sloppy, I know.
 
-            System.Console.WriteLine ('\n');
+                // The drawing routine turned into spaghetti.
+                // I promise the rest of the program is a lot more readable.
 
-            int turndigits = Math.Log10(turn) + 1;
-            int bannerpadding = (bannersize - (11 + turndigits)) / 2;
-
-        for (int i = 0; i < bannerpadding; i++) System.Console.WriteLine (hz);
+                // First print out a nice turn banner
         
-        System.Console.WriteLine ( " HEX Turn "  turn + " ");
-
-        for (int i = 0; i < bannerpadding; i++) System.Console.WriteLine( hz);
-        if (turndigits % 2 == 0) System.Console.WriteLine(  hz);
+                string hz = "-";
+    
+                int boardHeight = this.size;
+                int boardWidth = this.size;
         
-        System.Console.WriteLine ( '\n' + vt + '\n');
-
-        // Now the heavy work of printing the board itself
-
-        const int totalpadding = log10(boardHeight);
-
-        // Print first row of column numbers
+                int indent = 3;
+                int bannersize = (int)((2 * indent) + 5 + boardWidth * 3 + Math.Log10(boardWidth));
         
-        System.Console.WriteLine (vt);
-        for (int i = 0; i < totalpadding + 2; i++) {
-            System.Console.WriteLine ( " ");
-        }
+                string vt = "";
+                for (int i = 0; i < indent - 1; i++)
+                {
+                    vt = vt + " ";
+                }  // This is really sloppy, I know.
 
-        for (int j = 0; j < boardWidth; j++) {
-            if (j < 10) {
-                System.Console.WriteLine("  ");
-        }
-        else {
-            System.Console.WriteLine( j/10 + " ");
-        }
-        }
-        System.Console.WriteLine('\n');
+                System.Console.WriteLine ('\n');
+
+                int turndigits = Math.Log10(turn) + 1;
+                int bannerpadding = (bannersize - (11 + turndigits)) / 2;
+
+            for (int i = 0; i < bannerpadding; i++) 
+                System.Console.WriteLine (hz);
         
-        // Print second row of column numbers
+            System.Console.WriteLine ( " HEX Turn "  turn + " ");
+
+            for (int i = 0; i < bannerpadding; i++) 
+                System.Console.WriteLine( hz);
+            if (turndigits % 2 == 0) System.Console.WriteLine(  hz);
         
-        System.Console.WriteLine( vt);
-        for (int i = 0; i < totalpadding + 3; i++) {
-            System.Console.WriteLine( " ");
-        }
+            System.Console.WriteLine ( '\n' + vt + '\n');
 
-        for (int j = 0; j < boardWidth; j++) {
-                System.Console.WriteLine ( j%10 + " ");
-        }
-        System.Console.WriteLine ('\n');
+            // Now the heavy work of printing the board itself
 
-        // Print the rows, one by one
+            const int totalpadding = log10(boardHeight);
 
-        int intlength;
-        for (int i = boardHeight - 1; i >= 0; i--) {
-            System.Console.WriteLine( vt);
-
-            // Pad the board on the left to make it a parallelogram
+            // Print first row of column numbers
         
-            for (int j = 0; j < boardHeight - i - 1; j++) {
-                System.Console.WriteLine (" ");
+            System.Console.WriteLine (vt);
+            for (int i = 0; i < totalpadding + 2; i++) 
+            {
+                System.Console.WriteLine ( " ");
             }
 
-            // Pad the number on the left, so that the board doesn't shift around.
+            for (int j = 0; j < boardWidth; j++) 
+            {
+                if (j < 10) 
+                {
+                    System.Console.WriteLine("  ");
+                }
+                else 
+                {
+                    System.Console.WriteLine( j/10 + " ");
+                }
+            }
+            System.Console.WriteLine('\n');
+        
+            // Print second row of column numbers
+        
+            System.Console.WriteLine( vt);
+            for (int i = 0; i < totalpadding + 3; i++) 
+            {
+                System.Console.WriteLine( " ");
+            }
 
-            intlength = (i == 0) ? 0 : log10(i);
-            for (int j = 0; j < totalpadding - intlength; j++) {
+            for (int j = 0; j < boardWidth; j++) 
+            {
+                System.Console.WriteLine ( j%10 + " ");
+            }
+            System.Console.WriteLine ('\n');
+
+            // Print the rows, one by one
+
+            int intlength;
+            for (int i = boardHeight - 1; i >= 0; i--) 
+            {
+                System.Console.WriteLine( vt);
+
+                // Pad the board on the left to make it a parallelogram
+        
+                for (int j = 0; j < boardHeight - i - 1; j++) 
+                {
+                    System.Console.WriteLine (" ");
+                }
+
+                // Pad the number on the left, so that the board doesn't shift around.
+
+                intlength = (i == 0) ? 0 : log10(i);
+                for (int j = 0; j < totalpadding - intlength; j++) 
+                {
+                    System.Console.WriteLine(" ");
+                }
+
+                // Print the row nunber
+
+                System.Console.WriteLine( " " + i + "  ");
+    
+                // Print all of the spaces in the row
+            
+                for(int j = 0; j < boardWidth; j++) 
+                {
+                    System.Console.WriteLine( board->getSpace(j, i) + " ");
+                }
+
+                // Print the row number one more time on the right
+
+                System.Console.WriteLine(" " + i + '\n');
+            }
+
+            // Print first row of column numbers
+
+            System.Console.WriteLine( vt);
+            for (int i = 0; i < boardWidth + totalpadding + 4; i++) 
+            {
                 System.Console.WriteLine(" ");
             }
 
-            // Print the row nunber
+            for (int j = 0; j < boardWidth; j++) 
+            {
+                if (j >= 10)  System.Console.WriteLine( j/10 + " ");
+                else System.Console.WriteLine( j + " ");
+            }
+            System.Console.WriteLine('\n');
 
-            System.Console.WriteLine( " " + i + "  ");
-    
-            // Print all of the spaces in the row
-            
-            for(int j = 0; j < boardWidth; j++) {
-                System.Console.WriteLine( board->getSpace(j, i) + " ");
+            // Print second row of column numbers
+        
+            System.Console.WriteLine (vt);
+            for (int i = 0; i < boardWidth + totalpadding + 5; i++) 
+            {
+                System.Console.WriteLine(" ");
             }
 
-            // Print the row number one more time on the right
+            for (int j = 0; j < boardWidth; j++) 
+            {
+                if (j < 10) 
+                {
+                    System.Console.WriteLine("  ");
+                }
 
-            System.Console.WriteLine(" " << i << '\n');
-        }
-
-        // Print first row of column numbers
-
-        System.Console.WriteLine( vt);
-        for (int i = 0; i < boardWidth + totalpadding + 4; i++) {
-            System.Console.WriteLine(" ");
-        }
-
-        for (int j = 0; j < boardWidth; j++) {
-                if (j >= 10) > System.Console.WriteLine( j/10 + " ");
-            else System.Console.WriteLine( j + " ");
-        }
-        System.Console.WriteLine('\n');
-
-        // Print second row of column numbers
+                else 
+                {
+                    System.Console.WriteLine( j%10 + " ");
+                }
+            }
+            System.Console.WriteLine('\n' + '\n');
         
-        System.Console.WriteLine (vt);
-        for (int i = 0; i < boardWidth + totalpadding + 5; i++) {
-            System.Console.WriteLine(" ");
-        }
+            for (int i = 0; i < bannersize; i++) 
+                System.Console.WriteLine (hz);
 
-        for (int j = 0; j < boardWidth; j++) {
-            if (j < 10) {
-                System.Console.WriteLine("  ");
-        }
-        else {
-            System.Console.WriteLine( j%10 + " ");
-        }
-        }
-        System.Console.WriteLine('\n' + '\n');
-        
-        for (int i = 0; i < bannersize; i++) System.Console.WriteLine (hz);
-
-        System.Console.WriteLine('\n' + '\n');
+            System.Console.WriteLine('\n' + '\n');
         }
         
         
     }
-    }
+}

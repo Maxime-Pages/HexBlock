@@ -36,6 +36,7 @@ namespace HexBlock
                     this.DisplayTemp();
                     legalspot = false;
                     cturn = !cturn;
+                    turn += cturn ? 0 : 1;
                     Console.ReadKey();
                 }
             }
@@ -126,7 +127,6 @@ namespace HexBlock
             this.grid = new Spot[size,size];
             this.cturn = true;
             this.turn = 1;
-            this.win = false;
             for(int i = 0;i<=size+1;i++)
             {
                 for(int j = 0;j<size;j++)
