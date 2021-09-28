@@ -24,6 +24,7 @@ namespace HexBlock
                         case "ai" : 
                         {
                             errorOpp = false;
+                            Console.Clear(); // clear the console
                             System.Console.WriteLine("You will play with an AI");
                             opponnent = true;
                             break;
@@ -32,6 +33,7 @@ namespace HexBlock
                         case "player" : 
                         {
                             errorOpp = false;
+                            Console.Clear(); // clear the console
                             System.Console.WriteLine("You will play against an another Player");
                             opponnent = false;
                             break;
@@ -46,7 +48,8 @@ namespace HexBlock
                         }
                     }
             }
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
+            Console.Clear(); // clear the console
             bool errorSize = true;
             int size = 0;
             while(errorSize)
@@ -63,20 +66,21 @@ namespace HexBlock
                     case 11 :
                     {
                         errorSize = false; // no error
-
+                        Console.Clear(); // clear the console
                         System.Console.WriteLine("You choose a grid of 11x11");
                         break;
                     }
                     case 13 :
                     {
                         errorSize = false; // no error
+                        Console.Clear(); // clear the console
                         System.Console.WriteLine("You choose a grid of 13x13");
                         break;
                     }
                     case 19 :
                     {
                         errorSize = false; // no error
-
+                        Console.Clear(); // clear the console
                         System.Console.WriteLine("You choose a grid of 19x19");
                         break;
                     }
@@ -92,7 +96,8 @@ namespace HexBlock
                 if(opponnent) // opponnent true = AI || false = player
                 {
                     int difficultyAI = 1;
-                    Thread.Sleep(1000); // set a pause
+                    Thread.Sleep(2000); // set a pause
+                    Console.Clear(); // clear the console
                     System.Console.WriteLine("Wich difficulty do you want ? (1 for Easy to 4 IMPOSSIBLE)");
                     bool successAI = false;
                     while(!successAI)
