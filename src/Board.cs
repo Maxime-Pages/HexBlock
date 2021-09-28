@@ -147,7 +147,9 @@ namespace HexBlock
                 cor.Item2 < this.size &&
                 cor.Item2 >= 0 &&
                 this.grid[cor.Item1,cor.Item2].isEmpty();
+
         }
+      
         public Board(int size)
         {
             this.size = size;
