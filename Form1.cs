@@ -213,8 +213,9 @@ namespace howto_hexagonal_grid
         {
             // Start with the leftmost corner of the upper left hexagon.
             float width = HexWidth(height);
-            float y = height / 2;
-            float x = 0;
+            float y = height / 2 - width /2;
+            float x = height / 2;
+
 
             // Move down the required number of rows.
             y += row * height;
@@ -225,7 +226,6 @@ namespace howto_hexagonal_grid
             // Move over for the column number.
             x += col * (width * 0.75f); 
 
-            // Generate the points.
             // Generate the points.
             return new PointF[]
             {
