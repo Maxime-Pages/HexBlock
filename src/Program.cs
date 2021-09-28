@@ -8,6 +8,10 @@ namespace HexBlock
     {
         static void Main(string[] args)
         {
+            if(args.Length != 0 && args[0] != "--nogui")
+            {
+                return;
+            }
             System.Console.BackgroundColor=ConsoleColor.White;
             System.Console.ForegroundColor=ConsoleColor.Black;
             Console.Clear();
