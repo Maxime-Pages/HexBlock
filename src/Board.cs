@@ -147,6 +147,13 @@ namespace HexBlock
                 cor.Item2 < this.size &&
                 cor.Item2 >= 0 &&
                 this.grid[cor.Item1,cor.Item2].isEmpty();
+         
+          
+         
+       
+
+            
+            
         }
 
         private bool putSpot(Spot spot, bool player)
@@ -178,6 +185,10 @@ namespace HexBlock
             {
                  Console.WriteLine(s.getCoo());
                  Console.WriteLine(s.isBlue());
+                if (s.getCoo().Item1 == s.getCoo().Item2)
+                    Console.Clear();
+                    System.Console.WriteLine("The requested position has been used pls can you remake a proposition");
+                    
                 if (s.getCoo().Item2 == 0)
                 {
                     Console.Write("\n");

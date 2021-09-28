@@ -31,9 +31,9 @@
 
             for (int i = 0; i < bannerpadding; i++) 
                 System.Console.Write (barre);
-        
+            System.Console.ForegroundColor=ConsoleColor.Green;
             System.Console.Write ( "                 Turn "  + turn + " ");
-
+            System.Console.ForegroundColor=ConsoleColor.Black;
             for (int i = 0; i < bannerpadding; i++) 
                 System.Console.Write( barre);
             if (numberTurn % 2 == 0) System.Console.Write(barre);
