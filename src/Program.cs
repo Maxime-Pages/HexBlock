@@ -92,13 +92,65 @@ namespace HexBlock
             }
                 if(opponnent) // opponnent true = AI || false = player
                 {
-                    Console.Clear(); // clear the console
-                    System.Console.WriteLine("The game will be launched against an AI and a size of board of "+size);
+                    int difficultyAI = 1;
                     Thread.Sleep(1000); // set a pause
-                    System.Console.WriteLine("Press any key to continue ");
-                    Console.ReadLine(); 
-                    Board game = new Board(size); // create a new board with the choosed size
-                    game.Game(size,false);
+                    System.Console.WriteLine("Witch difficulty do you want ? (1 for Easy to 4 IMPOSSIBLE)");
+                    bool successAI = false;
+                    while(!successAI)
+                    {
+                        string choiceDiff = Console.ReadLine(); // set the choice in a string
+                        successAI = Int32.TryParse(choiceDiff, out difficultyAI); // string containing a number
+                    }
+                    switch(difficultyAI)
+                    {
+                        case 1 :
+                        {
+                            Console.Clear(); // clear the console
+                            System.Console.WriteLine("The game will be launched against an AI with a Easy difficulty and a size of board of "+size);
+                            Thread.Sleep(1000); // set a pause
+                            System.Console.WriteLine("Press any key to continue ");
+                            Console.ReadLine(); 
+                            Board game = new Board(size); // create a new board with the choosed size
+                            game.Game(size,true,difficulty.EASY);
+                            break;
+                        }
+                        case 2 :
+                        {
+                            Console.Clear(); // clear the console
+                            System.Console.WriteLine("The game will be launched against an AI with a Medium difficulty and a size of board of "+size); 
+                            Thread.Sleep(1000); // set a pause
+                            System.Console.WriteLine("Press any key to continue ");
+                            Console.ReadLine(); 
+                            Board game = new Board(size); // create a new board with the choosed size
+                            game.Game(size,true,difficulty.MEDIUM);
+                            break;
+                        }
+                        case 3 :
+                        {
+                            Console.Clear(); // clear the console
+                            System.Console.WriteLine("The game will be launched against an AI with a HARD difficulty and a size of board of "+size); 
+                            Thread.Sleep(1000); // set a pause
+                            System.Console.WriteLine("Press any key to continue ");
+                            Console.ReadLine(); 
+                            Board game = new Board(size); // create a new board with the choosed size
+                            game.Game(size,true,difficulty.HARD);
+                            break;
+                        }
+                        case 4 :
+                        {
+                            Console.Clear(); // clear the console
+                            System.Console.WriteLine("The game will be launched against an AI with a IMPOSSIBLE difficulty and a size of board of "+size); 
+                            Thread.Sleep(1000); // set a pause
+                            System.Console.WriteLine("Press any key to continue");
+                            Console.ReadLine(); 
+                            Board game = new Board(size); // create a new board with the choosed size
+                            game.Game(size,true,difficulty.IMPOSSIBLE);
+                            break;
+                        }
+                    }
+                    // Console.Clear(); // clear the console
+                    // System.Console.WriteLine("The game will be launched against an AI and a size of board of "+size);
+                    
                 }
                 else
                 {
