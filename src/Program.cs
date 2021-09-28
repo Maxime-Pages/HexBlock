@@ -12,7 +12,7 @@ namespace HexBlock
             Thread.Sleep(1000); // do a pause between text
             bool errorOpp = true; // I fixed the boolean on true to be able to enter on the loop
             bool opponnent = false ; // True for an AI, False for a player
-            while(errorOpp == true) // verify if the opponent entered is valid
+            while(errorOpp == true) // verify if the opponent ent<ered is valid
             {
                 System.Console.WriteLine("Who do you want to play against ? (AI or Player)");
                 String choiceOpponent = Console.ReadLine(); 
@@ -53,57 +53,57 @@ namespace HexBlock
                 bool success = false;
                 while(!success)
                 {
-                    string s = Console.ReadLine();
-                    success = Int32.TryParse(s, out size);
+                    string s = Console.ReadLine(); // set the choice in a string
+                    success = Int32.TryParse(s, out size); // string containing a number
                 }
                 switch(size)
                 {
                     case 11 :
                     {
-                        errorSize = false;
+                        errorSize = false; // no error
 
                         System.Console.WriteLine("You choose a grid of 11x11");
                         break;
                     }
                     case 13 :
                     {
-                        errorSize = false;
+                        errorSize = false; // no error
                         System.Console.WriteLine("You choose a grid of 13x13");
                         break;
                     }
                     case 19 :
                     {
-                        errorSize = false;
+                        errorSize = false; // no error
                         System.Console.WriteLine("You choose a grid of 19x19");
                         break;
                     }
                     default :
                     {
-                        errorSize = true;
-                        Console.Clear();
+                        errorSize = true; // the size isn't correct
+                        Console.Clear(); // clear the console
                         System.Console.WriteLine("The requested size of the board is wrong, please try again");
                         break;
                     }
                 }     
             }
-                if(opponnent)
+                if(opponnent) // opponnent true = AI || false = player
                 {
-                    Console.Clear();
+                    Console.Clear(); // clear the console
                     System.Console.WriteLine("The game will be launched against an AI and a size of board of "+size);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(1000); // set a pause
                     System.Console.WriteLine("Press any key to continue ");
                     Console.ReadLine(); 
-                    Board game = new Board(size);
+                    Board game = new Board(size); // create a new board with the choosed size
                     game.Game(size,false);
                 }
                 else
                 {
-                    Console.Clear();
+                    Console.Clear(); // clear the console
                     System.Console.WriteLine("The game will be launched against a Player and a size of board of "+size);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(1000); // set a pause
                     System.Console.WriteLine("Press any key to continue ");
                     Console.ReadLine(); 
-                    Board game = new Board(size);
+                    Board game = new Board(size); // create a new board with the choosed size
                     game.Game(size,false);
                 }
         }         
