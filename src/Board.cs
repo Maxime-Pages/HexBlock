@@ -156,47 +156,7 @@ namespace HexBlock
             
         }
 
-        private bool putSpot(Spot spot, bool player)
-        {
-            return true;
-        }
-
-        public void DisplayTemp()
-        {
-            Console.Clear();
-            foreach(Spot s in this.grid)
-            {
-                // Console.WriteLine(s.getCoo());
-                // Console.WriteLine(s.isBlue());
-
-                if (s.getCoo().Item2 == 0)
-                {
-                    Console.Write("\n");
-                }
-                Console.Write(s.isEmpty() ? "_" : s.isRed() ? "R" : "B");
-            }
-
-        }
-        
-        private void Display()
-        {
-            Console.Clear();
-            foreach(Spot s in this.grid)
-            {
-                 Console.WriteLine(s.getCoo());
-                 Console.WriteLine(s.isBlue());
-                if (s.getCoo().Item1 == s.getCoo().Item2)
-                    Console.Clear();
-                    System.Console.WriteLine("The requested position has been used pls can you remake a proposition");
-                    
-                if (s.getCoo().Item2 == 0)
-                {
-                    Console.Write("\n");
-                }
-                Console.Write(s.isEmpty() ? "_" : s.isRed() ? "R" : "B");
-            }
-
-        }
+      
 
         public Board(int size)
         {
