@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 
-
 namespace HexBlock
 {
     class Program
@@ -94,11 +93,11 @@ namespace HexBlock
                 {
                     int difficultyAI = 1;
                     Thread.Sleep(1000); // set a pause
-                    System.Console.WriteLine("Witch difficulty do you want ? (1 for Easy to 4 IMPOSSIBLE)");
+                    System.Console.WriteLine("Wich difficulty do you want ? (1 for Easy to 4 IMPOSSIBLE)");
                     bool successAI = false;
                     while(!successAI)
                     {
-                        string choiceDiff = Console.ReadLine(); // set the choice in a string
+                        string choiceDiff = Console.ReadLine(); // set the choice of the difficulty in a string
                         successAI = Int32.TryParse(choiceDiff, out difficultyAI); // string containing a number
                     }
                     switch(difficultyAI)
@@ -148,9 +147,6 @@ namespace HexBlock
                             break;
                         }
                     }
-                    // Console.Clear(); // clear the console
-                    // System.Console.WriteLine("The game will be launched against an AI and a size of board of "+size);
-                    
                 }
                 else
                 {
