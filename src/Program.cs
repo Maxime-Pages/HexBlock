@@ -8,13 +8,19 @@ namespace HexBlock
     {
         static void Main(string[] args)
         {
-            if(args.Length != 0 && args[0] != "--nogui")
+            if(args.Length != 0 && args[0] == "--gui")
             {
                 return;
             }
+            
             System.Console.BackgroundColor=ConsoleColor.White;
             System.Console.ForegroundColor=ConsoleColor.Black;
             Console.Clear();
+            if(args.Length != 0 && args[0] == "DEBUG")
+            {
+                Board board = new Board(5);
+                board.Game(5);
+            }
             System.Console.WriteLine("Welcome to the HexGame");
             Thread.Sleep(1000); // do a pause between text
             bool errorOpp = true; // I fixed the boolean on true to be able to enter on the loop
