@@ -11,6 +11,7 @@ namespace HexBlock
             System.Console.WriteLine("Welcome to the HexGame");
             Thread.Sleep(1000); // do a pause between text
             bool errorOpp = true; // I fixed the boolean on true to be able to enter on the loop
+            bool opponnent = false ; // True for an AI, False for a player
             while(errorOpp == true) // verify if the opponent entered is valid
             {
                 System.Console.WriteLine("Who do you want to play against ? (AI or Player)");
@@ -22,6 +23,7 @@ namespace HexBlock
                         {
                             errorOpp = false;
                             System.Console.WriteLine("You will play with an AI");
+                            opponnent = true;
                             break;
                         }
                         case "p" :
@@ -29,6 +31,7 @@ namespace HexBlock
                         {
                             errorOpp = false;
                             System.Console.WriteLine("You will play against an another Player");
+                            opponnent = false;
                             break;
                         }
 
@@ -43,12 +46,11 @@ namespace HexBlock
             }
             Thread.Sleep(1000);
             bool errorSize = true;
-            while(errorSize == true)
+            int size = 0;
+            while(errorSize)
             {
                 System.Console.WriteLine("What about the size of the grid ? (11,13,19)");
                 bool success = false;
-                int size = 0;
-
                 while(!success)
                 {
                     string s = Console.ReadLine();
@@ -59,26 +61,20 @@ namespace HexBlock
                     case 11 :
                     {
                         errorSize = false;
+
                         System.Console.WriteLine("You choose a grid of 11x11");
-                        Board game = new Board(11);
-                        game.Game(11,false);
                         break;
                     }
                     case 13 :
                     {
                         errorSize = false;
                         System.Console.WriteLine("You choose a grid of 13x13");
-                        Board game = new Board(size);
-                        game.Game(size,false);
                         break;
                     }
                     case 19 :
                     {
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
                         errorSize = false;
                         System.Console.WriteLine("You choose a grid of 19x19");
-                        Board game = new Board(size);
-                        game.Game(size,false);
                         break;
                     }
                     default :
@@ -88,9 +84,28 @@ namespace HexBlock
                         System.Console.WriteLine("The requested size of the board is wrong, please try again");
                         break;
                     }
-                } 
-            }       
+                }     
+            }
+                if(opponnent)
+                {
+                    Console.Clear();
+                    System.Console.WriteLine("The game will be launched against an AI and a size of board of "+size);
+                    Thread.Sleep(1000);
+                    System.Console.WriteLine("Press any key to continue ");
+                    Console.ReadLine(); 
+                    Board game = new Board(size);
+                    game.Game(size,false);
+                }
+                else
+                {
+                    Console.Clear();
+                    System.Console.WriteLine("The game will be launched against a Player and a size of board of "+size);
+                    Thread.Sleep(1000);
+                    System.Console.WriteLine("Press any key to continue ");
+                    Console.ReadLine(); 
+                    Board game = new Board(size);
+                    game.Game(size,false);
+                }
         }         
-
     }
 }
