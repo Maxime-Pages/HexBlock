@@ -97,7 +97,7 @@
                 }
 
                 System.Console.Write( " " + i + "  ");
-                for(int j = 0; j < boardWidth; j++) 
+                
     
                 // Print the color, it depend of the coordinate say before
             
