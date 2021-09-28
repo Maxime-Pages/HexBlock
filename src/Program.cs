@@ -20,6 +20,7 @@ namespace HexBlock
             {
                 Board board = new Board(5);
                 board.Game(5);
+                return;
             }
             System.Console.WriteLine("Welcome to the HexGame");
             Thread.Sleep(1000); // do a pause between text
