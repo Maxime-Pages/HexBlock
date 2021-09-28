@@ -8,6 +8,9 @@ namespace HexBlock
     {
         static void Main(string[] args)
         {
+            System.Console.BackgroundColor=ConsoleColor.White;
+            System.Console.ForegroundColor=ConsoleColor.Black;
+            Console.Clear();
             System.Console.WriteLine("Welcome to the HexGame");
             Thread.Sleep(1000); // do a pause between text
             bool errorOpp = true; // I fixed the boolean on true to be able to enter on the loop
@@ -74,6 +77,7 @@ namespace HexBlock
                     case 19 :
                     {
                         errorSize = false; // no error
+
                         System.Console.WriteLine("You choose a grid of 19x19");
                         break;
                     }
