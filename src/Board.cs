@@ -2,6 +2,14 @@ using System;
 using System.Drawing;
 namespace HexBlock
 {
+    public enum difficulty
+    {
+        EASY,
+        MEDIUM,
+        HARD,
+        IMPOSSIBLE,
+        NULL
+    }
     partial class Board
     {
         private int size;
@@ -11,11 +19,67 @@ namespace HexBlock
 
         private int turn;
 
-        public bool Game(int size, bool solo)
+        public bool Game(int size, bool solo = true, difficulty diff = difficulty.NULL)
         {
             if (solo)
             {
-                return true;
+                bool legalspot = false;
+                (int,int) chosen = (0,0);
+                while (true)
+                {
+                    if(cturn)
+                    {
+                        while (!legalspot)
+                        {
+                            chosen = this.ChooseSpot();
+                            legalspot = legal(chosen);
+                        }
+                    }
+                    else
+                    {
+                        switch(diff)
+                        {
+                            case difficulty.EASY:
+                                while (!legalspot)
+                                {
+                                    chosen = AI.RandomAI(this.size);
+                                    legalspot = legal(chosen);
+                                }       
+                                break;
+                            case difficulty.MEDIUM:
+                                while (!legalspot)
+                                {
+                                    chosen = AI.RandomAI(this.size);
+                                    legalspot = legal(chosen);
+                                } 
+                                break;
+                            case difficulty.HARD:
+                                while (!legalspot)
+                                {
+                                    chosen = AI.RandomAI(this.size);
+                                    legalspot = legal(chosen);
+                                }
+                                break;
+                            case difficulty.IMPOSSIBLE:
+                                while (!legalspot)
+                                {
+                                    chosen = AI.RandomAI(this.size);
+                                    legalspot = legal(chosen);
+                                }
+                                break;
+                        }
+                    }   
+                    this.grid[chosen.Item1,chosen.Item2].Color(cturn);
+                    if(Haswon(cturn))
+                    {
+                        return cturn;
+                    }
+                    this.drawBoard();
+                    legalspot = false;
+                    cturn = !cturn;
+                    turn += cturn ? 1 : 0;
+                    Console.ReadKey();
+                }
             }
             else
             {
@@ -41,7 +105,7 @@ namespace HexBlock
                 }
             }
         }
-        static public (int,int) ChooseSpot()
+        public (int,int) ChooseSpot()
         {
             bool success = false;
             int x = 0;
@@ -49,6 +113,7 @@ namespace HexBlock
             while(!success)
             {
                 Console.Clear();
+                Console.WriteLine("Player " + (this.cturn ? "1" : "2"));
                 System.Console.WriteLine("Enter x Coordinates:");
                 string s = Console.ReadLine();
                 success = Int32.TryParse(s, out x);
@@ -57,6 +122,7 @@ namespace HexBlock
             while(!success)
             {
                 Console.Clear();
+                Console.WriteLine("Player " + (this.cturn ? "1" : "2"));
                 System.Console.WriteLine("Enter y Coordinates:");
                 string s = Console.ReadLine();
                 success = Int32.TryParse(s, out y);
