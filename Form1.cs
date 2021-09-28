@@ -78,7 +78,7 @@ namespace howto_hexagonal_grid
                 PointF[] points = HexToPoints(height, row, 0);
 
                 // If it doesn't fit, we're done.
-                if (points[4].Y > ymax) break;
+                if (points[0].Y > ymax) break;
 
                 // Draw the row.
                 for (int col = 0; ; col++)
@@ -88,10 +88,10 @@ namespace howto_hexagonal_grid
 
                     // If it doesn't fit horizontally,
                     // we're done with this row.
-                    if (points[3].X > xmax) break;
+                    if (points[5].X > xmax) break;
 
                     // If it fits vertically, draw it.
-                    if (points[4].Y <= ymax)
+                    if (points[0].Y <= ymax)
                     {
                         gr.DrawPolygon(pen, points);
 
@@ -223,20 +223,20 @@ namespace howto_hexagonal_grid
             if (col % 2 != 0) y += height / 2;
 
             // Move over for the column number.
-            x += col * (width * 0.75f);
-            int max = picGrid.ClientSize.Height;
+            x += col * (width * 0.75f); 
 
-   
+            // Generate the points.
             // Generate the points.
             return new PointF[]
-                {
-                    new PointF(y,max-x),
-            new PointF(y - height / 2, max-(x + width * 0.25f)),
-            new PointF(y - height / 2, max-(x + width * 0.75f)),
-            new PointF(y ,max-(x + width)),
-            new PointF(y + height / 2,max-(x + width * 0.75f)),
-            new PointF(y + height / 2,max-(x + width * 0.25f)),
-                };
+            {
+                new PointF(x, y),
+                new PointF(x - height / 2,y + width * 0.25f),
+                new PointF(x - height / 2,y + width * 0.75f),
+                new PointF(x, y+width),
+                new PointF(x + height / 2,y + width * 0.75f),
+                new PointF(x + height / 2,y + width * 0.25f),
+            };
         }
     }
+    
 }
