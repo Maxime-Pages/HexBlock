@@ -64,7 +64,6 @@
                 }
             }
             System.Console.Write('\n');
-        
             //Secondly we print the second row of column numbers
         
             System.Console.Write( spaces);
@@ -78,9 +77,7 @@
                 System.Console.Write ( j%10 + " ");
             }
             System.Console.Write ('\n');
-
             //Eventually we print the rows one by one
-
             int intlength;
             for (int i = boardSize - 1; i >= 0; i--) 
             {
@@ -92,18 +89,15 @@
                 {
                     System.Console.Write(" ");
                 }
-
                 // we put the number on the left, so that the board doesn't shift around.
-
                 intlength = (i == 0) ? 0 : (int)Math.Log10(i);
                 for (int j = 0; j < padding - intlength; j++) 
                 {
                     System.Console.Write(" ");
                 }
 
-                // Print the row nunber
-
                 System.Console.Write( " " + i + "  ");
+                for(int j = 0; j < boardWidth; j++) 
     
                 // Print the color, it depend of the coordinate say before
             
@@ -113,7 +107,6 @@
                     System.Console.Write( (this.grid[j, i].isEmpty() ? "_" : this.grid[j, i].isRed() ? "■" : "■" )+ " ");
                     System.Console.ForegroundColor= ConsoleColor.Black;
                 }
-
                 // We print the row number same before but for the right
 
                 System.Console.Write(" " + i + '\n');
@@ -133,7 +126,6 @@
                 else System.Console.Write( j + " ");
             }
             System.Console.Write('\n');
-
             // Print second row of column numbers
         
             System.Console.Write (spaces);
