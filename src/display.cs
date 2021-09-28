@@ -41,12 +41,8 @@
         
             System.Console.Write( '\n' + vt + '\n');
 
-            // Now the heavy work of printing the board itself
-
             int totalpadding = (int)Math.Log10(boardHeight);
 
-            // Print first row of column numbers
-        
             System.Console.Write (vt);
             for (int i = 0; i < totalpadding + 2; i++) 
             {
@@ -65,9 +61,7 @@
                 }
             }
             System.Console.Write('\n');
-        
-            // Print second row of column numbers
-        
+ 
             System.Console.Write( vt);
             for (int i = 0; i < totalpadding + 3; i++) 
             {
@@ -80,21 +74,16 @@
             }
             System.Console.Write ('\n');
 
-            // Print the rows, one by one
-
             int intlength;
             for (int i = boardHeight - 1; i >= 0; i--) 
             {
                 System.Console.Write( vt);
 
-                // Pad the board on the left to make it a parallelogram
-        
+
                 for (int j = 0; j < boardHeight - i - 1; j++) 
                 {
                     System.Console.Write(" ");
                 }
-
-                // Pad the number on the left, so that the board doesn't shift around.
 
                 intlength = (i == 0) ? 0 : (int)Math.Log10(i);
                 for (int j = 0; j < totalpadding - intlength; j++) 
@@ -102,23 +91,15 @@
                     System.Console.Write(" ");
                 }
 
-                // Print the row nunber
-
                 System.Console.Write( " " + i + "  ");
-    
-                // Print all of the spaces in the row
-            
+
                 for(int j = 0; j < boardWidth; j++) 
                 {
                     System.Console.Write( (this.grid[j, i].isEmpty() ? "_" : this.grid[j, i].isRed() ? "R" : "B" )+ " ");
                 }
 
-                // Print the row number one more time on the right
-
                 System.Console.Write(" " + i + '\n');
             }
-
-            // Print first row of column numbers
 
             System.Console.Write( vt);
             for (int i = 0; i < boardWidth + totalpadding + 4; i++) 
@@ -133,8 +114,6 @@
             }
             System.Console.Write('\n');
 
-            // Print second row of column numbers
-        
             System.Console.Write (vt);
             for (int i = 0; i < boardWidth + totalpadding + 5; i++) 
             {
@@ -158,7 +137,6 @@
             for (int i = 0; i < bannersize; i++) 
                 System.Console.Write (hz);
 
-            // System.Console.Write('\n' + '\n');
         }
         
         
