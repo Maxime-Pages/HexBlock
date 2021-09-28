@@ -19,7 +19,7 @@ namespace HexBlock
 
         private int turn;
 
-        public bool Game(int size, bool solo = true, difficulty diff = difficulty.NULL)
+        public bool Game(int size, bool solo = false, difficulty diff = difficulty.NULL)
         {
             if (solo)
             {
@@ -147,46 +147,9 @@ namespace HexBlock
                 cor.Item2 < this.size &&
                 cor.Item2 >= 0 &&
                 this.grid[cor.Item1,cor.Item2].isEmpty();
-        }
-
-        private bool putSpot(Spot spot, bool player)
-        {
-            return true;
-        }
-
-        public void DisplayTemp()
-        {
-            Console.Clear();
-            foreach(Spot s in this.grid)
-            {
-                // Console.WriteLine(s.getCoo());
-                // Console.WriteLine(s.isBlue());
-
-                if (s.getCoo().Item2 == 0)
-                {
-                    Console.Write("\n");
-                }
-                Console.Write(s.isEmpty() ? "_" : s.isRed() ? "R" : "B");
-            }
 
         }
-        
-        private void Display()
-        {
-            Console.Clear();
-            foreach(Spot s in this.grid)
-            {
-                 Console.WriteLine(s.getCoo());
-                 Console.WriteLine(s.isBlue());
-                if (s.getCoo().Item2 == 0)
-                {
-                    Console.Write("\n");
-                }
-                Console.Write(s.isEmpty() ? "_" : s.isRed() ? "R" : "B");
-            }
-
-        }
-
+      
         public Board(int size)
         {
             this.size = size;
