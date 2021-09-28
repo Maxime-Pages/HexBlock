@@ -12,10 +12,10 @@
     
                 string barre = "-";
     
-                int boardSize = this.size; // variable for the height of the board
+                int boardSize = this.size; // variable for the size of the board
                 
         
-                int indent = 2;
+                int indent = 0;
                 int bannersize = (int)((2 * indent) + 7 + boardSize * 3 + Math.Log10(boardSize)); // The size of banner depend of the size of the Board
         
                 string spaces = "";
@@ -60,24 +60,36 @@
                 }
                 else 
                 {
+                    System.Console.ForegroundColor=ConsoleColor.Red;
                     System.Console.Write( j/10 + " ");
+                    System.Console.ForegroundColor=ConsoleColor.Black;
                 }
             }
             System.Console.Write('\n');
+        
             //Secondly we print the second row of column numbers
         
             System.Console.Write( spaces);
             for (int i = 0; i < padding + 3; i++) 
             {
+                
                 System.Console.Write( " ");
+                
             }
 
             for (float j = 0; j < boardSize; j++) 
             {
+                System.Console.ForegroundColor=ConsoleColor.Red;
                 System.Console.Write ( j%10 + " ");
+                System.Console.ForegroundColor=ConsoleColor.Black;
+                
             }
-            System.Console.Write ('\n');
+             
+             System.Console.Write ('\n');
+             
+
             //Eventually we print the rows one by one
+
             int intlength;
             for (int i = boardSize - 1; i >= 0; i--) 
             {
@@ -89,15 +101,19 @@
                 {
                     System.Console.Write(" ");
                 }
+
                 // we put the number on the left, so that the board doesn't shift around.
+            
                 intlength = (i == 0) ? 0 : (int)Math.Log10(i);
                 for (int j = 0; j < padding - intlength; j++) 
                 {
                     System.Console.Write(" ");
                 }
 
+                // Print the row number 
+                System.Console.ForegroundColor=ConsoleColor.Blue;
                 System.Console.Write( " " + i + "  ");
-                
+                System.Console.ForegroundColor=ConsoleColor.Black;
     
                 // Print the color, it depend of the coordinate say before
             
@@ -107,9 +123,11 @@
                     System.Console.Write( (this.grid[j, i].isEmpty() ? "_" : this.grid[j, i].isRed() ? "■" : "■" )+ " ");
                     System.Console.ForegroundColor= ConsoleColor.Black;
                 }
-                // We print the row number same before but for the right
 
+                // We print the row number same before but for the right
+                System.Console.ForegroundColor=ConsoleColor.Blue;
                 System.Console.Write(" " + i + '\n');
+                System.Console.ForegroundColor=ConsoleColor.Black;
             }
 
             //Firstly we print first row of column numbers
@@ -117,33 +135,52 @@
             System.Console.Write( spaces);
             for (int i = 0; i < boardSize + padding + 4; i++) 
             {
+                
                 System.Console.Write(" ");
+               
             }
 
             for (int j = 0; j < boardSize; j++) 
             {
-                if (j >= 10)  System.Console.Write( j/10 + " ");
-                else System.Console.Write( j + " ");
+                if (j >= 10) {
+                      System.Console.ForegroundColor=ConsoleColor.Red;
+                      System.Console.Write( j/10 + " ");
+                      System.Console.ForegroundColor=ConsoleColor.Black;
+                }
+              
+                else {
+                    System.Console.ForegroundColor=ConsoleColor.Red;
+                    System.Console.Write( j + " ");
+                    System.Console.ForegroundColor=ConsoleColor.Black;
+                }
+                
             }
             System.Console.Write('\n');
+
             // Print second row of column numbers
         
             System.Console.Write (spaces);
             for (int i = 0; i < boardSize + padding + 5; i++) 
             {
+                
                 System.Console.Write(" ");
+               
             }
 
             for (int j = 0; j < boardSize; j++) 
             {
                 if (j < 10) 
                 {
+                    
                     System.Console.Write("  ");
+                   
                 }
 
                 else 
                 {
+                    System.Console.ForegroundColor=ConsoleColor.Red;    
                     System.Console.Write( j%10 + " ");
+                    System.Console.ForegroundColor=ConsoleColor.Black;
                 }
             }
             System.Console.WriteLine();
