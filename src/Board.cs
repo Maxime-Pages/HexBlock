@@ -124,7 +124,7 @@ namespace HexBlock
                 }   
                 while (x>=size){
                  Console.Clear();
-                 System.Console.WriteLine("Pls can you ReEnter x Coordinates the maximum is "+size+" :");
+                 System.Console.WriteLine("Pls can you ReEnter x Coordinates the maximum is "+(size-1)+" :");
                  string a = Console.ReadLine();
                  success = Int32.TryParse(a, out x);
                 }
@@ -144,7 +144,7 @@ namespace HexBlock
                     success = Int32.TryParse(a, out y);
                 }
                 while (y>=size){
-                     System.Console.WriteLine("Pls can you ReEnter y Coordinates the maximum is "+size+" :");
+                     System.Console.WriteLine("Pls can you ReEnter y Coordinates the maximum is "+(size-1)+" :");
                 string a = Console.ReadLine();
                 success = Int32.TryParse(a, out y);
                 }
