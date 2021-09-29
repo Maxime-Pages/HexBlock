@@ -10,6 +10,14 @@ namespace HexBlock
             System.Console.BackgroundColor=ConsoleColor.White;
             System.Console.ForegroundColor=ConsoleColor.Black;
             Console.Clear();
+
+            if(args.Length != 0 && args[0] == "DEBUG")
+            {
+                Board board = new Board(5);
+                board.Game(5);
+                return;
+            }
+
             bool errorChoiceApp = true; // true is a correct choice and false is an error
 
             System.Console.WriteLine("Welcome to the menu, before starting we would like to know");
