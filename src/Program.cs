@@ -105,6 +105,12 @@ namespace HexBlock
                 {
                     string s = Console.ReadLine(); // set the choice in a string
                     success = Int32.TryParse(s, out size); // string containing a number
+                while(!success){
+                    Console.Clear();
+                    System.Console.WriteLine("What about the size of the grid ? (11,13,19) please not a letter");
+                    string a = Console.ReadLine(); // set the choice in a string
+                    success = Int32.TryParse(a, out size); 
+                }
                 }
                 switch(size)
                 {
