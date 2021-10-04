@@ -9,7 +9,7 @@ namespace HexBlock.Tests
 {
     class HexTests
     {
-        /*
+        
         #region Spot
 
         [Test]
@@ -55,7 +55,7 @@ namespace HexBlock.Tests
             Assert.AreEqual((x,y),spot.GetCoo());
         }
         #endregion
-*/
+
         #region Board
 
         [TestCase(11)]
@@ -77,6 +77,17 @@ namespace HexBlock.Tests
             Board board = new Board(size);
             Assert.IsTrue(board.VerrifySize(size));
         }
+        [TestCase(1)]
+        [TestCase(15)]
+        [TestCase(-1)]
+
+        public void Board_is_not_created_with_an_incorrect_size(int size)
+        {
+            Board board = null;
+            var exception = Assert.Throws<Exception>( () => new  Board(size));
+            Assert.AreEqual("Invalid Size",exception.Message);
+            Assert.AreEqual(null,board);
+        }
 
 
         [Test]
@@ -94,9 +105,23 @@ namespace HexBlock.Tests
 
         }
         #endregion
+
         #region PathFinding
 
-        
+        private static object[] Adj =
+        {
+            new object[] {0,0, new List<(int, int)> {(0, 1), (0, -1), (1, 0), (-1, 0), (-1, 1), (1, -1)}},
+            new object[] {1,1, new List<(int, int)> {(1, 2), (1, 0), (2, 1), (0, 1), (0, 2), (2, 0)}},
+            new object[] {100,100, new List<(int, int)> {(100, 101), (100, 99), (101, 100), (99, 100), (99, 101), (101, 99)}}
+        };
+
+        [TestCaseSource(nameof(Adj))]
+        public void Return_6_Adj_Hex(int x, int y,List<(int,int)> l)
+        {
+            List<(int, int)>  adj = Pathfinding.GetAdj(x, y);
+            Assert.AreEqual(l,adj);
+        }
+
 
         #endregion
     }

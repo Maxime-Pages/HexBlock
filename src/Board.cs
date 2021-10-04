@@ -16,10 +16,11 @@ namespace HexBlock
     {
         private int size;
         private Spot[,] grid;
-
+        
         private bool cturn;
 
         private int turn;
+
 
       /*  public bool Game(int size, bool solo = false, difficulty diff = difficulty.NULL)
         {
@@ -101,14 +102,17 @@ namespace HexBlock
         {
             if (Legal(cor))
             {
-                grid[cor];
+                grid[cor.Item1,cor.Item2].Color(player);
+                return true;
             }
 
             return false;
         }
-       */
+
         public Board(int size)
         {
+            if (!VerrifySize(size))
+                throw new Exception("Invalid Size");
             this.size = size;
             this.grid = new Spot[size, size];
             this.cturn = true;
@@ -217,7 +221,6 @@ namespace HexBlock
             return true;
         }
             
-        }
 
         public bool gameMulti(difficulty diff = difficulty.NULL)
         {

@@ -10,28 +10,20 @@ namespace HexBlock
         {
             // return false;
             int l = grid.GetLength(0);
-            List<(int,int)> Connected = new List<(int, int)>();
+            List<(int,int)> Connected = InitList(grid,l,player);
             List<(int, int)> Known = new List<(int, int)>();
-            for (int i = 0; i < l; i++)
-            {
-                if (player ? grid[0, i].GetColor() : !grid[i, 0].GetColor())
-                {
-                    Connected.Add(player ? (0,i) : (i,0));
-                }
-            }
             Known.AddRange(Connected);
             while (Connected.Count != 0)
             {
                 (int,int) current = Connected[0];
                 Connected.RemoveAt(0);
                 AddAdj(ref Known, ref Connected, current, l,player, grid);
-                if (System.Linq.Enumerable.Any(Connected, x => player ? x.Item1 == l - 1 : x.Item2 == l - 1))
+                if (finished(Known,player,l))
                 {
                     return true;
                 }
             }
             return false;
-
         }
 
         public static List<(int,int)> GetAdj(int x, int y)
@@ -71,6 +63,25 @@ namespace HexBlock
             adj = PruneColor(adj, player, grid);
             Known.AddRange(adj);
             Connected.AddRange(adj);
+        }
+
+        public static bool finished(List<(int, int)> Known, bool player, int l)
+        {
+            return Known.Any(x => player ? x.Item1 == l - 1 : x.Item2 == l - 1);
+        }
+
+        public static List<(int, int)> InitList(Spot[,] grid, int l, bool player)
+        {
+            List<(int, int)> list = new List<(int, int)>();
+            for (int i = 0; i < l; i++)
+            {
+                if (player ? grid[0, i].GetColor() : !grid[i, 0].GetColor())
+                {
+                    list.Add(player ? (0, i) : (i, 0));
+                }
+            }
+
+            return list;
         }
     }
 }
