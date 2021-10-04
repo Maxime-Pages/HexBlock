@@ -16,6 +16,7 @@ namespace howto_hexagonal_grid
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
         }
     }
 }
