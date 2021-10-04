@@ -1,4 +1,4 @@
-namespace HexBlock
+/*namespace HexBlock
 {
     class Spot
     {
@@ -44,4 +44,4 @@ namespace HexBlock
         }
 
     }
-}
+}*/
