@@ -31,9 +31,9 @@
 
             for (int i = 0; i < bannerpadding; i++) 
                 System.Console.Write (barre);
-            System.Console.ForegroundColor=ConsoleColor.Green;
-            System.Console.Write ( "                 Turn "  + turn + " ");
-            System.Console.ForegroundColor=ConsoleColor.Black;
+            System.Console.ForegroundColor=ConsoleColor.Green; // make the turn in the color green
+            System.Console.Write ( "            Turn "  + turn + " ");
+            System.Console.ForegroundColor=ConsoleColor.Black;// stay the -- in the color black
             for (int i = 0; i < bannerpadding; i++) 
                 System.Console.Write( barre);
             if (numberTurn % 2 == 0) System.Console.Write(barre);
@@ -62,7 +62,7 @@
                 {
                     System.Console.ForegroundColor=ConsoleColor.Red;
                     System.Console.Write( j/10 + " ");
-                    System.Console.ForegroundColor=ConsoleColor.Black;
+                    //System.Console.ForegroundColor=ConsoleColor.Black;
                 }
             }
             System.Console.Write('\n');
@@ -81,7 +81,7 @@
             {
                 System.Console.ForegroundColor=ConsoleColor.Red;
                 System.Console.Write ( j%10 + " ");
-                System.Console.ForegroundColor=ConsoleColor.Black;
+               // System.Console.ForegroundColor=ConsoleColor.Black;
                 
             }
              
