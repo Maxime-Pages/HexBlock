@@ -79,24 +79,42 @@ namespace HexBlock.Tests
         }
 
 
-        [Test]
+        [TestCase(11,true)]
         public void Should_Return_true_when_playing_against_ai(int size, bool choice)
         {
 
             Board board = new Board(size);
-            Assert.IsTrue(board.startGame(size, true));
+            Assert.IsTrue(board.startGame(size, choice));
             
         }
 
-        [Test]
-        public void Should_Return_true_when_playing_against_player()
+        [TestCase(11, false)]
+        public void Should_Return_true_when_playing_against_player(int size, bool choice)
         {
-
+            Board board = new Board(size);
+            Assert.IsFalse(board.startGame(size, choice));
         }
+
+        [TestCase(true,difficulty.NULL)]
+        public void Should_expected_same_difficulty(bool choice, difficulty diff)
+        {
+            Board board = new Board(11);
+
+            Assert.AreEqual(diff,board.GetDifficulty());
+        }
+
+        [TestCase(true)]
+        public void Should_return_current_turn(bool cturn)
+        {
+            Board board = new Board(11);
+            //cturn = false;
+            Assert.AreEqual(cturn,board.GetCTurn());
+        }
+        
         #endregion
         #region PathFinding
 
-        
+
 
         #endregion
     }
