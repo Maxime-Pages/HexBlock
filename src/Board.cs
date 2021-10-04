@@ -20,6 +20,8 @@ namespace HexBlock
         private bool cturn;
 
         private int turn;
+        private bool solo;
+        private difficulty difficulty = difficulty.NULL;
 
 
       /*  public bool Game(int size, bool solo = false, difficulty diff = difficulty.NULL)
@@ -88,7 +90,7 @@ namespace HexBlock
         private bool Haswon(bool player)
         {
             return Pathfinding.pathfind(player, this.grid);
-        }*/
+        }
         private bool Legal((int, int) cor)
         {
             return cor.Item1 < this.size &&
@@ -129,7 +131,7 @@ namespace HexBlock
         {
             return size;
         }
-
+        
         public bool VerrifySize(int size)
         {
             switch (size)
@@ -147,11 +149,11 @@ namespace HexBlock
             }
         }
 
-        public bool startGame(int size, bool choice)
+        public bool startGame(int size, bool choice, difficulty diff = difficulty.NULL)
         {
             if (choice) // if true == solo | false == player
             {
-                return gameSolo();
+                return gameSolo(diff);
             }
             else
             {
@@ -159,7 +161,7 @@ namespace HexBlock
             }
         }
 
-        public bool gameSolo()
+        public bool gameSolo(difficulty diff = difficulty.NULL)
         {
             /*
             bool legalspot = false;
@@ -222,7 +224,7 @@ namespace HexBlock
         }
             
 
-        public bool gameMulti(difficulty diff = difficulty.NULL)
+        public bool gameMulti()
         {
             /*
             bool legalspot = false;
@@ -250,6 +252,24 @@ namespace HexBlock
             return false;
         }
 
+        public bool GetOpponent()
+        {
+            return solo;
+        }
 
+        public difficulty GetDifficulty()
+        {
+            return difficulty;
+        }
+
+        public bool GetCTurn()
+        {
+            return cturn; // true p1 || false p2
+        }
+
+        public int GetTurn()
+        {
+            return turn;
+        }
     }
 }
