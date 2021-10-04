@@ -5,7 +5,8 @@ namespace HexBlock
         private bool red;
         private bool blue;
         private bool empty;
-        private (int, int) coo;
+        private int x;
+        private int y;
 
         public bool isRed()
         {
@@ -26,7 +27,15 @@ namespace HexBlock
 
         public (int, int) getCoo()
         {
-            return this.coo;
+            return (this.x,this.y);
+        }
+        public int getX()
+        {
+            return x;
+        }
+        public int getY()
+        {
+            return y;
         }
 
         public void Color(bool player)
@@ -40,7 +49,8 @@ namespace HexBlock
             this.empty = true;
             this.red = false;
             this.blue = false;
-            this.coo = (x, y);
+            this.x = x;
+            this.y = y;
         }
 
     }

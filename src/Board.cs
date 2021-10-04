@@ -156,19 +156,21 @@ namespace HexBlock
         {
             return Pathfinding.pathfind(player,this.grid);
         }
-
-        private bool isadj(Spot a, Spot b)
-        {
-            return true;
-        }
-
-        private bool legal((int,int) cor)
+        private bool Legal((int,int) cor)
         {
             return cor.Item1 < this.size &&
                 cor.Item1 >= 0 &&
                 cor.Item2 < this.size &&
                 cor.Item2 >= 0 &&
                 this.grid[cor.Item1,cor.Item2].isEmpty();
+        }
+
+        public bool ColorSpot((int, int) cor)
+        {
+            if (Legal(cor))
+            {
+                grid[cor]
+            }
         }
        
         public Board(int size)
