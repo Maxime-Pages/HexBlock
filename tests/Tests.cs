@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace HexBlock.Tests
 {
     class HexTests
     {
-        /*
+        
         #region Spot
 
         [Test]
@@ -55,7 +56,7 @@ namespace HexBlock.Tests
             Assert.AreEqual((x,y),spot.GetCoo());
         }
         #endregion
-*/
+
         #region Board
 
         [TestCase(11)]
@@ -77,30 +78,42 @@ namespace HexBlock.Tests
             Board board = new Board(size);
             Assert.IsTrue(board.VerrifySize(size));
         }
+        [TestCase(1)]
+        [TestCase(15)]
+        [TestCase(-1)]
+
+        public void Board_is_not_created_with_an_incorrect_size(int size)
+        {
+            Board board = null;
+            var exception = Assert.Throws<Exception>( () => new  Board(size));
+            Assert.AreEqual("Invalid Size",exception.Message);
+            Assert.AreEqual(null,board);
+        }
 
 
-        [TestCase(11,true)]
-        public void Should_Return_true_when_playing_against_ai(int size, bool choice)
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Board_solo_is_set_to_correct_value(bool solo)
         {
 
-            Board board = new Board(size);
-            Assert.IsTrue(board.startGame(size, choice));
+            Board board = new Board(11, solo);
+            Assert.AreEqual(solo,board.GetOpponent());
             
         }
-
-        [TestCase(11, false)]
-        public void Should_Return_true_when_playing_against_player(int size, bool choice)
-        {
-            Board board = new Board(size);
-            Assert.IsFalse(board.startGame(size, choice));
-        }
-
-        [TestCase(true,difficulty.NULL)]
-        public void Should_expected_same_difficulty(bool choice, difficulty diff)
+        [Test]
+        public void difficulty_is_set_to_null_by_default()
         {
             Board board = new Board(11);
+            Assert.AreEqual(difficulty.NULL,board.GetDifficulty());
+        }
 
-            Assert.AreEqual(diff,board.GetDifficulty());
+        [TestCase(difficulty.EASY)]
+        [TestCase(difficulty.MEDIUM)]
+        [TestCase(difficulty.HARD)]
+        [TestCase(difficulty.IMPOSSIBLE)]
+        public void difficulty_is_set_to_right_value(difficulty diff)
+        {
+            Board board = new Board(11,true,)
         }
 
         [TestCase(true)]
@@ -110,10 +123,32 @@ namespace HexBlock.Tests
             //cturn = false;
             Assert.AreEqual(cturn,board.GetCTurn());
         }
+
+        [TestCase(1)]
+        public void Should_return_current_turn_global(int turn)
+        {
+            Board board = new Board(11);
+            turn = 1;
+            Assert.AreEqual(turn, board.GetGlobalTurn());
+        }
         
         #endregion
+
         #region PathFinding
 
+        private static object[] Adj =
+        {
+            new object[] {0,0, new List<(int, int)> {(0, 1), (0, -1), (1, 0), (-1, 0), (-1, 1), (1, -1)}},
+            new object[] {1,1, new List<(int, int)> {(1, 2), (1, 0), (2, 1), (0, 1), (0, 2), (2, 0)}},
+            new object[] {100,100, new List<(int, int)> {(100, 101), (100, 99), (101, 100), (99, 100), (99, 101), (101, 99)}}
+        };
+
+        [TestCaseSource(nameof(Adj))]
+        public void Return_6_Adj_Hex(int x, int y,List<(int,int)> l)
+        {
+            List<(int, int)>  adj = Pathfinding.GetAdj(x, y);
+            Assert.AreEqual(l,adj);
+        }
 
 
         #endregion
