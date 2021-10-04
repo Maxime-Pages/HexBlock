@@ -7,24 +7,60 @@ namespace HexBlock
     {
         static void Main(string[] args)
         {
-            if(args.Length != 0 && args[0] == "--gui")
-            {
-                return;
-            }
-            
             System.Console.BackgroundColor=ConsoleColor.White;
             System.Console.ForegroundColor=ConsoleColor.Black;
             Console.Clear();
+
             if(args.Length != 0 && args[0] == "DEBUG")
             {
                 Board board = new Board(5);
                 board.Game(5);
+                return;
             }
-            System.Console.WriteLine("Welcome to the HexGame");
+
+            bool errorChoiceApp = true; // true is a correct choice and false is an error
+            System.Console.WriteLine("Welcome to the menu, before starting we would like to know");
+           
+            while(errorChoiceApp)
+            {
+                System.Console.WriteLine("Which application do you prefer ? (G for Graphical and C for Console)");
+                String choiceApplication = Console.ReadLine();
+                switch (choiceApplication.ToLower()) 
+                {
+                    case "g" :
+                    case "graphical" :
+                    {
+                        errorChoiceApp = false;
+                        System.Diagnostics.Process.Start( @"C:\Program Files\Google\Chrome\Application\chrome.exe"); // actually this open chrome but in the future this will open the application
+                        System.Console.WriteLine("Game is starting... ");
+                        Thread.Sleep(2000);
+                        System.Environment.Exit(1); // console shutdown
+                        break;
+                    }
+                    case "c" :
+                    case "console" :
+                    {
+                        errorChoiceApp = false;
+                        System.Console.WriteLine("You choosed the console game");
+                        Thread.Sleep(2000);
+                        break;
+                    }
+                    default :
+                    {
+                        errorChoiceApp = true;
+                        Console.Clear();
+                        System.Console.WriteLine("You didn't choose a valid choice, please try again");
+                        break;
+                    }
+                }
+            }
+
+            Console.Clear();
+            System.Console.WriteLine("Welcome to the HexGame : console edition");
             Thread.Sleep(1000); // do a pause between text
             bool errorOpp = true; // I fixed the boolean on true to be able to enter on the loop
             bool opponnent = false ; // True for an AI, False for a player
-            while(errorOpp == true) // verify if the opponent ent<ered is valid
+            while(errorOpp == true) // verify if the opponent entered is valid
             {
                 System.Console.WriteLine("Who do you want to play against ? (AI or Player)");
                 String choiceOpponent = Console.ReadLine(); 
@@ -36,7 +72,7 @@ namespace HexBlock
                             errorOpp = false;
                             Console.Clear(); // clear the console
                             System.Console.WriteLine("You will play with an AI");
-                            opponnent = true;
+                            opponnent = true; // true = play against AI
                             break;
                         }
                         case "p" :
@@ -45,10 +81,9 @@ namespace HexBlock
                             errorOpp = false;
                             Console.Clear(); // clear the console
                             System.Console.WriteLine("You will play against an another Player");
-                            opponnent = false;
+                            opponnent = false; // false = play against an another player
                             break;
                         }
-
                         default :
                         {
                             errorOpp = true;
@@ -70,6 +105,12 @@ namespace HexBlock
                 {
                     string s = Console.ReadLine(); // set the choice in a string
                     success = Int32.TryParse(s, out size); // string containing a number
+                while(!success){
+                    Console.Clear();
+                    System.Console.WriteLine("What about the size of the grid ? (11,13,19) please not a letter");
+                    string a = Console.ReadLine(); // set the choice in a string
+                    success = Int32.TryParse(a, out size); 
+                }
                 }
                 switch(size)
                 {
