@@ -23,7 +23,7 @@ namespace HexBlock
         private bool solo;
         private difficulty difficulty = difficulty.NULL;
 
-      /*  public bool Game(int size, bool solo = false, difficulty diff = difficulty.NULL)
+        /*public bool Game(int size, bool solo = false, difficulty diff = difficulty.NULL)
         {
             if (solo)
             {
@@ -34,7 +34,7 @@ namespace HexBlock
 
             }
         }
-        /*
+        
         public (int,int) ChooseSpot()
         {
             bool success = false;
@@ -149,15 +149,15 @@ namespace HexBlock
         {
             if (choice) // if true == solo | false == player
             {
-                return gameSolo(diff);
+                return GameSolo(diff);
             }
             else
             {
-                return gameMulti();
+                return GameMulti();
             }
         }
 
-        public bool gameSolo(difficulty diff = difficulty.NULL)
+        public bool GameSolo(difficulty diff = difficulty.NULL)
         {
             /*
             bool legalspot = false;
@@ -182,6 +182,7 @@ namespace HexBlock
                                 chosen = AI.RandomAI(this.size);
                                 legalspot = legal(chosen);
                             }
+
                             break;
                         case difficulty.MEDIUM:
                             while (!legalspot)
@@ -189,6 +190,7 @@ namespace HexBlock
                                 chosen = AI.RandomAI(this.size);
                                 legalspot = legal(chosen);
                             }
+
                             break;
                         case difficulty.HARD:
                             while (!legalspot)
@@ -196,6 +198,7 @@ namespace HexBlock
                                 chosen = AI.RandomAI(this.size);
                                 legalspot = legal(chosen);
                             }
+
                             break;
                         case difficulty.IMPOSSIBLE:
                             while (!legalspot)
@@ -203,25 +206,29 @@ namespace HexBlock
                                 chosen = AI.RandomAI(this.size);
                                 legalspot = legal(chosen);
                             }
+
                             break;
                     }
                 }
+
                 this.grid[chosen.Item1, chosen.Item2].Color(cturn);
                 if (Haswon(cturn))
                 {
                     return cturn;
                 }
+
                 this.drawBoard();
                 legalspot = false;
                 cturn = !cturn;
                 turn += cturn ? 1 : 0;
                 Console.ReadKey(); */
-            return true;
-        }
-            
-    
+                return true;
+            }
+        
 
-        public bool gameMulti()
+
+
+        public bool GameMulti()
         {
             /*
             bool legalspot = false;
@@ -264,7 +271,7 @@ namespace HexBlock
             return cturn; // true p1 || false p2
         }
 
-        public int GetTurn()
+        public int GetGlobalTurn()
         {
             return turn;
         }

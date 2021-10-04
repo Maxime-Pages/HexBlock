@@ -1,4 +1,5 @@
-﻿/*using System;
+﻿using System;
+using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace HexBlock
@@ -68,7 +69,8 @@ namespace HexBlock
                 {
                     case "a":
                     case "ai":
-                        {
+                    {
+                            
                             errorOpp = false;
                             Console.Clear(); // clear the console
                             System.Console.WriteLine("You will play with an AI");
@@ -218,4 +220,3 @@ namespace HexBlock
         }
     }
 }
-*/
