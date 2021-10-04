@@ -1,4 +1,4 @@
-/*namespace HexBlock
+namespace HexBlock
 {
     class Spot
     {
@@ -34,14 +34,14 @@
             this.empty = false;
             this.blue = player;
             this.red = !player;
-        }        
+        }
         public Spot(int x, int y)
         {
             this.empty = true;
             this.red = false;
             this.blue = false;
-            this.coo = (x,y);
+            this.coo = (x, y);
         }
 
     }
-}*/
+}
