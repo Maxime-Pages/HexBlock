@@ -74,6 +74,7 @@ namespace howto_hexagonal_grid
             // Loop until a hexagon won't fit.
             for (int row = 0; ; row++)
             {
+
                 // Get the points for the row's first hexagon.
                 PointF[] points = HexToPoints(height, row, 0);
 
@@ -216,15 +217,15 @@ namespace howto_hexagonal_grid
             float y = height / 2 - width /2;
             float x = height / 2;
 
-
             // Move down the required number of rows.
             y += row * height;
 
             // If the column is odd, move down half a hex more.
-            if (col % 2 != 0) y += height / 2;
+            //if (col % 2 != 0) y += height / 2;
 
             // Move over for the column number.
-            x += col * (width * 0.75f); 
+            x += col * (width * 0.87f) + (row * width / 2);
+
 
             // Generate the points.
             return new PointF[]
@@ -238,5 +239,5 @@ namespace howto_hexagonal_grid
             };
         }
     }
-    
+
 }
