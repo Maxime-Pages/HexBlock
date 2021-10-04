@@ -1,5 +1,7 @@
-/*using System;
+using System;
 using System.Drawing;
+using System.Reflection.Metadata.Ecma335;
+
 namespace HexBlock
 {
     public enum difficulty
@@ -19,92 +21,18 @@ namespace HexBlock
 
         private int turn;
 
-        public bool Game(int size, bool solo = false, difficulty diff = difficulty.NULL)
+      /*  public bool Game(int size, bool solo = false, difficulty diff = difficulty.NULL)
         {
             if (solo)
             {
-                bool legalspot = false;
-                (int,int) chosen = (0,0);
-                while (true)
-                {
-                    if(cturn)
-                    {
-                        while (!legalspot)
-                        {
-                            chosen = this.ChooseSpot();
-                            legalspot = legal(chosen);
-                        }
-                    }
-                    else
-                    {
-                        switch(diff)
-                        {
-                            case difficulty.EASY:
-                                while (!legalspot)
-                                {
-                                    chosen = AI.RandomAI(this.size);
-                                    legalspot = legal(chosen);
-                                }       
-                                break;
-                            case difficulty.MEDIUM:
-                                while (!legalspot)
-                                {
-                                    chosen = AI.RandomAI(this.size);
-                                    legalspot = legal(chosen);
-                                } 
-                                break;
-                            case difficulty.HARD:
-                                while (!legalspot)
-                                {
-                                    chosen = AI.RandomAI(this.size);
-                                    legalspot = legal(chosen);
-                                }
-                                break;
-                            case difficulty.IMPOSSIBLE:
-                                while (!legalspot)
-                                {
-                                    chosen = AI.RandomAI(this.size);
-                                    legalspot = legal(chosen);
-                                }
-                                break;
-                        }
-                    }   
-                    this.grid[chosen.Item1,chosen.Item2].Color(cturn);
-                    if(Haswon(cturn))
-                    {
-                        return cturn;
-                    }
-                    this.drawBoard();
-                    legalspot = false;
-                    cturn = !cturn;
-                    turn += cturn ? 1 : 0;
-                    Console.ReadKey();
-                }
+
             }
             else
             {
-                bool legalspot = false;
-                (int,int) chosen = (0,0);
-                while (true)
-                {
-                   while (!legalspot)
-                    {
-                        chosen = ChooseSpot();
-                        legalspot = legal(chosen);
-                    }
-                    this.grid[chosen.Item1,chosen.Item2].Color(cturn);
-                    if(Haswon(cturn))
-                    {
-                        return cturn;
-                    }
-                    this.drawBoard();
-                    legalspot = false;
-                    cturn = !cturn;
-                    turn += cturn ? 1 : 0;
-                    Console.ReadKey();
-                }
+
             }
         }
+        /*
         public (int,int) ChooseSpot()
         {
             bool success = false;
@@ -169,10 +97,10 @@ namespace HexBlock
         {
             if (Legal(cor))
             {
-                grid[cor]
+                grid[cor];
             }
         }
-       
+       */
         public Board(int size)
         {
             this.size = size;
@@ -186,6 +114,133 @@ namespace HexBlock
                     grid[i,j] = new Spot(i,j);                    
                 }
             }
+        } 
+        public int GetSize()
+        {
+            return size;
         }
+
+        public bool VerrifySize(int size)
+        {
+            switch (size)
+            {
+                case 11:
+                case 13:
+                case 19:
+                {
+                    return true;
+                }
+                default :
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool startGame(int size, bool choice)
+        {
+            if (choice) // if true == solo | false == player
+            {
+                return gameSolo();
+            }
+            else
+            {
+                return gameMulti();
+            }
+        }
+
+        public bool gameSolo()
+        {
+            /*
+            bool legalspot = false;
+            (int, int) chosen = (0, 0);
+            while (true)
+            {
+                if (cturn)
+                {
+                    while (!legalspot)
+                    {
+                        chosen = this.ChooseSpot();
+                        legalspot = legal(chosen);
+                    }
+                }
+                else
+                {
+                    switch (diff)
+                    {
+                        case difficulty.EASY:
+                            while (!legalspot)
+                            {
+                                chosen = AI.RandomAI(this.size);
+                                legalspot = legal(chosen);
+                            }
+                            break;
+                        case difficulty.MEDIUM:
+                            while (!legalspot)
+                            {
+                                chosen = AI.RandomAI(this.size);
+                                legalspot = legal(chosen);
+                            }
+                            break;
+                        case difficulty.HARD:
+                            while (!legalspot)
+                            {
+                                chosen = AI.RandomAI(this.size);
+                                legalspot = legal(chosen);
+                            }
+                            break;
+                        case difficulty.IMPOSSIBLE:
+                            while (!legalspot)
+                            {
+                                chosen = AI.RandomAI(this.size);
+                                legalspot = legal(chosen);
+                            }
+                            break;
+                    }
+                }
+                this.grid[chosen.Item1, chosen.Item2].Color(cturn);
+                if (Haswon(cturn))
+                {
+                    return cturn;
+                }
+                this.drawBoard();
+                legalspot = false;
+                cturn = !cturn;
+                turn += cturn ? 1 : 0;
+                Console.ReadKey(); */
+            return true;
+        }
+            
+        }
+
+        public bool gameMulti(difficulty diff = difficulty.NULL)
+        {
+            /*
+            bool legalspot = false;
+            (int, int) chosen = (0, 0);
+            while (true)
+            {
+                while (!legalspot)
+                {
+                    chosen = ChooseSpot();
+                    legalspot = legal(chosen);
+                }
+                this.grid[chosen.Item1, chosen.Item2].Color(cturn);
+                if (Haswon(cturn))
+                {
+                    return cturn;
+                }
+                this.drawBoard();
+                legalspot = false;
+                cturn = !cturn;
+                turn += cturn ? 1 : 0;
+                Console.ReadKey();
+
+            }
+            */
+            return false;
+        }
+
+
     }
-}*/
+}

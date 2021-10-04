@@ -9,6 +9,7 @@ namespace HexBlock.Tests
 {
     class HexTests
     {
+        /*
         #region Spot
 
         [Test]
@@ -61,6 +62,44 @@ namespace HexBlock.Tests
 
         }
         #endregion
+*/
+        #region Board
 
+        [TestCase(11)]
+        [TestCase(13)]
+        [TestCase(17)]
+
+        public void Board_is_created_with_inputed_size(int size)
+        {
+            Board game = new Board(size);
+            Assert.AreEqual(size, game.GetSize());
+        }
+
+        [TestCase(11)]
+        [TestCase(13)]
+        //[TestCase(17)]
+
+        public void Board_is_created_with_a_correct_size(int size)
+        {
+            Board board = new Board(size);
+            Assert.IsTrue(board.VerrifySize(size));
+        }
+
+
+        [Test]
+        public void Should_Return_true_when_playing_against_ai(int size, bool choice)
+        {
+
+            Board board = new Board(size);
+            Assert.IsTrue(board.startGame(size, true));
+            
+        }
+
+        [Test]
+        public void Should_Return_true_when_playing_against_player()
+        {
+
+        }
+        #endregion
     }
 }
