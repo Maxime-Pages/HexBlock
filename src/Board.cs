@@ -16,7 +16,6 @@ namespace HexBlock
     {
         private int size;
         private Spot[,] grid;
-        
         private bool cturn;
 
         private int turn;
@@ -110,8 +109,8 @@ namespace HexBlock
 
             return false;
         }
-
-        public Board(int size)
+      */
+        public Board(int size, bool solo = false,difficulty diff = difficulty.NULL)
         {
             if (!VerrifySize(size))
                 throw new Exception("Invalid Size");
@@ -119,6 +118,7 @@ namespace HexBlock
             this.grid = new Spot[size, size];
             this.cturn = true;
             this.turn = 0;
+            this.solo = solo;
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
@@ -139,7 +139,7 @@ namespace HexBlock
                 case 11:
                 case 13:
                 case 19:
-                {
+                { 
                     return true;
                 }
                 default :
@@ -163,7 +163,7 @@ namespace HexBlock
 
         public bool gameSolo(difficulty diff = difficulty.NULL)
         {
-            /*
+            
             bool legalspot = false;
             (int, int) chosen = (0, 0);
             while (true)
@@ -219,14 +219,14 @@ namespace HexBlock
                 legalspot = false;
                 cturn = !cturn;
                 turn += cturn ? 1 : 0;
-                Console.ReadKey(); */
+                Console.ReadKey(); 
             return true;
         }
             
 
         public bool gameMulti()
         {
-            /*
+            
             bool legalspot = false;
             (int, int) chosen = (0, 0);
             while (true)
@@ -248,7 +248,7 @@ namespace HexBlock
                 Console.ReadKey();
 
             }
-            */
+            
             return false;
         }
 
@@ -267,9 +267,10 @@ namespace HexBlock
             return cturn; // true p1 || false p2
         }
 
-        public int GetTurn()
+        public int GetGlobalTurn()
         {
-            return turn;
+            return turn; // return the global turn of the game 
         }
+
     }
 }

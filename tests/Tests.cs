@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,28 +91,29 @@ namespace HexBlock.Tests
         }
 
 
-        [TestCase(11,true)]
-        public void Should_Return_true_when_playing_against_ai(int size, bool choice)
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Board_solo_is_set_to_correct_value(bool solo)
         {
 
-            Board board = new Board(size);
-            Assert.IsTrue(board.startGame(size, choice));
+            Board board = new Board(11, solo);
+            Assert.AreEqual(solo,board.GetOpponent());
             
         }
-
-        [TestCase(11, false)]
-        public void Should_Return_true_when_playing_against_player(int size, bool choice)
-        {
-            Board board = new Board(size);
-            Assert.IsFalse(board.startGame(size, choice));
-        }
-
-        [TestCase(true,difficulty.NULL)]
-        public void Should_expected_same_difficulty(bool choice, difficulty diff)
+        [Test]
+        public void difficulty_is_set_to_null_by_default()
         {
             Board board = new Board(11);
+            Assert.AreEqual(difficulty.NULL,board.GetDifficulty());
+        }
 
-            Assert.AreEqual(diff,board.GetDifficulty());
+        [TestCase(difficulty.EASY)]
+        [TestCase(difficulty.MEDIUM)]
+        [TestCase(difficulty.HARD)]
+        [TestCase(difficulty.IMPOSSIBLE)]
+        public void difficulty_is_set_to_right_value(difficulty diff)
+        {
+            Board board = new Board(11,true,)
         }
 
         [TestCase(true)]
@@ -120,6 +122,14 @@ namespace HexBlock.Tests
             Board board = new Board(11);
             //cturn = false;
             Assert.AreEqual(cturn,board.GetCTurn());
+        }
+
+        [TestCase(1)]
+        public void Should_return_current_turn_global(int turn)
+        {
+            Board board = new Board(11);
+            turn = 1;
+            Assert.AreEqual(turn, board.GetGlobalTurn());
         }
         
         #endregion
