@@ -117,6 +117,18 @@ namespace HexBlock
                 System.Console.WriteLine("Enter x Coordinates:");
                 string s = Console.ReadLine();
                 success = Int32.TryParse(s, out x);
+                while (!success){
+                    System.Console.WriteLine("Pls can you ReEnter x Coordinates not a letter:");
+                    string a = Console.ReadLine();
+                    success = Int32.TryParse(a, out x);
+                }   
+                while (x>=size){
+                 Console.Clear();
+                 System.Console.WriteLine("Pls can you ReEnter x Coordinates the maximum is "+(size-1)+" :");
+                 string a = Console.ReadLine();
+                 success = Int32.TryParse(a, out x);
+                }
+
             }
             success = false;
             while(!success)
@@ -126,6 +138,16 @@ namespace HexBlock
                 System.Console.WriteLine("Enter y Coordinates:");
                 string s = Console.ReadLine();
                 success = Int32.TryParse(s, out y);
+                while (!success){
+                    System.Console.WriteLine("Pls can you ReEnter y Coordinates not a letter:");
+                    string a = Console.ReadLine();
+                    success = Int32.TryParse(a, out y);
+                }
+                while (y>=size){
+                     System.Console.WriteLine("Pls can you ReEnter y Coordinates the maximum is "+(size-1)+" :");
+                string a = Console.ReadLine();
+                success = Int32.TryParse(a, out y);
+                }
             }
             return (x,y);
         }
@@ -147,9 +169,8 @@ namespace HexBlock
                 cor.Item2 < this.size &&
                 cor.Item2 >= 0 &&
                 this.grid[cor.Item1,cor.Item2].isEmpty();
-
         }
-      
+       
         public Board(int size)
         {
             this.size = size;
