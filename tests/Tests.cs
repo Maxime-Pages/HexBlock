@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using NUnit.Framework;
 
 namespace HexBlock.Tests
@@ -61,7 +62,7 @@ namespace HexBlock.Tests
 
         [TestCase(11)]
         [TestCase(13)]
-        [TestCase(17)]
+        [TestCase(19)]
 
         public void Board_is_created_with_inputed_size(int size)
         {
@@ -76,7 +77,7 @@ namespace HexBlock.Tests
         public void Board_is_created_with_a_correct_size(int size)
         {
             Board board = new Board(size);
-            Assert.IsTrue(board.VerrifySize(size));
+            Assert.AreNotEqual(null,board);
         }
         [TestCase(1)]
         [TestCase(15)]
@@ -105,6 +106,7 @@ namespace HexBlock.Tests
         {
             Board board = new Board(11);
             Assert.AreEqual(difficulty.NULL,board.GetDifficulty());
+            Assert.IsFalse(board.GetOpponent());
         }
 
         [TestCase(difficulty.EASY)]
@@ -113,25 +115,70 @@ namespace HexBlock.Tests
         [TestCase(difficulty.IMPOSSIBLE)]
         public void difficulty_is_set_to_right_value(difficulty diff)
         {
-            Board board = new Board(11,true,)
+            Board board = new Board(11, true, diff);
+            Assert.AreEqual(diff, board.GetDifficulty());
         }
 
-        [TestCase(true)]
-        public void Should_return_current_turn(bool cturn)
+        [Test]
+        public void cturn_starts_true()
         {
             Board board = new Board(11);
-            //cturn = false;
-            Assert.AreEqual(cturn,board.GetCTurn());
+            Assert.AreEqual(true,board.GetCTurn());
         }
 
-        [TestCase(1)]
-        public void Should_return_current_turn_global(int turn)
+        [Test]
+        public void cturn_changes_after_playing()
         {
             Board board = new Board(11);
-            turn = 1;
-            Assert.AreEqual(turn, board.GetGlobalTurn());
+            board.Play((0, 0));
+            Assert.IsFalse( board.GetCTurn());
         }
-        
+        [Test]
+        public void cturn_changes_after_playing_twice()
+        {
+            Board board = new Board(11);
+            board.Play((0, 0));
+            board.Play((0, 1));
+            Assert.IsTrue(board.GetCTurn());
+        }
+
+        [Test]
+        public void Turn_starts_at_0()
+        {
+            Board board = new Board(11);
+            Assert.AreEqual(0,board.GetGlobalTurn());
+        }
+        [Test]
+        public void Turn_doesnt_increas_after_P1()
+        {
+            Board board = new Board(11);
+            board.Play((0,0));
+            Assert.AreEqual(0, board.GetGlobalTurn());
+        }
+        [Test]
+        public void Turn_increases_after_P2()
+        {
+            Board board = new Board(11);
+            board.Play((0, 0));
+            board.Play((1, 0));
+            Assert.AreEqual(1, board.GetGlobalTurn());
+        }
+
+        [Test]
+        public void All_Spot_areEmpty()
+        {
+            Board board = new Board(11);
+            //Assert.IsEmpty(board.GetGrid().Cast<Spot>().ToList().Where(x => !x.IsEmpty()));
+            for (int i = 0; i < 11; i++)
+            {
+                for (int j = 0; j < 11; j++)
+                {
+                    if (!board.GetGrid()[i,j].IsEmpty())
+                        Assert.Fail();
+                }
+            }
+            Assert.Pass();
+        }
         #endregion
 
         #region PathFinding
