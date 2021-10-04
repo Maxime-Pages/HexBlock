@@ -2,38 +2,30 @@ namespace HexBlock
 {
     class Spot
     {
-        private bool red;
-        private bool blue;
+        private bool color;
         private bool empty;
         private int x;
         private int y;
 
-        public bool isRed()
+        public bool GetColor()
         {
-            return this.red;
+            return this.color;
         }
-
-        public bool isBlue()
-        {
-            return this.blue;
-        }
-
-
-        public bool isEmpty()
+        public bool IsEmpty()
         {
             return this.empty;
         }
 
 
-        public (int, int) getCoo()
+        public (int, int) GetCoo()
         {
             return (this.x,this.y);
         }
-        public int getX()
+        public int GetX()
         {
             return x;
         }
-        public int getY()
+        public int GetY()
         {
             return y;
         }
@@ -41,14 +33,12 @@ namespace HexBlock
         public void Color(bool player)
         {
             this.empty = false;
-            this.blue = player;
-            this.red = !player;
+            this.color = player;
         }
         public Spot(int x, int y)
         {
             this.empty = true;
-            this.red = false;
-            this.blue = false;
+            this.color = true;
             this.x = x;
             this.y = y;
         }

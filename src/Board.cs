@@ -38,78 +38,84 @@ namespace HexBlock
             bool success = false;
             int x = 0;
             int y = 0;
-            while(!success)
+            while (!success)
             {
                 Console.Clear();
                 Console.WriteLine("Player " + (this.cturn ? "1" : "2"));
                 System.Console.WriteLine("Enter x Coordinates:");
                 string s = Console.ReadLine();
                 success = Int32.TryParse(s, out x);
-                while (!success){
+                while (!success)
+                {
                     System.Console.WriteLine("Pls can you ReEnter x Coordinates not a letter:");
                     string a = Console.ReadLine();
                     success = Int32.TryParse(a, out x);
-                }   
-                while (x>=size){
-                 Console.Clear();
-                 System.Console.WriteLine("Pls can you ReEnter x Coordinates the maximum is "+(size-1)+" :");
-                 string a = Console.ReadLine();
-                 success = Int32.TryParse(a, out x);
+                }
+                while (x >= size)
+                {
+                    Console.Clear();
+                    System.Console.WriteLine("Pls can you ReEnter x Coordinates the maximum is " + (size - 1) + " :");
+                    string a = Console.ReadLine();
+                    success = Int32.TryParse(a, out x);
                 }
 
             }
             success = false;
-            while(!success)
+            while (!success)
             {
                 Console.Clear();
                 Console.WriteLine("Player " + (this.cturn ? "1" : "2"));
                 System.Console.WriteLine("Enter y Coordinates:");
                 string s = Console.ReadLine();
                 success = Int32.TryParse(s, out y);
-                while (!success){
+                while (!success)
+                {
                     System.Console.WriteLine("Pls can you ReEnter y Coordinates not a letter:");
                     string a = Console.ReadLine();
                     success = Int32.TryParse(a, out y);
                 }
-                while (y>=size){
-                     System.Console.WriteLine("Pls can you ReEnter y Coordinates the maximum is "+(size-1)+" :");
-                string a = Console.ReadLine();
-                success = Int32.TryParse(a, out y);
+                while (y >= size)
+                {
+                    System.Console.WriteLine("Pls can you ReEnter y Coordinates the maximum is " + (size - 1) + " :");
+                    string a = Console.ReadLine();
+                    success = Int32.TryParse(a, out y);
                 }
             }
-            return (x,y);
+            return (x, y);
         }
-        
+
         private bool Haswon(bool player)
         {
-            return Pathfinding.pathfind(player,this.grid);
-        }
-        private bool Legal((int,int) cor)
+            return Pathfinding.pathfind(player, this.grid);
+        }*/
+        private bool Legal((int, int) cor)
         {
             return cor.Item1 < this.size &&
                 cor.Item1 >= 0 &&
                 cor.Item2 < this.size &&
                 cor.Item2 >= 0 &&
-                this.grid[cor.Item1,cor.Item2].isEmpty();
+                this.grid[cor.Item1, cor.Item2].IsEmpty();
         }
 
-        public bool ColorSpot((int, int) cor)
+        public bool ColorSpot((int, int) cor,bool player)
         {
             if (Legal(cor))
             {
                 grid[cor];
             }
+
+            return false;
         }
        */
         public Board(int size)
         {
             this.size = size;
-            this.grid = new Spot[size,size];
+            this.grid = new Spot[size, size];
             this.cturn = true;
             this.turn = 0;
-            for(int i = 0;i<size;i++)
+            for (int i = 0; i < size; i++)
             {
-                for(int j = 0;j<size;j++)
+                for (int j = 0; j < size; j++)
                 {
                     grid[i,j] = new Spot(i,j);                    
                 }
