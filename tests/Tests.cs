@@ -11,7 +11,7 @@ namespace HexBlock.Tests
 {
     class HexTests
     {
-        
+
         #region Spot
 
         [Test]
@@ -28,15 +28,16 @@ namespace HexBlock.Tests
             Spot spot = new Spot(0, 0);
             spot.Color(color);
             Assert.IsFalse(spot.IsEmpty());
-            Assert.AreEqual(color,spot.GetColor());
+            Assert.AreEqual(color, spot.GetColor());
         }
+
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(200)]
         public void Spot_Return_X(int x)
         {
             Spot spot = new Spot(x, 0);
-            Assert.AreEqual(x,spot.GetX());
+            Assert.AreEqual(x, spot.GetX());
         }
 
         [TestCase(0)]
@@ -48,14 +49,15 @@ namespace HexBlock.Tests
             Assert.AreEqual(y, spot.GetY());
         }
 
-        [TestCase(0,0)]
-        [TestCase(0,1)]
-        [TestCase(200,200)]
-        public void Spot_Return_Coo(int x,int y)
+        [TestCase(0, 0)]
+        [TestCase(0, 1)]
+        [TestCase(200, 200)]
+        public void Spot_Return_Coo(int x, int y)
         {
             Spot spot = new Spot(x, y);
-            Assert.AreEqual((x,y),spot.GetCoo());
+            Assert.AreEqual((x, y), spot.GetCoo());
         }
+
         #endregion
 
         #region Board
@@ -74,8 +76,9 @@ namespace HexBlock.Tests
         public void Board_is_created_with_a_correct_size(int size)
         {
             Board board = new Board(size);
-            Assert.AreNotEqual(null,board);
+            Assert.AreNotEqual(null, board);
         }
+
         [TestCase(1)]
         [TestCase(15)]
         [TestCase(-1)]
@@ -83,9 +86,9 @@ namespace HexBlock.Tests
         public void Board_is_not_created_with_an_incorrect_size(int size)
         {
             Board board = null;
-            var exception = Assert.Throws<Exception>( () => new  Board(size));
-            Assert.AreEqual("Invalid Size",exception.Message);
-            Assert.AreEqual(null,board);
+            var exception = Assert.Throws<Exception>(() => new Board(size));
+            Assert.AreEqual("Invalid Size", exception.Message);
+            Assert.AreEqual(null, board);
         }
 
 
@@ -95,14 +98,15 @@ namespace HexBlock.Tests
         {
 
             Board board = new Board(11, solo);
-            Assert.AreEqual(solo,board.GetOpponent());
-            
+            Assert.AreEqual(solo, board.GetOpponent());
+
         }
+
         [Test]
         public void difficulty_is_set_to_null_by_default()
         {
             Board board = new Board(11);
-            Assert.AreEqual(difficulty.NULL,board.GetDifficulty());
+            Assert.AreEqual(difficulty.NULL, board.GetDifficulty());
             Assert.IsFalse(board.GetOpponent());
         }
 
@@ -120,7 +124,7 @@ namespace HexBlock.Tests
         public void cturn_starts_true()
         {
             Board board = new Board(11);
-            Assert.AreEqual(true,board.GetCTurn());
+            Assert.AreEqual(true, board.GetCTurn());
         }
 
         [Test]
@@ -128,8 +132,9 @@ namespace HexBlock.Tests
         {
             Board board = new Board(11);
             board.Play((0, 0));
-            Assert.IsFalse( board.GetCTurn());
+            Assert.IsFalse(board.GetCTurn());
         }
+
         [Test]
         public void cturn_changes_after_playing_twice()
         {
@@ -143,15 +148,17 @@ namespace HexBlock.Tests
         public void Turn_starts_at_0()
         {
             Board board = new Board(11);
-            Assert.AreEqual(0,board.GetGlobalTurn());
+            Assert.AreEqual(0, board.GetGlobalTurn());
         }
+
         [Test]
         public void Turn_doesnt_increas_after_P1()
         {
             Board board = new Board(11);
-            board.Play((0,0));
+            board.Play((0, 0));
             Assert.AreEqual(0, board.GetGlobalTurn());
         }
+
         [Test]
         public void Turn_increases_after_P2()
         {
@@ -170,10 +177,11 @@ namespace HexBlock.Tests
             {
                 for (int j = 0; j < 11; j++)
                 {
-                    if (!board.GetGrid()[i,j].IsEmpty())
+                    if (!board.GetGrid()[i, j].IsEmpty())
                         Assert.Fail();
                 }
             }
+
             Assert.Pass();
         }
 
@@ -186,7 +194,7 @@ namespace HexBlock.Tests
             Board board = new Board(11);
             Assert.IsTrue(board.Play((x, y)));
             Assert.IsFalse(board.GetGrid()[x, y].IsEmpty());
-            Assert.IsTrue(board.GetGrid()[x,y].GetColor());
+            Assert.IsTrue(board.GetGrid()[x, y].GetColor());
         }
 
         [TestCase(0, 100)]
@@ -197,6 +205,7 @@ namespace HexBlock.Tests
             Board board = new Board(11);
             Assert.IsFalse(board.Play((x, y)));
         }
+
         [TestCase(0, 0)]
         [TestCase(1, 0)]
         [TestCase(0, 1)]
@@ -217,19 +226,59 @@ namespace HexBlock.Tests
 
         private static object[] Adj =
         {
-            new object[] {0,0, new List<(int, int)> {(0, 1), (0, -1), (1, 0), (-1, 0), (-1, 1), (1, -1)}},
-            new object[] {1,1, new List<(int, int)> {(1, 2), (1, 0), (2, 1), (0, 1), (0, 2), (2, 0)}},
-            new object[] {100,100, new List<(int, int)> {(100, 101), (100, 99), (101, 100), (99, 100), (99, 101), (101, 99)}}
+            new object[] {0, 0, new List<(int, int)> {(0, 1), (0, -1), (1, 0), (-1, 0), (-1, 1), (1, -1)}},
+            new object[] {1, 1, new List<(int, int)> {(1, 2), (1, 0), (2, 1), (0, 1), (0, 2), (2, 0)}},
+            new object[]
+                {100, 100, new List<(int, int)> {(100, 101), (100, 99), (101, 100), (99, 100), (99, 101), (101, 99)}}
         };
 
         [TestCaseSource(nameof(Adj))]
-        public void Return_6_Adj_Hex(int x, int y,List<(int,int)> l)
+        public void Return_6_Adj_Hex(int x, int y, List<(int, int)> l)
         {
-            List<(int, int)>  adj = Pathfinding.GetAdj(x, y);
-            Assert.AreEqual(l,adj);
+            List<(int, int)> adj = Pathfinding.GetAdj(x, y);
+            Assert.AreEqual(l, adj);
         }
 
 
+        #endregion
+
+        #region Display
+
+        [TestCase(" ")]
+
+        public void Spaces_is_display(string spaces)
+        {
+            Assert.AreEqual(" ", spaces);
+        }
+
+        [TestCase("a")]
+
+        public void Spaces_is_not_display(string spaces)
+        {
+            Board board = new Board(11);
+            Assert.AreNotEqual(" ", spaces);
+        }
+
+        [TestCase("-")]
+        public void banner_is_display(string barre)
+        {
+            Board board = new Board(11);
+            Assert.AreEqual("-", barre);
+
+        }
+
+        [TestCase("a")]
+
+        public void banner_is_not_display(string barre, int bannerSize)
+        {
+            Board board = new Board(11);
+            Assert.AreNotEqual("-", barre);
+
+
+
+
+
+        }
         #endregion
     }
 }
