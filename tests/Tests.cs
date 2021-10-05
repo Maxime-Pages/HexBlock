@@ -269,7 +269,7 @@ namespace HexBlock.Tests
 
         [TestCase("a")]
 
-        public void banner_is_not_display(string barre, int bannerSize)
+        public void banner_is_not_display(string barre)
         {
             Board board = new Board(11);
             Assert.AreNotEqual("-", barre);

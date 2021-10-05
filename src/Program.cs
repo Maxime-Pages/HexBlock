@@ -10,9 +10,7 @@ namespace HexBlock
         {
             Console.BackgroundColor = ConsoleColor.White;
             Console.Clear();
-            Board.StartGame(3, true,Difficulty.EASY);
-            Console.Clear();
-            Console.WriteLine("Game Over");
+            Board.StartGame(19, true,Difficulty.EASY);
             /**System.Console.BackgroundColor = ConsoleColor.White;
             System.Console.ForegroundColor = ConsoleColor.Black;
             Console.Clear();

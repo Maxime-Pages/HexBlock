@@ -142,7 +142,7 @@ namespace HexBlock
             this.size = size;
             this.grid = new Spot[size, size];
             this.cturn = true;
-            this.turn = 0;
+            this.turn = 1;
             this.solo = solo;
             this.difficulty = diff;
             for (int i = 0; i < size; i++)
@@ -206,7 +206,7 @@ namespace HexBlock
                     return cturn;
                 }
 
-                this.drawBoard();
+                this.Board_display();
                 Console.ReadKey();
             }
         }
@@ -238,7 +238,8 @@ namespace HexBlock
                 {
                     return cturn;
                 }
-                this.drawBoard();
+
+                this.Board_display();
                 Console.ReadKey();
 
             }
