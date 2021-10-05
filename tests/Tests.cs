@@ -62,7 +62,6 @@ namespace HexBlock.Tests
 
         [TestCase(11)]
         [TestCase(13)]
-        [TestCase(19)]
 
         public void Board_is_created_with_inputed_size(int size)
         {
@@ -72,8 +71,6 @@ namespace HexBlock.Tests
 
         [TestCase(11)]
         [TestCase(13)]
-        //[TestCase(17)]
-
         public void Board_is_created_with_a_correct_size(int size)
         {
             Board board = new Board(size);
@@ -179,6 +176,41 @@ namespace HexBlock.Tests
             }
             Assert.Pass();
         }
+
+
+        [TestCase(0, 0)]
+        [TestCase(1, 0)]
+        [TestCase(0, 1)]
+        public void Place_Valid_Spot(int x, int y)
+        {
+            Board board = new Board(11);
+            Assert.IsTrue(board.Play((x, y)));
+            Assert.IsFalse(board.GetGrid()[x, y].IsEmpty());
+            Assert.IsTrue(board.GetGrid()[x,y].GetColor());
+        }
+
+        [TestCase(0, 100)]
+        [TestCase(100, 0)]
+        [TestCase(0, -1)]
+        public void Place_Invalid_Spot(int x, int y)
+        {
+            Board board = new Board(11);
+            Assert.IsFalse(board.Play((x, y)));
+        }
+        [TestCase(0, 0)]
+        [TestCase(1, 0)]
+        [TestCase(0, 1)]
+        public void Place_2_Valid_Spot(int x, int y)
+        {
+            Board board = new Board(11);
+            board.Play((10, 10));
+            Assert.IsTrue(board.Play((x, y)));
+            Assert.IsFalse(board.GetGrid()[x, y].IsEmpty());
+            Assert.IsFalse(board.GetGrid()[x, y].GetColor());
+        }
+
+
+
         #endregion
 
         #region PathFinding

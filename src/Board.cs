@@ -4,7 +4,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace HexBlock
 {
-    public enum difficulty
+    public enum Difficulty
     {
         EASY,
         MEDIUM,
@@ -14,26 +14,52 @@ namespace HexBlock
     }
     partial class Board
     {
+        #region Attributes
+
+        
+
+
         private int size;
         private Spot[,] grid;
         private bool cturn;
 
         private int turn;
         private bool solo;
-        private difficulty difficulty = difficulty.NULL;
-
-        /*public bool Game(int size, bool solo = false, difficulty diff = difficulty.NULL)
+        private Difficulty difficulty = Difficulty.NULL;
+        #endregion
+        #region Getters
+        public int GetSize()
         {
-            if (solo)
-            {
-
-            }
-            else
-            {
-
-            }
+            return size;
         }
-        
+
+        public bool GetSolo()
+        {
+            return solo;
+        }
+
+        public Difficulty GetDifficulty()
+        {
+            return difficulty;
+        }
+
+        public bool GetCTurn()
+        {
+            return cturn; // true p1 || false p2
+        }
+
+        public int GetTurn()
+        {
+            return turn; // return the global turn of the game 
+        }
+
+        public Spot[,] GetGrid()
+        {
+            return grid;
+        }
+#endregion
+
+        /*
         public (int,int) ChooseSpot()
         {
             bool success = false;
@@ -84,11 +110,12 @@ namespace HexBlock
             }
             return (x, y);
         }
-
+        */
         private bool Haswon(bool player)
         {
             return Pathfinding.pathfind(player, this.grid);
         }
+        
         private bool Legal((int, int) cor)
         {
             return cor.Item1 < this.size &&
@@ -108,8 +135,7 @@ namespace HexBlock
 
             return false;
         }
-      */
-        public Board(int size, bool solo = false,difficulty diff = difficulty.NULL)
+        public Board(int size, bool solo = false,Difficulty diff = Difficulty.NULL)
         {
             if (!VerrifySize(size))
                 throw new Exception("Invalid Size");
@@ -118,6 +144,7 @@ namespace HexBlock
             this.cturn = true;
             this.turn = 0;
             this.solo = solo;
+            this.difficulty = diff;
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
@@ -126,10 +153,6 @@ namespace HexBlock
                 }
             }
         } 
-        public int GetSize()
-        {
-            return size;
-        }
         
         public bool VerrifySize(int size)
         {
@@ -147,136 +170,102 @@ namespace HexBlock
                 }
             }
         }
-
-        public bool startGame(int size, bool choice, difficulty diff = difficulty.NULL)
+        public static bool StartGame(int size, bool solo, Difficulty difficulty = Difficulty.NULL)
         {
-            if (choice) // if true == solo | false == player
+            if (solo) // if true == solo | false == player
             {
-                return GameSolo(diff);
+                Board board = new Board(size, solo, difficulty);
+                return board.GameSolo();
             }
             else
             {
-                return GameMulti();
+                Board board = new Board(size);
+                return board.GameMulti();
             }
         }
 
-        public bool GameSolo(difficulty diff = difficulty.NULL)
+        public bool GameSolo()
         {
-            
-            bool legalspot = false;
-            (int, int) chosen = (0, 0);
             while (true)
             {
                 if (cturn)
                 {
-                    while (!legalspot)
+                    (int, int) chosen;
+                    do
                     {
-                        chosen = this.ChooseSpot();
-                        legalspot = legal(chosen);
-                    }
+                        chosen = InputCoo();
+                    } while (!Play(chosen));
                 }
                 else
                 {
-                    switch (diff)
-                    {
-                        case difficulty.EASY:
-                            while (!legalspot)
-                            {
-                                chosen = AI.RandomAI(this.size);
-                                legalspot = legal(chosen);
-                            }
-
-                            break;
-                        case difficulty.MEDIUM:
-                            while (!legalspot)
-                            {
-                                chosen = AI.RandomAI(this.size);
-                                legalspot = legal(chosen);
-                            }
-
-                            break;
-                        case difficulty.HARD:
-                            while (!legalspot)
-                            {
-                                chosen = AI.RandomAI(this.size);
-                                legalspot = legal(chosen);
-                            }
-
-                            break;
-                        case difficulty.IMPOSSIBLE:
-                            while (!legalspot)
-                            {
-                                chosen = AI.RandomAI(this.size);
-                                legalspot = legal(chosen);
-                            }
-
-                            break;
-                    }
+                    AIPlay();
                 }
-
-                this.grid[chosen.Item1, chosen.Item2].Color(cturn);
                 if (Haswon(cturn))
                 {
                     return cturn;
                 }
 
                 this.drawBoard();
-                legalspot = false;
-                cturn = !cturn;
-                turn += cturn ? 1 : 0;
-                Console.ReadKey(); */
-            return true;
+                Console.ReadKey();
+            }
         }
-            
-    
 
-        public bool gameMulti()
+        private (int, int) InputCoo()
+        {
+            string[] strings = Console.ReadLine().Split(',');
+            if (Int32.TryParse(strings[0],out int x) && Int32.TryParse(strings[0], out int y))
+            {
+                return (x, y);
+            }
+
+            return (-1,-1);
+
+        }
+
+
+        public bool GameMulti()
         {
             
-            bool legalspot = false;
-            (int, int) chosen = (0, 0);
             while (true)
             {
-                while (!legalspot)
+                (int, int) chosen;
+                do
                 {
-                    chosen = ChooseSpot();
-                    legalspot = legal(chosen);
-                }
-                this.grid[chosen.Item1, chosen.Item2].Color(cturn);
+                    chosen = InputCoo();
+                } while (Play(chosen));
                 if (Haswon(cturn))
                 {
                     return cturn;
                 }
                 this.drawBoard();
-                legalspot = false;
-                cturn = !cturn;
-                turn += cturn ? 1 : 0;
                 Console.ReadKey();
 
             }
-            
-            return false;
         }
-
-        public bool GetOpponent()
+        public bool Play((int, int) coo)
         {
-            return solo;
+            if (!ColorSpot(coo, cturn))
+                return false;
+            cturn = !cturn;
+            if (cturn)
+                turn++;
+            return true;
         }
 
-        public difficulty GetDifficulty()
+        public void AIPlay()
         {
-            return difficulty;
+            if (difficulty == Difficulty.EASY)
+            {
+                (int, int) chosen;
+                do
+                {
+                    chosen = AI.RandomAI(size);
+                } while (!Play(chosen));
+            }
+            else
+            {
+                Play(AI.GenerateAIMove(grid, difficulty));
+            }
         }
-
-        public bool GetCTurn()
-        {
-            return cturn; // true p1 || false p2
-        }
-
-        public int GetGlobalTurn()
-        {
-            return turn; // return the global turn of the game 
-        }
-
     }
 }

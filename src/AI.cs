@@ -1,4 +1,4 @@
-/*using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 namespace HexBlock
@@ -15,7 +15,6 @@ namespace HexBlock
         {
             return (0, 0);
         }
-
         /*private static int Heuristic(Spot[,] grid, bool player)
         {
             int l = grid.GetLength(0);
@@ -78,6 +77,10 @@ namespace HexBlock
                 }
             }
             return 0;
+        }*/
+        public static (int, int) GenerateAIMove(Spot[,] grid, Difficulty difficulty)
+        {
+            throw new NotImplementedException();
         }
     }
-}*/
+}
