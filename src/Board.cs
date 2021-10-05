@@ -161,6 +161,7 @@ namespace HexBlock
                 case 11:
                 case 13:
                 case 19:
+                case 3:
                 { 
                     return true;
                 }
@@ -213,7 +214,7 @@ namespace HexBlock
         private (int, int) InputCoo()
         {
             string[] strings = Console.ReadLine().Split(',');
-            if (Int32.TryParse(strings[0],out int x) && Int32.TryParse(strings[0], out int y))
+            if (Int32.TryParse(strings[0],out int x) && Int32.TryParse(strings[1], out int y))
             {
                 return (x, y);
             }

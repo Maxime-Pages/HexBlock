@@ -78,7 +78,7 @@ namespace HexBlock
             List<(int, int)> list = new List<(int, int)>();
             for (int i = 0; i < l; i++)
             {
-                if (player ? grid[0, i].GetColor() : !grid[i, 0].GetColor())
+                if (player ? !grid[0,i].IsEmpty() && grid[0, i].GetColor() : !grid[0, i].IsEmpty() && !grid[i, 0].GetColor())
                 {
                     list.Add(player ? (0, i) : (i, 0));
                 }
