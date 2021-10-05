@@ -7,10 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HexBlock", "HexBlock.csproj
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Build|Any CPU = Build|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1EFB0B05-B275-4C15-AC6C-D0BD19E8AE20}.Build|Any CPU.ActiveCfg = Build|Any CPU
+		{1EFB0B05-B275-4C15-AC6C-D0BD19E8AE20}.Build|Any CPU.Build.0 = Build|Any CPU
 		{1EFB0B05-B275-4C15-AC6C-D0BD19E8AE20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1EFB0B05-B275-4C15-AC6C-D0BD19E8AE20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EFB0B05-B275-4C15-AC6C-D0BD19E8AE20}.Release|Any CPU.ActiveCfg = Release|Any CPU

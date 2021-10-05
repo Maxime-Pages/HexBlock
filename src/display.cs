@@ -1,4 +1,4 @@
-/*using System;
+using System;
 namespace HexBlock
 {
     partial class Board
@@ -119,8 +119,8 @@ namespace HexBlock
 
                 for (int j = 0; j < boardSize; j++)
                 {
-                    System.Console.ForegroundColor = this.grid[j, i].isEmpty() ? ConsoleColor.Black : this.grid[j, i].isRed() ? ConsoleColor.Red : ConsoleColor.Blue;
-                    System.Console.Write((this.grid[j, i].isEmpty() ? "_" : this.grid[j, i].isRed() ? "■" : "■") + " ");
+                    System.Console.ForegroundColor = this.grid[j, i].IsEmpty() ? ConsoleColor.Black : this.grid[j, i].GetColor() ? ConsoleColor.Red : ConsoleColor.Blue;
+                    System.Console.Write((this.grid[j, i].IsEmpty() ? "_" : this.grid[j, i].GetColor() ? "■" : "■") + " ");
                     System.Console.ForegroundColor = ConsoleColor.Black;
                 }
 
@@ -194,4 +194,4 @@ namespace HexBlock
 
 
     }
-}*/
+}

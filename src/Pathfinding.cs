@@ -46,7 +46,10 @@ namespace HexBlock
 
         public static List<(int, int)> PruneOOB(List<(int, int)> adj, int max)
         {
-            return new List<(int, int)>(adj.Where(x => x.Item1 < max && x.Item2 < max));
+            return new List<(int, int)>(adj.Where(x => x.Item1 < max &&
+                                                       x.Item1 > 0 &&
+                                                       x.Item2 > 0 &&
+                                                       x.Item2 < max));
         }
 
 

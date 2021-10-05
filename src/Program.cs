@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -8,7 +8,10 @@ namespace HexBlock
     {
         static void Main(string[] args)
         {
-            *//*System.Console.BackgroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.Clear();
+            Board.StartGame(11, true,Difficulty.EASY);
+            /**System.Console.BackgroundColor = ConsoleColor.White;
             System.Console.ForegroundColor = ConsoleColor.Black;
             Console.Clear();
 
@@ -216,8 +219,7 @@ namespace HexBlock
                 Console.ReadLine();
                 Board game = new Board(size); // create a new board with the choosed size
                 game.Game(size, false);
-            }*//*
+            }*/
         }
     }
 }
-*/

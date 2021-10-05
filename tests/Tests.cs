@@ -98,7 +98,7 @@ namespace HexBlock.Tests
         {
 
             Board board = new Board(11, solo);
-            Assert.AreEqual(solo, board.GetOpponent());
+            Assert.AreEqual(solo, board.GetSolo());
 
         }
 
@@ -106,15 +106,15 @@ namespace HexBlock.Tests
         public void difficulty_is_set_to_null_by_default()
         {
             Board board = new Board(11);
-            Assert.AreEqual(difficulty.NULL, board.GetDifficulty());
-            Assert.IsFalse(board.GetOpponent());
+            Assert.AreEqual(Difficulty.NULL, board.GetDifficulty());
+            Assert.IsFalse(board.GetSolo());
         }
 
-        [TestCase(difficulty.EASY)]
-        [TestCase(difficulty.MEDIUM)]
-        [TestCase(difficulty.HARD)]
-        [TestCase(difficulty.IMPOSSIBLE)]
-        public void difficulty_is_set_to_right_value(difficulty diff)
+        [TestCase(Difficulty.EASY)]
+        [TestCase(Difficulty.MEDIUM)]
+        [TestCase(Difficulty.HARD)]
+        [TestCase(Difficulty.IMPOSSIBLE)]
+        public void difficulty_is_set_to_right_value(Difficulty diff)
         {
             Board board = new Board(11, true, diff);
             Assert.AreEqual(diff, board.GetDifficulty());
@@ -148,7 +148,7 @@ namespace HexBlock.Tests
         public void Turn_starts_at_0()
         {
             Board board = new Board(11);
-            Assert.AreEqual(0, board.GetGlobalTurn());
+            Assert.AreEqual(0, board.GetTurn());
         }
 
         [Test]
@@ -156,7 +156,7 @@ namespace HexBlock.Tests
         {
             Board board = new Board(11);
             board.Play((0, 0));
-            Assert.AreEqual(0, board.GetGlobalTurn());
+            Assert.AreEqual(0, board.GetTurn());
         }
 
         [Test]
@@ -165,7 +165,7 @@ namespace HexBlock.Tests
             Board board = new Board(11);
             board.Play((0, 0));
             board.Play((1, 0));
-            Assert.AreEqual(1, board.GetGlobalTurn());
+            Assert.AreEqual(1, board.GetTurn());
         }
 
         [Test]
