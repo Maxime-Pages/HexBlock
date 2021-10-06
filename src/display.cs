@@ -21,8 +21,7 @@ namespace HexBlock
             string barre = "-";
             int boardSize = this.size;
             int indent = 0;
-            int bannerSize = (int)((2 * indent) + 7 + boardSize * 3 +
-                                   Math.Log10(boardSize)); // The size of banner depend of the size of the Board
+            int bannerSize = (int)((2 * indent) + 7 + boardSize * 3 + Math.Log10(boardSize)); // The size of banner depend of the size of the Board
             int numberTurn = (int)Math.Log10(turn) + 1;
             int bannerPadding = (bannerSize - (11 + numberTurn)) / 2;
 
@@ -158,8 +157,7 @@ namespace HexBlock
                 {
                     System.Console.ForegroundColor = this.grid[j, i].IsEmpty() ? ConsoleColor.Black :
                         this.grid[j, i].GetColor() ? ConsoleColor.Red : ConsoleColor.Blue;
-                    System.Console.Write((this.grid[j, i].IsEmpty() ? "_" : this.grid[j, i].GetColor() ? "■" : "■") +
-                                         " ");
+                    System.Console.Write((this.grid[j, i].IsEmpty() ? "_" : this.grid[j, i].GetColor() ? "■" : "■") + " ");
                     System.Console.ForegroundColor = ConsoleColor.Black;
                 }
 
@@ -251,6 +249,42 @@ namespace HexBlock
             for (int i = 0; i < bannersize; i++)
                 System.Console.Write(barre);
 
+        }
+
+
+        public (int, int) cursor(int size)
+        {
+            int x = 0;
+            int y = 0;
+            ConsoleKeyInfo input = Console.ReadKey();
+
+
+
+            switch (input.Key)
+            {
+                case ConsoleKey.UpArrow:
+                    if (x==size-1)
+                        x++;
+                    break;
+                case ConsoleKey.DownArrow:
+                   if (x != 0)
+                        x--;
+                   break;
+                case ConsoleKey.LeftArrow:
+                    if (y != 0)
+                        y++;
+                    
+                    break;
+                case ConsoleKey.RightArrow:
+                    if(y==size-1)
+                        y++;
+                    break;
+                case ConsoleKey.Enter:
+                    
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+                  
+            }
         }
 
     }
