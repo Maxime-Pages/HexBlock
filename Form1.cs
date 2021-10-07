@@ -125,7 +125,12 @@ namespace howto_hexagonal_grid
         {
             int row, col;
             PointToHex(e.X, e.Y, HexHeight, out row, out col);
-            this.Text = "(" + row + ", " + col + ")";
+            if ( row < 11 && col < 11 && row >= 0 && col >= 0)
+            {
+                this.Text = "(" + row + ", " + col + ")";
+            }
+            else this.Text = null;
+
         }
 
         // Add the clicked hexagon to the Hexagons list.
@@ -133,16 +138,22 @@ namespace howto_hexagonal_grid
         {
             int row, col;
             PointToHex(e.X, e.Y, HexHeight, out row, out col);
-            Hexagons.Add(new PointF(row, col));
+            if (row < 11 && col < 11 && row >= 0 && col >= 0)
+            {
+                Hexagons.Add(new PointF(row, col));
+            }
 
 #if FIG34
             // Used to draw Figures 3 and 4.
             PointF[] points = HexToPoints(HexHeight, row, col);
-            TestRects.Add(new RectangleF(
-                points[1].X, points[0].Y,
-                points[5].X - points[1].X,
-                0.75f * (points[3].Y - points[0].Y)));
-#endif
+            if (row < 11 && col < 11 && row >= 0 && col >= 0)
+            {
+                TestRects.Add(new RectangleF(
+                    points[1].X, points[0].Y,
+                    points[5].X - points[1].X,
+                    0.75f * (points[3].Y - points[0].Y)));
+            }
+#endif      
 
             picGrid.Refresh();
         }
@@ -163,46 +174,49 @@ namespace howto_hexagonal_grid
 
             col = (int) ((x + row * height / 2) / height) - row;
 
-            // Find the test area.
-            float testy = row * width * 0.75f;
-            float testx = col * height + row * height / 2;
+           // if (row < 11 )
+           // {
 
-            // See if the point is above or
-            // below the test hexagon on the left.
-            bool is_left = false, is_right = false;
-            float dy = y - testy;
-            if (dy < width / 4)
-            {
-                float dx = x - (testx + row * height / 2);
-                if (dy < 0.001)
-                {
-                    // The point is on the left edge of the test rectangle.
-                    if (dx < 0) is_left = true;
-                    if (dx > 0) is_right = true;
-                }
-                else if (dx < 0)
-                {
-                    // See if the point is above the test hexagon.
-                    if (-dx / dy > Math.Sqrt(3)) is_left = true;
-                }
-                else
-                {
-                    // See if the point is below the test hexagon.
-                    if (dx / dy > Math.Sqrt(3)) is_right = true;
-                }
-            }
+                // Find the test area.
+                float testy = row * width * 0.75f;
+                float testx = col * height + row * height / 2;
 
-             //Adjust the row and column if necessary.
-            if (is_left)
-            {
-                row--;
-            }
-            else if (is_right)
-            {
-                row--;
-                col++;
-            }
+                // See if the point is at the left or
+                // at the right of the test hexagon on the upper edge.
+                bool is_left = false, is_right = false;
+                float dy = y - testy;
+                if (dy < width / 4)
+                {
+                    float dx = x - (testx + row * height / 2);
+                    if (dy < 0.001)
+                    {
+                        // The point is on the upper edge of the test rectangle.
+                        if (dx < 0) is_left = true;
+                        if (dx > 0) is_right = true;
+                    }
+                    else if (dx < 0)
+                    {
+                        // See if the point is left of the test hexagon.
+                        if (-dx / dy > Math.Sqrt(3)) is_left = true;
+                    }
+                    else
+                    {
+                        // See if the point is right of the test hexagon.
+                        if (dx / dy > Math.Sqrt(3)) is_right = true;
+                    }
+                }
 
+                //Adjust the row and column if necessary.
+                if (is_left)
+                {
+                    row--;
+                }
+                else if (is_right)
+                {
+                    row--;
+                    col++;
+                }
+            //}
         }
 
         // Return the points that define the indicated hexagon.
@@ -215,9 +229,6 @@ namespace howto_hexagonal_grid
 
             // Move down the required number of rows.
             y += (row * width * 0.75f);
-
-            // If the column is odd, move down half a hex more.
-            //if (col % 2 != 0) y += height / 2;
 
             // Move over for the column number.
             x += col * (height) + (row * width / 2 * 0.87f);
