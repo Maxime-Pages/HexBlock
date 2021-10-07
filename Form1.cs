@@ -38,11 +38,24 @@ namespace howto_hexagonal_grid
         {
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
+            int hexColores = 0;
+
             // Draw the selected hexagons.
             foreach (PointF point in Hexagons)
             {
-                e.Graphics.FillPolygon(Brushes.Blue,
-                    HexToPoints(HexHeight, point.X, point.Y));
+                if (hexColores % 2 == 0)
+                {
+                    e.Graphics.FillPolygon(Brushes.Blue,
+                        HexToPoints(HexHeight, point.X, point.Y));
+                }
+
+                else if (hexColores % 2 != 0)
+                {
+                    e.Graphics.FillPolygon(Brushes.Red,
+                        HexToPoints(HexHeight, point.X, point.Y));
+                }
+                hexColores++;
+                
             }
 
             // Draw the grid.
