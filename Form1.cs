@@ -1,4 +1,4 @@
-﻿//#define FIG1
+﻿#define FIG1
 #define FIG34
 
 using System;
@@ -41,7 +41,7 @@ namespace howto_hexagonal_grid
             // Draw the selected hexagons.
             foreach (PointF point in Hexagons)
             {
-                e.Graphics.FillPolygon(Brushes.LightBlue,
+                e.Graphics.FillPolygon(Brushes.Blue,
                     HexToPoints(HexHeight, point.X, point.Y));
             }
 
@@ -72,7 +72,7 @@ namespace howto_hexagonal_grid
             float height)
         {
             // Loop until a hexagon won't fit.
-            for (int row = 0; ; row++)
+            for (int row = 0; row < 11; row++)
             {
 
                 // Get the points for the row's first hexagon.
@@ -82,7 +82,7 @@ namespace howto_hexagonal_grid
                 if (points[0].Y > ymax) break;
 
                 // Draw the row.
-                for (int col = 0; ; col++)
+                for (int col = 0; col < 11; col++)
                 {
                     // Get the points for the row's next hexagon.
                     points = HexToPoints(height, row, col);
@@ -102,8 +102,8 @@ namespace howto_hexagonal_grid
                         {
                             sf.Alignment = StringAlignment.Center;
                             sf.LineAlignment = StringAlignment.Center;
-                            float x = (points[0].X + points[3].X) / 2;
-                            float y = (points[1].Y + points[4].Y) / 2;
+                            float x = (points[1].X + points[5].X) / 2;
+                            float y = (points[0].Y + points[3].Y) / 2;
                             string label = "(" + row.ToString() + ", " +
                                 col.ToString() + ")";
                             gr.DrawString(label, this.Font,
@@ -139,9 +139,9 @@ namespace howto_hexagonal_grid
             // Used to draw Figures 3 and 4.
             PointF[] points = HexToPoints(HexHeight, row, col);
             TestRects.Add(new RectangleF(
-                points[0].X, points[1].Y,
-                0.75f * (points[3].X - points[0].X),
-                points[4].Y - points[1].Y));
+                points[1].X, points[0].Y,
+                points[5].X - points[1].X,
+                0.75f * (points[3].Y - points[0].Y)));
 #endif
 
             picGrid.Refresh();
@@ -159,54 +159,50 @@ namespace howto_hexagonal_grid
         {
             // Find the test rectangle containing the point.
             float width = HexWidth(height);
-            col = (int)(x / (width * 0.75f));
+            row = (int)Math.Floor(y / (width * 0.75f));
 
-            if (col % 2 == 0)
-                row = (int)Math.Floor(y / height);
-            else
-                row = (int)Math.Floor((y - height / 2) / height);
+            col = (int) ((x + row * height / 2) / height) - row;
 
             // Find the test area.
-            float testx = col * width * 0.75f;
-            float testy = row * height;
-            if (col % 2 != 0) testy += height / 2;
+            float testy = row * width * 0.75f;
+            float testx = col * height + row * height / 2;
 
             // See if the point is above or
             // below the test hexagon on the left.
-            bool is_above = false, is_below = false;
-            float dx = x - testx;
-            if (dx < width / 4)
+            bool is_left = false, is_right = false;
+            float dy = y - testy;
+            if (dy < width / 4)
             {
-                float dy = y - (testy + height / 2);
-                if (dx < 0.001)
+                float dx = x - (testx + row * height / 2);
+                if (dy < 0.001)
                 {
                     // The point is on the left edge of the test rectangle.
-                    if (dy < 0) is_above = true;
-                    if (dy > 0) is_below = true;
+                    if (dx < 0) is_left = true;
+                    if (dx > 0) is_right = true;
                 }
-                else if (dy < 0)
+                else if (dx < 0)
                 {
                     // See if the point is above the test hexagon.
-                    if (-dy / dx > Math.Sqrt(3)) is_above = true;
+                    if (-dx / dy > Math.Sqrt(3)) is_left = true;
                 }
                 else
                 {
                     // See if the point is below the test hexagon.
-                    if (dy / dx > Math.Sqrt(3)) is_below = true;
+                    if (dx / dy > Math.Sqrt(3)) is_right = true;
                 }
             }
 
-            // Adjust the row and column if necessary.
-            if (is_above)
+             //Adjust the row and column if necessary.
+            if (is_left)
             {
-                if (col % 2 == 0) row--;
-                col--;
+                row--;
             }
-            else if (is_below)
+            else if (is_right)
             {
-                if (col % 2 != 0) row++;
-                col--;
+                row--;
+                col++;
             }
+
         }
 
         // Return the points that define the indicated hexagon.
@@ -218,13 +214,13 @@ namespace howto_hexagonal_grid
             float x = height / 2;
 
             // Move down the required number of rows.
-            y += row * height;
+            y += (row * width * 0.75f);
 
             // If the column is odd, move down half a hex more.
             //if (col % 2 != 0) y += height / 2;
 
             // Move over for the column number.
-            x += col * (width * 0.87f) + (row * width / 2);
+            x += col * (height) + (row * width / 2 * 0.87f);
 
 
             // Generate the points.
