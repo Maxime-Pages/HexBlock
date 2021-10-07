@@ -10,10 +10,11 @@ namespace HexBlock
     {
         static void Main(string[] args)
         {
-
+            
             Console.BackgroundColor = ConsoleColor.White;
             System.Console.ForegroundColor = ConsoleColor.Black;
             Console.Clear();
+            Board.PlayCursor();
             ChooseApp();
 
 

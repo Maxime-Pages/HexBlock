@@ -157,11 +157,11 @@ namespace HexBlock
 
                 for (int j = 0; j < boardSize; j++)
                 {
-                    /*if ((i, j) == (x, y))
+                    if ((i, j) == (x, y))
                     {
                         System.Console.Write("■ ");
                         continue;
-                    }*/
+                    }
                     System.Console.ForegroundColor = this.grid[j, i].IsEmpty() ? ConsoleColor.Black :
                         this.grid[j, i].GetColor() ? ConsoleColor.Red : ConsoleColor.Blue;
                     System.Console.Write((this.grid[j, i].IsEmpty() ? "_" : this.grid[j, i].GetColor() ? "■" : "■") + " ");
@@ -260,16 +260,15 @@ namespace HexBlock
 
 
 
-        public (int, int,bool) Cursor((int,int) current)
+        public (int, int,bool) Cursor(int x, int y)
         {
-            int x = current.Item1;
-            int y = current.Item2;
+            
             bool enter = false;
             ConsoleKeyInfo input = Console.ReadKey();
 
             switch (input.Key)
             {
-                case ConsoleKey.Z:
+                case ConsoleKey.UpArrow:
                     if (x!=size-1)
                         x++;
                     else
@@ -277,16 +276,16 @@ namespace HexBlock
                         x = 0;
                     }
                     break;
-                case ConsoleKey.S:
-                   if (x == 0)
+                case ConsoleKey.DownArrow:
+                   if (x != 0)
                         x--;
                    else
                    {
                        x = size - 1;
                    }
                    break;
-                case ConsoleKey.Q:
-                    if (y == 0)
+                case ConsoleKey.LeftArrow:
+                    if (y != 0)
                         y--;
                     else
                     {
@@ -294,7 +293,7 @@ namespace HexBlock
                     }
                     
                     break;
-                case ConsoleKey.D:
+                case ConsoleKey.RightArrow:
                     if(y!=size-1)
                         y++;
                     else
