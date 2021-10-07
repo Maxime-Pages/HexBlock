@@ -57,8 +57,8 @@ namespace HexBlock
         {
             return grid;
         }
-#endregion
-
+        #endregion
+        
         /*
         public (int,int) ChooseSpot()
         {
@@ -176,11 +176,13 @@ namespace HexBlock
             if (solo) // if true == solo | false == player
             {
                 Board board = new Board(size, solo, difficulty);
+                board.Board_display();
                 return board.GameSolo();
             }
             else
             {
                 Board board = new Board(size);
+                board.Board_display();
                 return board.GameMulti();
             }
         }
@@ -219,14 +221,19 @@ namespace HexBlock
 
         private (int, int) InputCoo()
         {
-            string[] strings = Console.ReadLine().Split(',');
-            if (Int32.TryParse(strings[0],out int x) && Int32.TryParse(strings[1], out int y))
+            try
             {
-                return (x, y);
+                string[] strings = Console.ReadLine().Split(',');
+                if (Int32.TryParse(strings[0], out int x) && Int32.TryParse(strings[1], out int y))
+                {
+                    return (x, y);
+                }
+                return (-1, -1);
             }
-
-            return (-1,-1);
-
+            catch (Exception e)
+            {
+                return (-1, -1);
+            }
         }
 
 
