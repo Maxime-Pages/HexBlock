@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace HexBlock.Tests
 {
@@ -244,7 +246,7 @@ namespace HexBlock.Tests
 
         #region Display
 
-        [TestCase(" ")]
+       /* [TestCase(" ")]
 
         public void Spaces_is_display(string spaces)
         {
@@ -274,11 +276,16 @@ namespace HexBlock.Tests
             Board board = new Board(11);
             Assert.AreNotEqual("-", barre);
 
-
-
-
-
         }
+
+        [TestCase('#FFFF0000')]
+        public void number_color_red_is_display(Color red)
+        {
+            Board board = new Board(11);
+            Assert.AreEqual(red,red);
+        }*/
+       
+
         #endregion
     }
 }
