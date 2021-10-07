@@ -185,6 +185,12 @@ namespace HexBlock
             }
         }
 
+        public static bool PlayCursor()
+        {
+            Board board = new Board(11, false);
+            return board.CursorMulti();
+        }
+
         public bool GameSolo()
         {
             while (true)
@@ -267,6 +273,43 @@ namespace HexBlock
             else
             {
                 Play(AI.GenerateAIMove(grid, difficulty));
+            }
+        }
+
+        
+        public bool CursorMulti()
+        {
+            while (true)
+            {
+                (int, int,bool) chosen = (0,0,false);
+                do
+                {
+                    Board_display(chosen.Item1, chosen.Item2);
+                    chosen = this.Cursor((chosen.Item1,chosen.Item2));
+                } while (chosen.Item3 && Play((chosen.Item1, chosen.Item2)));
+                if (Haswon(cturn))
+                {
+                    return cturn;
+                }
+            }
+        }
+        public bool CursorSolo()
+        {
+            while (true)
+            {
+                (int, int) chosen;
+                do
+                {
+                    chosen = InputCoo();
+                } while (Play(chosen));
+                if (Haswon(cturn))
+                {
+                    return cturn;
+                }
+
+                this.Board_display();
+                Console.ReadKey();
+
             }
         }
     }
