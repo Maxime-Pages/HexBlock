@@ -277,7 +277,7 @@ namespace HexBlock
                     }
                     break;
                 case ConsoleKey.DownArrow:
-                    if (x == 0)
+                    if (x != 0)
                         x--;
                     else
                     {
@@ -285,7 +285,7 @@ namespace HexBlock
                     }
                     break;
                 case ConsoleKey.LeftArrow:
-                    if (y == 0)
+                    if (y != 0)
                         y--;
                     else
                     {
