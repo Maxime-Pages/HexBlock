@@ -30,61 +30,62 @@ namespace HexBlock
                 diff = ChooseDifficulty();
                 Console.Write($"{size}\n");
             }
+
             System.Console.WriteLine("Press any key to continue ");
             Console.ReadLine();
             Board.PlayCursor();
-            Board.StartGame(size, solo, diff);
 
         }
 
 
-        static void ChooseApp()
-        {
-            bool errorApp = false;
-            do
+
+            static void ChooseApp()
             {
-                if (errorApp)
+                bool errorApp = false;
+                do
                 {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    System.Console.WriteLine("→ There was an error, please try again.\n");
-                }
-
-                System.Console.ForegroundColor = ConsoleColor.Black;
-                System.Console.WriteLine(
-                    "→ Welcome to the menu, before starting we would like to know which application do you want to use ?");
-                System.Console.WriteLine("→ Type 'g' for graphical or 'c' for console");
-                string choiceApp = Console.ReadLine();
-
-                switch (choiceApp.ToLower())
-                {
-                    case "g":
-                    case "graphical":
-
-                        errorApp = false;
-                        System.Diagnostics.Process.Start(
-                            @"C:\Program Files\Google\Chrome\Application\chrome.exe"); // actually this open chrome but in the future this will open the application
-                        System.Console.WriteLine("→ Game is starting... ");
-                        System.Environment.Exit(1); // console shutdown
-                        break;
-
-
-                    case "c":
-                    case "console":
-
-                        errorApp = false;
+                    if (errorApp)
+                    {
                         Console.Clear();
-                        System.Console.WriteLine("→ You choosed the console version");
-                        break;
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        System.Console.WriteLine("→ There was an error, please try again.\n");
+                    }
 
-                    default:
+                    System.Console.ForegroundColor = ConsoleColor.Black;
+                    System.Console.WriteLine(
+                        "→ Welcome to the menu, before starting we would like to know which application do you want to use ?");
+                    System.Console.WriteLine("→ Type 'g' for graphical or 'c' for console");
+                    String choiceApp = Console.ReadLine();
 
-                        errorApp = true;
-                        break;
+                    switch (choiceApp.ToLower())
+                    {
+                        case "g":
+                        case "graphical":
+                        {
+                            errorApp = false;
+                            System.Diagnostics.Process.Start(
+                                @"C:\Program Files\Google\Chrome\Application\chrome.exe"); // actually this open chrome but in the future this will open the application
+                            System.Console.WriteLine("→ Game is starting... ");
+                            System.Environment.Exit(1); // console shutdown
+                            break;
+                        }
 
-                }
-            } while (errorApp);
-        }
+                        case "c":
+                        case "console":
+                        {
+                            errorApp = false;
+                            Console.Clear();
+                            System.Console.WriteLine("→ You choosed the console version");
+                            break;
+                        }
+                        default:
+                        {
+                            errorApp = true;
+                            break;
+                        }
+                    }
+                } while (errorApp);
+            }
 
         static int ChooseSize()
         {
@@ -100,48 +101,49 @@ namespace HexBlock
                     System.Console.WriteLine("→ There was an error, please try again.\n");
                 }
 
-                Console.ForegroundColor = ConsoleColor.Black;
-                System.Console.WriteLine("→ What about the size of the grid ? (11,13,19)");
-                string choiceSize = Console.ReadLine();// set the choice in a string
-                success = int.TryParse(choiceSize, out size); // string containing a number
+                    System.Console.ForegroundColor = ConsoleColor.Black;
+                    System.Console.WriteLine("→ What about the size of the grid ? (11,13,19)");
+                    string choiceSize = Console.ReadLine(); // set the choice in a string
+                    success = Int32.TryParse(choiceSize, out size); // string containing a number
 
-                switch (size)
-                {
-                    case 11:
+                    switch (size)
+                    {
+                        case 11:
                         {
                             errorSize = false;
                             Console.Clear(); // clear the console
                             System.Console.WriteLine("→ You choosed a grid of 11x11");
-                            //size = 11;
+                            size = 11;
                             break;
                         }
-                    case 13:
+                        case 13:
                         {
                             errorSize = false;
                             Console.Clear(); // clear the console
                             System.Console.WriteLine("→ You choosed a grid of 13x13");
-                            //size = 13;
+                            size = 13;
                             break;
 
                         }
-                    case 19:
+                        case 19:
                         {
                             errorSize = false;
                             Console.Clear(); // clear the console
                             System.Console.WriteLine("→ You choosed a grid of 19x19");
-                            //size = 19;
+                            size = 19;
                             break;
 
                         }
-                    default:
+                        default:
                         {
                             errorSize = true;
                             break;
                         }
-                }
-            } while (errorSize);
-            return size;
-        }
+                    }
+                } while (errorSize);
+
+                return size;
+            }
 
         static Difficulty ChooseDifficulty()
         {
@@ -164,48 +166,53 @@ namespace HexBlock
                 bool successDiff = Int32.TryParse(choiceDiff, out diff); // string containing a number
 
 
-                switch (diff)
-                {
-                    case 1:
+                    switch (diff)
+                    {
+                        case 1:
                         {
                             errorDiff = false;
                             Console.Clear(); // clear the console
-                            System.Console.Write("The game will be launched against an AI with a Easy difficulty and a size of board of ");
+                            System.Console.Write(
+                                "The game will be launched against an AI with a Easy difficulty and a size of board of ");
                             return Difficulty.EASY;
                         }
-                    case 2:
+                        case 2:
                         {
                             errorDiff = false;
                             Console.Clear(); // clear the console
-                            System.Console.Write("The game will be launched against an AI with a Normal difficulty and a size of board of ");
+                            System.Console.Write(
+                                "The game will be launched against an AI with a Normal difficulty and a size of board of ");
                             return Difficulty.MEDIUM;
                         }
-                    case 3:
+                        case 3:
                         {
                             errorDiff = false;
                             Console.Clear(); // clear the console
-                            System.Console.Write("The game will be launched against an AI with a Hard difficulty and a size of board of ");
+                            System.Console.Write(
+                                "The game will be launched against an AI with a Hard difficulty and a size of board of ");
                             return Difficulty.HARD;
                         }
-                    case 4:
+                        case 4:
                         {
                             errorDiff = false;
                             Console.Clear(); // clear the console
-                            System.Console.Write("The game will be launched against an AI with a IMPOSSIBLE difficulty and a size of board of ");
+                            System.Console.Write(
+                                "The game will be launched against an AI with a IMPOSSIBLE difficulty and a size of board of ");
                             return Difficulty.IMPOSSIBLE;
                         }
-                    default:
+                        default:
                         {
                             errorDiff = true;
                             break;
                         }
+                    }
                 }
             }
-        }
-        static bool ChooseOpponnent()
-        {
-            bool solo = false;
-            bool errorOpp = false;
+
+            static bool ChooseOpponnent()
+            {
+                bool solo = false;
+                bool errorOpp = false;
 
             while (true)
             {
@@ -221,18 +228,18 @@ namespace HexBlock
                 System.Console.WriteLine("→ 'AI' or 'Player'");
                 String choiceOpp = Console.ReadLine();
 
-                switch (choiceOpp.ToLower())
-                {
-                    case "a":
-                    case "ai":
+                    switch (choiceOpp.ToLower())
+                    {
+                        case "a":
+                        case "ai":
                         {
                             Console.Clear(); // clear the console
                             System.Console.Write("→ You choose to play against an AI");
                             return true;
                         }
 
-                    case "p":
-                    case "player":
+                        case "p":
+                        case "player":
                         {
                             Console.Clear(); // clear the console
                             System.Console.WriteLine("→ You choose to play against an another player");
@@ -240,14 +247,62 @@ namespace HexBlock
                             errorOpp = false;
                             return false;
                         }
-                    default:
+                        default:
                         {
                             errorOpp = true;
                             break;
                         }
+                    }
+                }
+            }
+
+            static bool ChooseMode()
+            {
+                bool solo = false;
+                bool errorMode = false;
+
+                while (true)
+                {
+                    if (errorMode)
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        System.Console.WriteLine("→ There was an error, please try again.\n");
+                    }
+
+                    System.Console.ForegroundColor = ConsoleColor.Black;
+                    System.Console.WriteLine("→ How do you want to play ? (with number or with cursor)");
+                    System.Console.WriteLine("→ 'Number' or 'Cursor'");
+                    String choiceMode = Console.ReadLine();
+
+                    switch (choiceMode.ToLower())
+                    {
+                        case "n":
+                        case "number":
+                        {
+                            Console.Clear(); // clear the console
+                            System.Console.Write("→ You choose to play with coordinates");
+                            return true;
+                        }
+
+                        case "c":
+                        case "cursor":
+                        {
+                            Console.Clear(); // clear the console
+                            System.Console.WriteLine("→ You choose to play with a cursor");
+                            Board.PlayCursor();
+                            solo = false;
+                            errorMode = false;
+                            return false;
+                        }
+                        default:
+                        {
+                            errorMode = true;
+                            break;
+                        }
+                    }
                 }
             }
         }
-
     }
 }
