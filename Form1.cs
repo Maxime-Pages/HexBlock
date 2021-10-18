@@ -28,8 +28,8 @@ namespace howto_hexagonal_grid
         private List<PointF> Hexagons = new List<PointF>();
 
 #if FIG34
-        // The selected search rectangle.
-        // Used to draw Figures 3 and 4.
+        // The selected Hexagons search the rectangle.
+        // They are used to draw the Figures 3 and 4.
         private List<RectangleF> TestRects = new List<RectangleF>();
 #endif
 
@@ -78,8 +78,6 @@ namespace howto_hexagonal_grid
         }
 
         // Draw a hexagonal grid for the indicated area.
-        // (You might be able to draw the hexagons without
-        // drawing any duplicate edges, but this is a lot easier.)
         private void DrawHexGrid(Graphics gr, Pen pen,
             float xmin, float xmax, float ymin, float ymax,
             float height)
@@ -91,7 +89,7 @@ namespace howto_hexagonal_grid
                 // Get the points for the row's first hexagon.
                 PointF[] points = HexToPoints(height, row, 0);
 
-                // If it doesn't fit, we're done.
+                // If it doesn't fit, It's Good
                 if (points[0].Y > ymax) break;
 
                 // Draw the row.
@@ -101,7 +99,7 @@ namespace howto_hexagonal_grid
                     points = HexToPoints(height, row, col);
 
                     // If it doesn't fit horizontally,
-                    // we're done with this row.
+                    // the row is done
                     if (points[5].X > xmax) break;
 
                     // If it fits vertically, draw it.
