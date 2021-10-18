@@ -157,7 +157,7 @@ namespace HexBlock
 
                 for (int j = 0; j < boardSize; j++)
                 {
-                    /*if ((i, j) == (x, y))
+                    if ((i, j) == (x, y))
                     {
                         Console.Write("■ ");
                         continue;
@@ -262,8 +262,7 @@ namespace HexBlock
 
         public (int, int, bool) Cursor((int, int) current)
         {
-            int x = current.Item1;
-            int y = current.Item2;
+            
             bool enter = false;
             ConsoleKeyInfo input = Console.ReadKey();
 

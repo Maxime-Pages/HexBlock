@@ -288,12 +288,14 @@ namespace HexBlock
         {
             while (true)
             {
-                (int, int,bool) chosen = (0,0,false);
+                int x = 0;
+                int y = 0;
+                bool enter = false;
                 do
                 {
-                    Board_display(chosen.Item1, chosen.Item2);
-                    chosen = this.Cursor((chosen.Item1,chosen.Item2));
-                } while (chosen.Item3 && Play((chosen.Item1, chosen.Item2)));
+                    Board_display(x,y);
+                    (x,y,enter) = Cursor(x,y);
+                } while (!enter  || Play((y,x)));
                 if (Haswon(cturn))
                 {
                     return cturn;
