@@ -16,7 +16,7 @@ namespace HexBlock
     {
         #region Attributes
 
-        
+
 
 
         private int size;
@@ -58,7 +58,7 @@ namespace HexBlock
             return grid;
         }
         #endregion
-        
+
         /*
         public (int,int) ChooseSpot()
         {
@@ -115,7 +115,7 @@ namespace HexBlock
         {
             return Pathfinding.pathfind(player, this.grid);
         }
-        
+
         private bool Legal((int, int) cor)
         {
             return cor.Item1 < this.size &&
@@ -125,19 +125,19 @@ namespace HexBlock
                 this.grid[cor.Item1, cor.Item2].IsEmpty();
         }
 
-        public bool ColorSpot((int, int) cor,bool player)
+        public bool ColorSpot((int, int) cor, bool player)
         {
             if (Legal(cor))
             {
-                grid[cor.Item1,cor.Item2].Color(player);
+                grid[cor.Item1, cor.Item2].Color(player);
                 return true;
             }
 
             return false;
         }
-        public Board(int size, bool solo = false,Difficulty diff = Difficulty.NULL)
+        public Board(int size, bool solo = false, Difficulty diff = Difficulty.NULL)
         {
-            if (!VerrifySize(size))
+            if (!IsSizeValid(size))
                 throw new Exception("Invalid Size");
             this.size = size;
             this.grid = new Spot[size, size];
@@ -149,26 +149,28 @@ namespace HexBlock
             {
                 for (int j = 0; j < size; j++)
                 {
-                    grid[i,j] = new Spot(i,j);                    
+                    grid[i, j] = new Spot(i, j);
                 }
             }
-        } 
-        
-        public bool VerrifySize(int size)
+        }
+        /// <summary>
+        /// Blabla
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static bool IsSizeValid(int size)
         {
             switch (size)
             {
+                case 3:
                 case 11:
                 case 13:
                 case 19:
-                case 3:
-                { 
                     return true;
-                }
-                default :
-                {
+                default:
+
                     return false;
-                }
+
             }
         }
         public static bool StartGame(int size, bool solo, Difficulty difficulty = Difficulty.NULL)
@@ -239,7 +241,7 @@ namespace HexBlock
 
         public bool GameMulti()
         {
-            
+
             while (true)
             {
                 (int, int) chosen;
@@ -283,7 +285,7 @@ namespace HexBlock
             }
         }
 
-        
+
         public bool CursorMulti()
         {
             while (true)
@@ -293,9 +295,9 @@ namespace HexBlock
                 bool enter = false;
                 do
                 {
-                    Board_display(x,y);
-                    (x,y,enter) = Cursor(x,y);
-                } while (!enter  || Play((y,x)));
+                    Board_display(x, y);
+                    (x, y, enter) = Cursor(x, y);
+                } while (!enter || Play((y, x)));
                 if (Haswon(cturn))
                 {
                     return cturn;
