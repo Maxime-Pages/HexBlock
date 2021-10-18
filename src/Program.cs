@@ -10,15 +10,16 @@ namespace HexBlock
     {
         static void Main(string[] args)
         {
-                      
+
             Console.BackgroundColor = ConsoleColor.White;
-            System.Console.ForegroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.Clear();
+            
             ChooseApp();
-            
-            
+
+
             Console.Clear();
-            System.Console.WriteLine("→ Welcome to the HexGame : console edition");
+            Console.WriteLine("→ Welcome to the HexGame : console edition");
             int size = ChooseSize();
 
             bool solo = ChooseOpponnent();
@@ -35,10 +36,11 @@ namespace HexBlock
             }
             System.Console.WriteLine("→ Press any key to continue..");
             Console.ReadLine();
-            Board.StartGame(size,solo,diff); 
-            
+            Board.PlayCursor();
 
-            
+        }
+
+
 
         static void ChooseApp()
         {
@@ -139,9 +141,9 @@ namespace HexBlock
         static Difficulty ChooseDifficulty()
         {
             bool errorDiff = false;
-            while(true)
+            while (true)
             {
-                
+
                 if (errorDiff)
                 {
                     Console.Clear();
@@ -195,7 +197,7 @@ namespace HexBlock
         {
             bool errorOpp = false;
 
-            while(true)
+            while (true)
             {
                 if (errorOpp)   
                 {
