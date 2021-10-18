@@ -161,7 +161,7 @@ namespace HexBlock
                     {
                         Console.Write("■ ");
                         continue;
-                    }*/
+                    }
                     Console.ForegroundColor = this.grid[j, i].IsEmpty() ? ConsoleColor.Black :
                         this.grid[j, i].GetColor() ? ConsoleColor.Red : ConsoleColor.Blue;
                     Console.Write((this.grid[j, i].IsEmpty() ? "_" : this.grid[j, i].GetColor() ? "■" : "■") + " ");
@@ -260,7 +260,7 @@ namespace HexBlock
 
 
 
-        public (int, int, bool) Cursor((int, int) current)
+        public (int, int, bool) Cursor(int x, int y)
         {
             
             bool enter = false;
