@@ -186,10 +186,21 @@ namespace HexBlock
             }
         }
 
-        public static bool PlayCursor()
+        public static bool PlayCursor(int size, bool solo, Difficulty difficulty = Difficulty.NULL)
         {
-            Board board = new Board(11, false);
-            return board.CursorMulti();
+            
+            if (solo) // if true == solo | false == player
+            {
+                Board board = new Board(size, solo, difficulty);
+                board.Board_display();
+                return board.CursorSolo();
+            }
+            else
+            {
+                Board board = new Board(size);
+                board.Board_display();
+                return board.CursorMulti();
+            }
         }
 
         public bool GameSolo()
