@@ -23,15 +23,15 @@ namespace howto_hexagonal_grid
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.Clear();
-            Console.Clear();
             ChooseApp();
         }
 
         static void StartGraphic()
         {
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Form1(new Board(ChooseSize())));
         }
 
         static void StartConsole()
@@ -52,7 +52,7 @@ namespace howto_hexagonal_grid
 
             System.Console.WriteLine("Press any key to continue ");
             Console.ReadLine();
-            Board.PlayCursor();
+            Board.PlayCursor(size,solo,diff);
         }
         static void ChooseApp()
         {
@@ -303,7 +303,7 @@ namespace howto_hexagonal_grid
                         {
                             Console.Clear(); // clear the console
                             System.Console.WriteLine("→ You choose to play with a cursor");
-                            Board.PlayCursor();
+                            Board.PlayCursor(0,true);
                             solo = false;
                             errorMode = false;
                             return false;

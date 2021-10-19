@@ -9,7 +9,7 @@ namespace HexBlock
         IMPOSSIBLE,
         NULL
     }
-    partial class Board
+    public partial class Board
     {
         #region Attributes
 
@@ -113,7 +113,7 @@ namespace HexBlock
             return Pathfinding.Pathfind(player, this.grid);
         }
 
-        private bool Legal((int, int) cor)
+        public bool Legal((int, int) cor)
         {
             return cor.Item1 < this.size &&
                 cor.Item1 >= 0 &&
@@ -267,6 +267,12 @@ namespace HexBlock
 
             }
         }
+
+        /// <summary>
+        /// Checks if Coordinates are valid to play at, colors the spot at the Coordinates and increment turn number and current turn
+        /// </summary>
+        /// <param name="coo">Coordinates of the Spot you wish to play at</param>
+        /// <returns>True if coordinates are valid to play at, false otherwise</returns>
         public bool Play((int, int) coo)
         {
             if (!ColorSpot(coo, cturn))
