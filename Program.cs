@@ -52,7 +52,7 @@ namespace howto_hexagonal_grid
 
             System.Console.WriteLine("Press any key to continue ");
             Console.ReadLine();
-            Board.PlayCursor();
+            Board.PlayCursor(size,solo,diff);
         }
         static void ChooseApp()
         {
@@ -303,7 +303,7 @@ namespace howto_hexagonal_grid
                         {
                             Console.Clear(); // clear the console
                             System.Console.WriteLine("→ You choose to play with a cursor");
-                            Board.PlayCursor();
+                            Board.PlayCursor(0, true);
                             solo = false;
                             errorMode = false;
                             return false;
