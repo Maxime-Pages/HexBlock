@@ -84,26 +84,26 @@ namespace howto_hexagonal_grid
                 {
                     case "g":
                     case "graphical":
-                        {
+                        
                             errorApp = false;
                             StartGraphic();
                             break;
-                        }
+                        
 
                     case "c":
                     case "console":
-                        {
+                        
                             errorApp = false;
                             Console.Clear();
                             Console.WriteLine("→ You choosed the console version");
                             StartConsole();
                             break;
-                        }
+                        
                     default:
-                        {
+                        
                             errorApp = true;
                             break;
-                        }
+                        
                 }
             } while (errorApp);
         }
@@ -128,33 +128,33 @@ namespace howto_hexagonal_grid
                 switch (size)
                 {
                     case 11:
-                        {
+                        
                             errorSize = false;
                             Console.Clear(); // clear the console
                             Console.WriteLine("→ You choosed a grid of 11x11");
                             return 11;
-                        }
+                        
                     case 13:
-                        {
+                        
                             errorSize = false;
                             Console.Clear(); // clear the console
                             Console.WriteLine("→ You choosed a grid of 13x13");
                             return 13;
 
-                        }
+                        
                     case 19:
-                        {
+                        
                             errorSize = false;
                             Console.Clear(); // clear the console
                             Console.WriteLine("→ You choosed a grid of 19x19");
                             return 19;
 
-                        }
+                        
                     default:
-                        {
+                        
                             errorSize = true;
                             break;
-                        }
+                        
                 }
             }
         }
@@ -181,38 +181,38 @@ namespace howto_hexagonal_grid
                 switch (diff)
                 {
                     case 1:
-                        {
+                        
                             errorDiff = false;
                             Console.Clear(); // clear the console
                             Console.Write("The game will be launched against an AI with a Easy difficulty and a size of board of ");
                             return Difficulty.EASY;
-                        }
+                        
                     case 2:
-                        {
+                        
                             errorDiff = false;
                             Console.Clear(); // clear the console
                             Console.Write("The game will be launched against an AI with a Normal difficulty and a size of board of ");
                             return Difficulty.MEDIUM;
-                        }
+                        
                     case 3:
-                        {
-                            errorDiff = false;
+
+                        errorDiff = false;
                             Console.Clear(); // clear the console
                             Console.Write("The game will be launched against an AI with a Hard difficulty and a size of board of ");
                             return Difficulty.HARD;
-                        }
+                        
                     case 4:
-                        {
+                        
                             errorDiff = false;
                             Console.Clear(); // clear the console
                             Console.Write("The game will be launched against an AI with a IMPOSSIBLE difficulty and a size of board of ");
                             return Difficulty.IMPOSSIBLE;
-                        }
+                        
                     default:
-                        {
+                        
                             errorDiff = true;
                             break;
-                        }
+                        
                 }
             }
         }
