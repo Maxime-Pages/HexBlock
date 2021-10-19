@@ -1,28 +1,25 @@
-﻿#define FIG1
-#define FIG34
+﻿#define FFIG34
+#define FFIG1
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
 using System.Drawing.Drawing2D;
+using HexBlock;
 
 namespace howto_hexagonal_grid
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public Form1(Board board)
         {
             InitializeComponent();
+            Board = board;
         }
 
         // The height of a hexagon.
-        private const float HexHeight = 50;
+        private const float HexHeight = 25;
 
         // Selected hexagons.
         private List<PointF> Hexagons = new List<PointF>();
@@ -32,7 +29,7 @@ namespace howto_hexagonal_grid
         // They are used to draw the Figures 3 and 4.
         private List<RectangleF> TestRects = new List<RectangleF>();
 #endif
-
+        public static HexBlock.Board Board;
         // Redraw the grid.
         private void picGrid_Paint(object sender, PaintEventArgs e)
         {
@@ -147,13 +144,15 @@ namespace howto_hexagonal_grid
         // Add the clicked hexagon to the Hexagons list.
         private void picGrid_MouseClick(object sender, MouseEventArgs e)
         {
+            
             int row, col;
             PointToHex(e.X, e.Y, HexHeight, out row, out col);
-            if (row < 11 && col < 11 && row >= 0 && col >= 0)
+            if (Board.Play((row, col)))
             {
                 Hexagons.Add(new PointF(row, col));
+                
             }
-
+            
 #if FIG34
             // Used to draw Figures 3 and 4.
             PointF[] points = HexToPoints(HexHeight, row, col);
