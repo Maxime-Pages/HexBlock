@@ -28,7 +28,6 @@ namespace howto_hexagonal_grid
 
         static void StartGraphic()
         {
-            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1(new Board(ChooseSize())));
@@ -40,7 +39,6 @@ namespace howto_hexagonal_grid
 
             Console.WriteLine("→ Welcome to the HexGame : console edition");
             int size = ChooseSize();
-
             bool solo = ChooseOpponnent();
 
             Difficulty diff = Difficulty.NULL;
@@ -50,9 +48,20 @@ namespace howto_hexagonal_grid
                 Console.Write($"{size}\n");
             }
 
+            bool choiceMode = ChooseMode(); // true == number | false == cursor
+            if (choiceMode)
+            {
+                Board.StartGame(size,solo,diff);
+            }
+            else
+            {
+                Board.PlayCursor(size,solo,diff);
+            }
+            
             Console.WriteLine("Press any key to continue ");
             Console.ReadLine();
-            Board.PlayCursor(size,solo,diff);
+            
+            
         }
         static void ChooseApp()
         {
@@ -286,7 +295,6 @@ namespace howto_hexagonal_grid
                         {
                             Console.Clear(); // clear the console
                             Console.WriteLine("→ You choose to play with a cursor");
-                            Board.PlayCursor(0, true);
                             errorMode = false;
                             return false;
                         }
@@ -298,5 +306,6 @@ namespace howto_hexagonal_grid
                 }
             }
         }
+
     }
 }
