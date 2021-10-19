@@ -110,7 +110,7 @@ namespace HexBlock
         */
         private bool Haswon(bool player)
         {
-            return Pathfinding.pathfind(player, this.grid);
+            return Pathfinding.Pathfind(player, this.grid);
         }
 
         private bool Legal((int, int) cor)
