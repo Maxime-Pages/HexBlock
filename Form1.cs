@@ -46,20 +46,19 @@ namespace howto_hexagonal_grid
                 //Color_Outline(e);
                 if (hexColores % 2 == 0)
                 {
-                    e.Graphics.FillPolygon(Brushes.Blue,
+                    e.Graphics.FillPolygon(Brushes.Red,
                         HexToPoints(HexHeight, point.X, point.Y));
                 }
 
                 else if (hexColores % 2 != 0)
                 {
-                    e.Graphics.FillPolygon(Brushes.Red,
+                    e.Graphics.FillPolygon(Brushes.Blue,
                         HexToPoints(HexHeight, point.X, point.Y));
                 }
 
 
                 hexColores++;
-                e.Graphics.FillPolygon(Brushes.Red,
-                    HexToPoints(HexHeight, 12, 1));
+               
 
             }
 
