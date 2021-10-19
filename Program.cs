@@ -102,7 +102,6 @@ namespace howto_hexagonal_grid
         static int ChooseSize()
         {
             bool errorSize = false;
-            int size;
             while (true)
             {
                 if (errorSize)
@@ -115,7 +114,7 @@ namespace howto_hexagonal_grid
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine("→ What about the size of the grid ? (11,13,19)");
                 string choiceSize = Console.ReadLine(); // set the choice in a string
-                int.TryParse(choiceSize, out size); // string containing a number
+                int.TryParse(choiceSize, out int size); // string containing a number
 
                 switch (size)
                 {
@@ -124,14 +123,14 @@ namespace howto_hexagonal_grid
                             errorSize = false;
                             Console.Clear(); // clear the console
                             Console.WriteLine("→ You choosed a grid of 11x11");
-                            break;
+                            return 11;
                         }
                     case 13:
                         {
                             errorSize = false;
                             Console.Clear(); // clear the console
                             Console.WriteLine("→ You choosed a grid of 13x13");
-                            break;
+                            return 13;
 
                         }
                     case 19:
@@ -139,8 +138,7 @@ namespace howto_hexagonal_grid
                             errorSize = false;
                             Console.Clear(); // clear the console
                             Console.WriteLine("→ You choosed a grid of 19x19");
-
-                            break;
+                            return 19;
 
                         }
                     default:
@@ -151,7 +149,6 @@ namespace howto_hexagonal_grid
                 }
             }
         }
-
         static Difficulty ChooseDifficulty()
         {
             bool errorDiff = false;
