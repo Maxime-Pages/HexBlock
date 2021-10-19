@@ -303,7 +303,7 @@ namespace howto_hexagonal_grid
                         {
                             Console.Clear(); // clear the console
                             System.Console.WriteLine("→ You choose to play with a cursor");
-                            Board.PlayCursor(0,true);
+                            Board.PlayCursor(0, true);
                             solo = false;
                             errorMode = false;
                             return false;
