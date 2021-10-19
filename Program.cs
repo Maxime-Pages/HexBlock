@@ -28,7 +28,7 @@ namespace howto_hexagonal_grid
 
         static void StartGraphic()
         {
-            
+           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1(new Board(ChooseSize())));
@@ -280,13 +280,13 @@ namespace howto_hexagonal_grid
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.DarkRed;
-                    System.Console.WriteLine("→ There was an error, please try again.\n");
+                    Console.WriteLine("→ There was an error, please try again.\n");
                 }
 
                 System.Console.ForegroundColor = ConsoleColor.Black;
                 System.Console.WriteLine("→ How do you want to play ? (with number or with cursor)");
                 System.Console.WriteLine("→ 'Number' or 'Cursor'");
-                String choiceMode = Console.ReadLine();
+                string choiceMode = Console.ReadLine();
 
                 switch (choiceMode.ToLower())
                 {
