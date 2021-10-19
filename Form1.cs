@@ -256,6 +256,11 @@ namespace howto_hexagonal_grid
                 new PointF(x + height / 2,y + width * 0.25f),
             };
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
