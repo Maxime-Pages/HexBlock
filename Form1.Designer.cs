@@ -1,4 +1,6 @@
-﻿namespace howto_hexagonal_grid
+﻿using System.Windows.Forms;
+
+namespace howto_hexagonal_grid
 {
     partial class Form1
     {
@@ -48,6 +50,7 @@
             this.picGrid.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picGrid_MouseClick);
             this.picGrid.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picGrid_MouseMove);
             this.picGrid.Resize += new System.EventHandler(this.picGrid_Resize);
+           
             // 
             // Form1
             // 

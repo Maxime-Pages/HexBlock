@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using HexBlock;
@@ -28,9 +26,10 @@ namespace howto_hexagonal_grid
 
         static void StartGraphic()
         {
+           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(new Board(ChooseSize())));
+            Application.Run(new Menu());
         }
 
         static void StartConsole()
@@ -275,9 +274,9 @@ namespace howto_hexagonal_grid
                     Console.WriteLine("→ There was an error, please try again.\n");
                 }
 
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine("→ How do you want to play ? (with number or with cursor)");
-                Console.WriteLine("→ 'Number' or 'Cursor'");
+                System.Console.ForegroundColor = ConsoleColor.Black;
+                System.Console.WriteLine("→ How do you want to play ? (with number or with cursor)");
+                System.Console.WriteLine("→ 'Number' or 'Cursor'");
                 String choiceMode = Console.ReadLine();
 
                 switch (choiceMode.ToLower())
