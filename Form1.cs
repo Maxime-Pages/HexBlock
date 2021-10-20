@@ -91,8 +91,11 @@ namespace HexBlock
             float xmin, float xmax, float ymin, float ymax,
             float height)
         {
+            int size = Board.GetSize();
+            int margin = size == 11 ? 2 : size == 13 ? 4 : 3;
+            
             // Loop until a hexagon won't fit.
-            for (int row = 8; row < 19; row++)
+            for (int row = margin; row < size + margin; row++)
             {
 
                 // Get the points for the row's first hexagon.
@@ -102,7 +105,7 @@ namespace HexBlock
                 if (points[1].Y > ymax) break;
 
                 // Draw the row.
-                for (int col = 8; col < 19; col++)
+                for (int col = margin; col < size + margin; col++)
 
                 {
                     // Get the points for the row's next hexagon.
