@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using HexBlock;
@@ -31,7 +29,7 @@ namespace howto_hexagonal_grid
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(new Board(ChooseSize())));
+            Application.Run(new Menu());
         }
 
         static void StartConsole()
