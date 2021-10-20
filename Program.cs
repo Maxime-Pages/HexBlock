@@ -78,7 +78,7 @@ namespace howto_hexagonal_grid
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine("→ Welcome to the menu, before starting we would like to know which application do you want to use ?");
                 Console.WriteLine("→ Type 'g' for graphical or 'c' for console");
-                String choiceApp = Console.ReadLine();
+                string choiceApp = Console.ReadLine();
 
                 switch (choiceApp.ToLower())
                 {
@@ -172,7 +172,7 @@ namespace howto_hexagonal_grid
                 }
 
                 Console.Clear(); // clear the console
-                System.Console.WriteLine("→ Which difficulty do you want ? (1 for Easy to 4 IMPOSSIBLE)");
+                Console.WriteLine("→ Which difficulty do you want ? (1 for Easy to 4 IMPOSSIBLE)");
                 int diff;
                 string choiceDiff = Console.ReadLine();
                 int.TryParse(choiceDiff, out diff); // string containing a number
