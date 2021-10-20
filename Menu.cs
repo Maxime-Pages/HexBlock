@@ -17,11 +17,39 @@ namespace howto_hexagonal_grid
             InitializeComponent();
         }
 
+        private int size = 11;
+        private HexBlock.Difficulty difficulty = Difficulty.NULL;
+        private bool solo;
+
         private void x11ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 v2 = new Form1(new Board(11));
+            size = 11;
+        }
+
+        private void x13ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            size = 13;
+        }
+
+        private void x19ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            size = 19;
+        }
+
+        private void playerVsPlayerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            solo = false;
+        }
+
+        private void playerVsAIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            solo = true;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var game = new Form1(new Board(size, solo, difficulty));
             Hide();
-            v2.ShowDialog();
+            game.ShowDialog();
         }
     }
 }
