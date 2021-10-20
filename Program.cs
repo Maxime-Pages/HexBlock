@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using HexBlock;
@@ -31,7 +29,7 @@ namespace howto_hexagonal_grid
            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(new Board(ChooseSize())));
+            Application.Run(new Menu());
         }
 
         static void StartConsole()
@@ -40,7 +38,6 @@ namespace howto_hexagonal_grid
 
             Console.WriteLine("→ Welcome to the HexGame : console edition");
             int size = ChooseSize();
-
             bool solo = ChooseOpponnent();
 
             Difficulty diff = Difficulty.NULL;
@@ -50,9 +47,20 @@ namespace howto_hexagonal_grid
                 Console.Write($"{size}\n");
             }
 
-            System.Console.WriteLine("Press any key to continue ");
+            bool choiceMode = ChooseMode(); // true == number | false == cursor
+            if (choiceMode)
+            {
+                Board.StartGame(size,solo,diff);
+            }
+            else
+            {
+                Board.PlayCursor(size,solo,diff);
+            }
+            
+            Console.WriteLine("Press any key to continue ");
             Console.ReadLine();
-            Board.PlayCursor(size,solo,diff);
+            
+            
         }
         static void ChooseApp()
         {
@@ -63,39 +71,38 @@ namespace howto_hexagonal_grid
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.DarkRed;
-                    System.Console.WriteLine("→ There was an error, please try again.\n");
+                    Console.WriteLine("→ There was an error, please try again.\n");
                 }
 
-                System.Console.ForegroundColor = ConsoleColor.Black;
-                System.Console.WriteLine(
-                    "→ Welcome to the menu, before starting we would like to know which application do you want to use ?");
-                System.Console.WriteLine("→ Type 'g' for graphical or 'c' for console");
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("→ Welcome to the menu, before starting we would like to know which application do you want to use ?");
+                Console.WriteLine("→ Type 'g' for graphical or 'c' for console");
                 String choiceApp = Console.ReadLine();
 
                 switch (choiceApp.ToLower())
                 {
                     case "g":
                     case "graphical":
-                        {
+                        
                             errorApp = false;
                             StartGraphic();
                             break;
-                        }
+                        
 
                     case "c":
                     case "console":
-                        {
+                        
                             errorApp = false;
                             Console.Clear();
-                            System.Console.WriteLine("→ You choosed the console version");
+                            Console.WriteLine("→ You choosed the console version");
                             StartConsole();
                             break;
-                        }
+                        
                     default:
-                        {
+                        
                             errorApp = true;
                             break;
-                        }
+                        
                 }
             } while (errorApp);
         }
@@ -103,64 +110,55 @@ namespace howto_hexagonal_grid
         static int ChooseSize()
         {
             bool errorSize = false;
-            bool success;
-            int size;
-            do
+            while (true)
             {
                 if (errorSize)
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.DarkRed;
-                    System.Console.WriteLine("→ There was an error, please try again.\n");
+                    Console.WriteLine("→ There was an error, please try again.\n");
                 }
 
-                System.Console.ForegroundColor = ConsoleColor.Black;
-                System.Console.WriteLine("→ What about the size of the grid ? (11,13,19)");
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("→ What about the size of the grid ? (11,13,19)");
                 string choiceSize = Console.ReadLine(); // set the choice in a string
-                success = Int32.TryParse(choiceSize, out size); // string containing a number
+                int.TryParse(choiceSize, out int size); // string containing a number
 
                 switch (size)
                 {
                     case 11:
-                        {
+                        
                             errorSize = false;
                             Console.Clear(); // clear the console
-                            System.Console.WriteLine("→ You choosed a grid of 11x11");
-                            size = 11;
-                            break;
-                        }
+                            Console.WriteLine("→ You choosed a grid of 11x11");
+                            return 11;
+                        
                     case 13:
-                        {
+                        
                             errorSize = false;
                             Console.Clear(); // clear the console
-                            System.Console.WriteLine("→ You choosed a grid of 13x13");
-                            size = 13;
-                            break;
+                            Console.WriteLine("→ You choosed a grid of 13x13");
+                            return 13;
 
-                        }
+                        
                     case 19:
-                        {
+                        
                             errorSize = false;
                             Console.Clear(); // clear the console
-                            System.Console.WriteLine("→ You choosed a grid of 19x19");
-                            size = 19;
-                            break;
+                            Console.WriteLine("→ You choosed a grid of 19x19");
+                            return 19;
 
-                        }
+                        
                     default:
-                        {
+                        
                             errorSize = true;
                             break;
-                        }
+                        
                 }
-            } while (errorSize);
-
-            return size;
+            }
         }
-
         static Difficulty ChooseDifficulty()
         {
-            bool errorOpp = false;
             bool errorDiff = false;
             while (true)
             {
@@ -176,55 +174,50 @@ namespace howto_hexagonal_grid
                 System.Console.WriteLine("→ Which difficulty do you want ? (1 for Easy to 4 IMPOSSIBLE)");
                 int diff;
                 string choiceDiff = Console.ReadLine();
-                bool successDiff = Int32.TryParse(choiceDiff, out diff); // string containing a number
+                int.TryParse(choiceDiff, out diff); // string containing a number
 
 
                 switch (diff)
                 {
                     case 1:
-                        {
+                        
                             errorDiff = false;
                             Console.Clear(); // clear the console
-                            System.Console.Write(
-                                "The game will be launched against an AI with a Easy difficulty and a size of board of ");
+                            Console.Write("The game will be launched against an AI with a Easy difficulty and a size of board of ");
                             return Difficulty.EASY;
-                        }
+                        
                     case 2:
-                        {
+                        
                             errorDiff = false;
                             Console.Clear(); // clear the console
-                            System.Console.Write(
-                                "The game will be launched against an AI with a Normal difficulty and a size of board of ");
+                            Console.Write("The game will be launched against an AI with a Normal difficulty and a size of board of ");
                             return Difficulty.MEDIUM;
-                        }
+                        
                     case 3:
-                        {
-                            errorDiff = false;
+
+                        errorDiff = false;
                             Console.Clear(); // clear the console
-                            System.Console.Write(
-                                "The game will be launched against an AI with a Hard difficulty and a size of board of ");
+                            Console.Write("The game will be launched against an AI with a Hard difficulty and a size of board of ");
                             return Difficulty.HARD;
-                        }
+                        
                     case 4:
-                        {
+                        
                             errorDiff = false;
                             Console.Clear(); // clear the console
-                            System.Console.Write(
-                                "The game will be launched against an AI with a IMPOSSIBLE difficulty and a size of board of ");
+                            Console.Write("The game will be launched against an AI with a IMPOSSIBLE difficulty and a size of board of ");
                             return Difficulty.IMPOSSIBLE;
-                        }
+                        
                     default:
-                        {
+                        
                             errorDiff = true;
                             break;
-                        }
+                        
                 }
             }
         }
 
         static bool ChooseOpponnent()
         {
-            bool solo = false;
             bool errorOpp = false;
 
             while (true)
@@ -233,12 +226,12 @@ namespace howto_hexagonal_grid
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.DarkRed;
-                    System.Console.WriteLine("→ There was an error, please try again.\n");
+                    Console.WriteLine("→ There was an error, please try again.\n");
                 }
 
-                System.Console.ForegroundColor = ConsoleColor.Black;
-                System.Console.WriteLine("→ Who do you want to play against ? (AI or Player)");
-                System.Console.WriteLine("→ 'AI' or 'Player'");
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("→ Who do you want to play against ? (AI or Player)");
+                Console.WriteLine("→ 'AI' or 'Player'");
                 String choiceOpp = Console.ReadLine();
 
                 switch (choiceOpp.ToLower())
@@ -247,7 +240,7 @@ namespace howto_hexagonal_grid
                     case "ai":
                         {
                             Console.Clear(); // clear the console
-                            System.Console.Write("→ You choose to play against an AI");
+                            Console.Write("→ You choose to play against an AI");
                             return true;
                         }
 
@@ -255,8 +248,7 @@ namespace howto_hexagonal_grid
                     case "player":
                         {
                             Console.Clear(); // clear the console
-                            System.Console.WriteLine("→ You choose to play against an another player");
-                            solo = false;
+                            Console.WriteLine("→ You choose to play against an another player");
                             errorOpp = false;
                             return false;
                         }
@@ -271,7 +263,6 @@ namespace howto_hexagonal_grid
 
         static bool ChooseMode()
         {
-            bool solo = false;
             bool errorMode = false;
 
             while (true)
@@ -286,7 +277,7 @@ namespace howto_hexagonal_grid
                 System.Console.ForegroundColor = ConsoleColor.Black;
                 System.Console.WriteLine("→ How do you want to play ? (with number or with cursor)");
                 System.Console.WriteLine("→ 'Number' or 'Cursor'");
-                string choiceMode = Console.ReadLine();
+                String choiceMode = Console.ReadLine();
 
                 switch (choiceMode.ToLower())
                 {
@@ -294,7 +285,7 @@ namespace howto_hexagonal_grid
                     case "number":
                         {
                             Console.Clear(); // clear the console
-                            System.Console.Write("→ You choose to play with coordinates");
+                            Console.Write("→ You choose to play with coordinates");
                             return true;
                         }
 
@@ -302,9 +293,7 @@ namespace howto_hexagonal_grid
                     case "cursor":
                         {
                             Console.Clear(); // clear the console
-                            System.Console.WriteLine("→ You choose to play with a cursor");
-                            Board.PlayCursor(0, true);
-                            solo = false;
+                            Console.WriteLine("→ You choose to play with a cursor");
                             errorMode = false;
                             return false;
                         }
@@ -316,5 +305,6 @@ namespace howto_hexagonal_grid
                 }
             }
         }
+
     }
 }
