@@ -37,6 +37,7 @@ namespace howto_hexagonal_grid
             this.gameModesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playerVsPlayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playerVsAIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@ namespace howto_hexagonal_grid
             this.gameModesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 36);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 33);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -75,12 +76,14 @@ namespace howto_hexagonal_grid
             this.x13ToolStripMenuItem.Name = "x13ToolStripMenuItem";
             this.x13ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.x13ToolStripMenuItem.Text = "13x13";
+            this.x13ToolStripMenuItem.Click += new System.EventHandler(this.x13ToolStripMenuItem_Click);
             // 
             // x19ToolStripMenuItem
             // 
             this.x19ToolStripMenuItem.Name = "x19ToolStripMenuItem";
             this.x19ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.x19ToolStripMenuItem.Text = "19x19";
+            this.x19ToolStripMenuItem.Click += new System.EventHandler(this.x19ToolStripMenuItem_Click);
             // 
             // gameModesToolStripMenuItem
             // 
@@ -94,20 +97,35 @@ namespace howto_hexagonal_grid
             // playerVsPlayerToolStripMenuItem
             // 
             this.playerVsPlayerToolStripMenuItem.Name = "playerVsPlayerToolStripMenuItem";
-            this.playerVsPlayerToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.playerVsPlayerToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
             this.playerVsPlayerToolStripMenuItem.Text = "Player vs Player";
+            this.playerVsPlayerToolStripMenuItem.Click += new System.EventHandler(this.playerVsPlayerToolStripMenuItem_Click);
             // 
             // playerVsAIToolStripMenuItem
             // 
             this.playerVsAIToolStripMenuItem.Name = "playerVsAIToolStripMenuItem";
-            this.playerVsAIToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.playerVsAIToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
             this.playerVsAIToolStripMenuItem.Text = "Player vs AI";
+            this.playerVsAIToolStripMenuItem.Click += new System.EventHandler(this.playerVsAIToolStripMenuItem_Click);
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(0, 33);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(800, 417);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "START";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -131,5 +149,6 @@ namespace howto_hexagonal_grid
         private System.Windows.Forms.ToolStripMenuItem gameModesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem playerVsPlayerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem playerVsAIToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -18,10 +18,11 @@ namespace howto_hexagonal_grid
         {
             InitializeComponent();
             Board = board;
+            HexHeight = Board.GetSize() == 11 ? 50 : Board.GetSize() == 13 ? 40 : 30;
         }
 
         // The height of a hexagon.
-        private const float HexHeight = 25;
+        private static float HexHeight;
 
         // Selected hexagons.
         private List<PointF> Hexagons = new List<PointF>();
