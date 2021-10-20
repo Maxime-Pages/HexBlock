@@ -20,6 +20,7 @@ namespace howto_hexagonal_grid
         private void x11ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form1 v2 = new Form1(new Board(11));
+            Hide();
             v2.ShowDialog();
         }
     }

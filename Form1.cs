@@ -149,7 +149,7 @@ namespace howto_hexagonal_grid
             PointToHex(e.X, e.Y, HexHeight, out row, out col);
             if (row < 12 && col < 12 && row >= 1 && col >= 1)
             {
-                this.Text = "(" + row + ", " + col + ")";
+                this.Text = $"( {row-1} , {col-1} )";
             }
             else this.Text = null;
 
@@ -161,7 +161,7 @@ namespace howto_hexagonal_grid
 
             int row, col;
             PointToHex(e.X, e.Y, HexHeight, out row, out col);
-            if (Board.Play((row, col)))
+            if (Board.Play((row-1, col-1)))
             {
                 Hexagons.Add(new PointF(row, col));
 
@@ -197,7 +197,7 @@ namespace howto_hexagonal_grid
             row = (int)Math.Floor(y / (width * 0.75f));
 
             col = (int)((x + row * height / 2) / height) - row;
-
+            
             // if (row < 11 )
             // {
 
