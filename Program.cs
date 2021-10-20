@@ -36,7 +36,7 @@ namespace howto_hexagonal_grid
         static void StartConsole()
         {
 
-
+            Console.Clear(); // clear the console
             Console.WriteLine("→ Welcome to the HexGame : console edition");
             int size = ChooseSize();
             bool solo = ChooseOpponnent();
