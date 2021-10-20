@@ -92,17 +92,17 @@ namespace howto_hexagonal_grid
             float height)
         {
             // Loop until a hexagon won't fit.
-            for (int row = 1; row < 12; row++)
+            for (int row = 8; row < 19; row++)
             {
 
                 // Get the points for the row's first hexagon.
-                PointF[] points = HexToPoints(height, row, 1);
+                PointF[] points = HexToPoints(height, row, 2);
 
                 // If it doesn't fit, It's Good
                 if (points[1].Y > ymax) break;
 
                 // Draw the row.
-                for (int col = 1; col < 12; col++)
+                for (int col = 8; col < 19; col++)
 
                 {
                     // Get the points for the row's next hexagon.
@@ -148,9 +148,9 @@ namespace howto_hexagonal_grid
         {
             int row, col;
             PointToHex(e.X, e.Y, HexHeight, out row, out col);
-            if (row < 12 && col < 12 && row >= 1 && col >= 1)
+            if (row < 19 && col < 19 && row >= 8 && col >= 8)
             {
-                this.Text = $"( {row-1} , {col-1} )";
+                this.Text = $"( {row-8} , {col-8} )";
             }
             else this.Text = null;
 
@@ -162,7 +162,7 @@ namespace howto_hexagonal_grid
 
             int row, col;
             PointToHex(e.X, e.Y, HexHeight, out row, out col);
-            if (Board.Play((row-1, col-1)))
+            if (Board.Play((row-8, col-8)))
             {
                 Hexagons.Add(new PointF(row, col));
 
@@ -278,27 +278,27 @@ namespace howto_hexagonal_grid
 
         private object Color_Outline(PaintEventArgs e)
         {
-            int colMax = 12;
-            int rowMax = 12;
-            for (int col = 1; col < colMax; col++)
+            int colMax = 19;
+            int rowMax = 19;
+            for (int col = 8; col < colMax; col++)
             {
                 e.Graphics.FillPolygon(Brushes.Red,
-                    HexToPoints(HexHeight, 12, col));
+                    HexToPoints(HexHeight, 19, col));
             }
-            for (int col = 1; col < colMax; col++)
+            for (int col = 8; col < colMax; col++)
             {
                 e.Graphics.FillPolygon(Brushes.Red,
-                    HexToPoints(HexHeight, 0, col));
+                    HexToPoints(HexHeight, 7, col));
             }
-            for (int row = 1; row < rowMax; row++)
+            for (int row = 8; row < rowMax; row++)
             {
                 e.Graphics.FillPolygon(Brushes.Blue,
-                    HexToPoints(HexHeight, row, 12));
+                    HexToPoints(HexHeight, row, 19));
             }
-            for (int row = 1; row < rowMax; row++)
+            for (int row = 8; row < rowMax; row++)
             {
                 e.Graphics.FillPolygon(Brushes.Blue,
-                    HexToPoints(HexHeight, row, 0));
+                    HexToPoints(HexHeight, row, 7));
             }
 
 
