@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using HexBlock;
 
-namespace howto_hexagonal_grid
+namespace HexBlock
 {
     public partial class Menu : Form
     {

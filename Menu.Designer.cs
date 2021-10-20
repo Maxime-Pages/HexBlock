@@ -1,5 +1,6 @@
-﻿
-namespace howto_hexagonal_grid
+﻿using System.Windows.Forms;
+
+namespace HexBlock
 {
     partial class Menu
     {

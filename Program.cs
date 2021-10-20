@@ -2,8 +2,8 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using HexBlock;
-namespace howto_hexagonal_grid
+
+namespace HexBlock
 {
     static class Program
     {

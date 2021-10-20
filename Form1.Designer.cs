@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace howto_hexagonal_grid
+namespace HexBlock
 {
     partial class Form1
     {
@@ -60,7 +60,7 @@ namespace howto_hexagonal_grid
             this.Controls.Add(this.picGrid);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
-            this.Text = "howto_hexagonal_grid";
+            this.Text = "HexBlock";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picGrid)).EndInit();
             this.ResumeLayout(false);

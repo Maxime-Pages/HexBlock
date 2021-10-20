@@ -8,9 +8,9 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.Runtime.CompilerServices;
-using HexBlock;
 
-namespace howto_hexagonal_grid
+
+namespace HexBlock
 {
     public partial class Form1 : Form
     {
