@@ -190,7 +190,7 @@ namespace HexBlock
         {
             
             if (solo) // if true == solo | false == player
-            {
+            {   
                 Board board = new Board(size, solo, difficulty);
                 board.Board_display();
                 return board.CursorSolo();
@@ -302,16 +302,25 @@ namespace HexBlock
 
         public bool CursorMulti()
         {
+            int x = 0;
+            int y = 0;
             while (true)
             {
-                int x = 0;
-                int y = 0;
+                
                 bool enter = false;
-                do
+                while (true)
                 {
                     Board_display(x, y);
                     (x, y, enter) = Cursor(x, y);
-                } while (!enter || Play((y, x)));
+                    if (enter)
+                    {
+                        if (Play((y, x)))
+                        {
+                            break;
+                        }
+
+                    }
+                }
                 if (Haswon(cturn))
                 {
                     return cturn;
@@ -320,19 +329,37 @@ namespace HexBlock
         }
         public bool CursorSolo()
         {
+            int x = 0;
+            int y = 0;
             while (true)
             {
-                (int, int) chosen;
-                do
+                
+                bool enter = false;
+
+
+                while (true)
                 {
-                    chosen = InputCoo();
-                } while (Play(chosen));
+                    Board_display(x, y);
+                    (x, y, enter) = Cursor(x, y);
+                    if (enter)
+                    {
+                        if(Play((y, x)))
+                        {
+                            break;
+                        }
+                            
+                    }
+                } 
+                if (Haswon(cturn))
+                {
+                    return cturn;
+                }
+                AIPlay();
                 if (Haswon(cturn))
                 {
                     return cturn;
                 }
 
-                this.Board_display();
                 Console.ReadKey();
 
             }

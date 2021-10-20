@@ -1,4 +1,5 @@
 ﻿#define FFIG34
+#define FFIG34
 #define FFIG1
 
 using System;
@@ -52,7 +53,7 @@ namespace howto_hexagonal_grid
                         HexToPoints(HexHeight, point.X, point.Y));
                 }
                 hexColores++;
-                
+                    
             }
 
             // Draw the grid.
@@ -90,7 +91,7 @@ namespace howto_hexagonal_grid
                 if (points[0].Y > ymax) break;
 
                 // Draw the row.
-                for (int col = 0; col < 11; col++)
+                for (int col = 0; col < 11+1; col++)
                 {
                     // Get the points for the row's next hexagon.
                     points = HexToPoints(height, row, col);
