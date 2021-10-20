@@ -1,7 +1,4 @@
 using System;
-using System.Drawing;
-using System.Reflection.Metadata.Ecma335;
-
 namespace HexBlock
 {
     public enum Difficulty
@@ -12,7 +9,7 @@ namespace HexBlock
         IMPOSSIBLE,
         NULL
     }
-    partial class Board
+    public partial class Board
     {
         #region Attributes
 
@@ -113,10 +110,10 @@ namespace HexBlock
         */
         private bool Haswon(bool player)
         {
-            return Pathfinding.pathfind(player, this.grid);
+            return Pathfinding.Pathfind(player, this.grid);
         }
 
-        private bool Legal((int, int) cor)
+        public bool Legal((int, int) cor)
         {
             return cor.Item1 < this.size &&
                 cor.Item1 >= 0 &&
@@ -189,10 +186,21 @@ namespace HexBlock
             }
         }
 
-        public static bool PlayCursor()
+        public static bool PlayCursor(int size, bool solo, Difficulty difficulty = Difficulty.NULL)
         {
-            Board board = new Board(11, false);
-            return board.CursorMulti();
+            
+            if (solo) // if true == solo | false == player
+            {   
+                Board board = new Board(size, solo, difficulty);
+                board.Board_display();
+                return board.CursorSolo();
+            }
+            else
+            {
+                Board board = new Board(size);
+                board.Board_display();
+                return board.CursorMulti();
+            }
         }
 
         public bool GameSolo()
@@ -259,6 +267,12 @@ namespace HexBlock
 
             }
         }
+
+        /// <summary>
+        /// Checks if Coordinates are valid to play at, colors the spot at the Coordinates and increment turn number and current turn
+        /// </summary>
+        /// <param name="coo">Coordinates of the Spot you wish to play at</param>
+        /// <returns>True if coordinates are valid to play at, false otherwise</returns>
         public bool Play((int, int) coo)
         {
             if (!ColorSpot(coo, cturn))
@@ -288,16 +302,25 @@ namespace HexBlock
 
         public bool CursorMulti()
         {
+            int x = 0;
+            int y = 0;
             while (true)
             {
-                int x = 0;
-                int y = 0;
+                
                 bool enter = false;
-                do
+                while (true)
                 {
                     Board_display(x, y);
                     (x, y, enter) = Cursor(x, y);
-                } while (!enter || Play((y, x)));
+                    if (enter)
+                    {
+                        if (Play((y, x)))
+                        {
+                            break;
+                        }
+
+                    }
+                }
                 if (Haswon(cturn))
                 {
                     return cturn;
@@ -306,19 +329,37 @@ namespace HexBlock
         }
         public bool CursorSolo()
         {
+            int x = 0;
+            int y = 0;
             while (true)
             {
-                (int, int) chosen;
-                do
+                
+                bool enter = false;
+
+
+                while (true)
                 {
-                    chosen = InputCoo();
-                } while (Play(chosen));
+                    Board_display(x, y);
+                    (x, y, enter) = Cursor(x, y);
+                    if (enter)
+                    {
+                        if(Play((y, x)))
+                        {
+                            break;
+                        }
+                            
+                    }
+                } 
+                if (Haswon(cturn))
+                {
+                    return cturn;
+                }
+                AIPlay();
                 if (Haswon(cturn))
                 {
                     return cturn;
                 }
 
-                this.Board_display();
                 Console.ReadKey();
 
             }

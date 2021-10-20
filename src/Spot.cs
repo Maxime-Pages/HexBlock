@@ -1,6 +1,6 @@
 namespace HexBlock
 {
-    class Spot
+    public class Spot
     {
         private bool color;
         private bool empty;

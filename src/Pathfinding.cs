@@ -6,7 +6,7 @@ namespace HexBlock
 {
     class Pathfinding
     {
-        public static bool pathfind(bool player, Spot[,] grid)
+        public static bool Pathfind(bool player, Spot[,] grid)
         {
             // return false;
             int l = grid.GetLength(0);

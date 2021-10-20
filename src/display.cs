@@ -19,7 +19,7 @@ namespace HexBlock
         public void draw_banner_and_turn()
         {
 
-            string spaces = "";
+            string spaces = " ";
             string barre = "-";
             int boardSize = this.size;
             int indent = 0;
@@ -66,7 +66,7 @@ namespace HexBlock
         public void display_row_column_numbers()
         {
             int boardSize = this.size;
-            string spaces = "";
+            string spaces = " ";
             int padding = (int)Math.Log10(boardSize);
 
 
@@ -97,7 +97,7 @@ namespace HexBlock
         public void display_second_row_column_numbers()
         {
             int boardSize = this.size;
-            string spaces = "";
+            string spaces = " ";
             int padding = (int)Math.Log10(boardSize);
 
 
@@ -112,7 +112,7 @@ namespace HexBlock
             for (float j = 0; j < boardSize; j++)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write(j % 10 + " ");
+                Console.Write(j % 10 +" ");
                 Console.ForegroundColor = ConsoleColor.Black;
 
             }
@@ -141,7 +141,7 @@ namespace HexBlock
                     Console.Write(" ");
                 }
 
-                intlength = (i == 0) ? 0 : (int)Math.Log10(i);
+                intlength = (i == 0) ? 0 : (int)(Math.Log10(i));
                 for (int j = 0; j < padding - intlength; j++)
                 {
                     Console.Write(" ");
@@ -173,10 +173,10 @@ namespace HexBlock
                 Console.Write(" " + i + '\n');
                 Console.ForegroundColor = ConsoleColor.Black;
 
-                intlength = (i == 0) ? 0 : (int)Math.Log10(i);
+                intlength = (i == 0) ? 0 : (int)(Math.Log10(i));
                 for (int j = 0; j < padding - intlength; j++)
                 {
-                    Console.Write(" ");
+                    Console.Write("");
 
 
                 }
@@ -224,7 +224,7 @@ namespace HexBlock
 
             Console.Write('\n');
 
-            // Print second row of column numbers
+            // Print second row of column numbers red on bottom
 
             Console.Write(spaces);
             for (int i = 0; i < boardSize + padding + 5; i++)
